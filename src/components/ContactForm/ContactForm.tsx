@@ -8,10 +8,8 @@ export default function ContactForm() {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data: any) => console.log(data)
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit((data) => console.log(data))}>
       <TextField
         label="Name"
         {...register('name', { required: 'Name is required' })}

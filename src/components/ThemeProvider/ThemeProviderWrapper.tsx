@@ -2,7 +2,7 @@
 
 import { getSettings } from '@/lib/contentful'
 import getTheme from '@/theme/theme'
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material'
 import { useEffect, useState } from 'react'
 
 type ThemeProviderWrapperProps = {

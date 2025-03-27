@@ -1,4 +1,3 @@
-import ContactForm from '@/components/ContactForm/ContactForm'
 import { getName, getSettings } from '@/lib/contentful'
 import { Container, Typography, Button } from '@mui/material'
 import { GetServerSideProps } from 'next'

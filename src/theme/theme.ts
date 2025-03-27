@@ -1,29 +1,39 @@
+import { ThemeSettings } from '@/lib/types'
 import { createTheme } from '@mui/material/styles'
 
-type ThemeSettings = {
-  primaryColor?: string
-  secondaryColor?: string
-  titleFont?: string
-  bodyFont?: string
-}
-
-const getTheme = (settings: ThemeSettings) =>
+const getTheme = ({
+  primaryColor,
+  secondaryColor,
+  bodyFont,
+  bodyColor,
+  titleFont,
+  neutralColor,
+  accentColor,
+}: ThemeSettings) =>
   createTheme({
     palette: {
       primary: {
-        main: settings.primaryColor || '#1976d2',
+        main: primaryColor || '#1976d2',
       },
       secondary: {
-        main: settings.secondaryColor || '#dc004e',
+        main: secondaryColor || '#dc004e',
+      },
+      text: {
+        primary: bodyColor || '#000000',
+        secondary: '#ffffff',
+      },
+      background: {
+        default: neutralColor || '#ffffff',
+        paper: accentColor || '#f5f5f5',
       },
     },
     typography: {
-      fontFamily: `${settings.bodyFont}, Arial, sans-serif`,
+      fontFamily: `${bodyFont}, Arial, sans-serif`,
       h1: {
-        fontFamily: `${settings.titleFont}, cursive`,
+        fontFamily: `${titleFont}, cursive`,
       },
       h2: {
-        fontFamily: `${settings.titleFont}, cursive`,
+        fontFamily: `${titleFont}, cursive`,
       },
     },
   })

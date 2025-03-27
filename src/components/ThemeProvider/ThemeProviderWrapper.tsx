@@ -1,13 +1,26 @@
 'use client'
 
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import theme from '@/theme/theme'
+import { getSettings } from '@/lib/contentful'
+import getTheme from '@/theme/theme'
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
+import { useEffect, useState } from 'react'
 
-export default function ThemeProviderWrapper({ children }: { children: React.ReactNode }) {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
-  )
+type ThemeProviderWrapperProps = {
+  children: React.ReactNode
+}
+
+export default function ThemeProviderWrapper({ children }: ThemeProviderWrapperProps) {
+  const [theme, setTheme] = useState(createTheme())
+
+  useEffect(() => {
+    const loadTheme = async () => {
+      const settings = await getSettings()
+      const customTheme = getTheme(settings)
+
+      setTheme(customTheme)
+    }
+
+    loadTheme()
+  }, [])
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
 }

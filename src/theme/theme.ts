@@ -1,17 +1,31 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles'
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#1976d2',
-    },
-    secondary: {
-      main: '#9c27b0',
-    },
-  },
-  typography: {
-    fontFamily: 'Arial, sans-serif',
-  },
-});
+type ThemeSettings = {
+  primaryColor?: string
+  secondaryColor?: string
+  titleFont?: string
+  bodyFont?: string
+}
 
-export default theme;
+const getTheme = (settings: ThemeSettings) =>
+  createTheme({
+    palette: {
+      primary: {
+        main: settings.primaryColor || '#1976d2',
+      },
+      secondary: {
+        main: settings.secondaryColor || '#dc004e',
+      },
+    },
+    typography: {
+      fontFamily: `${settings.bodyFont}, Arial, sans-serif`,
+      h1: {
+        fontFamily: `${settings.titleFont}, cursive`,
+      },
+      h2: {
+        fontFamily: `${settings.titleFont}, cursive`,
+      },
+    },
+  })
+
+export default getTheme

@@ -1,17 +1,7 @@
 import ContactForm from '@/components/ContactForm/ContactForm'
-import client from '@/lib/contentful'
+import { getName, getSettings } from '@/lib/contentful'
 import { Container, Typography, Button } from '@mui/material'
-
-export async function getServerSideProps() {
-  const response = await client.getEntries({
-    content_type: 'test',
-  })
-  const name = response.items[0].fields.name as string
-
-  return {
-    props: { name },
-  }
-}
+import { GetServerSideProps } from 'next'
 
 export default function Home({ name }: { name: string }) {
   return (
@@ -22,7 +12,18 @@ export default function Home({ name }: { name: string }) {
       <Button variant="contained" color="secondary">
         Get Started
       </Button>
-      <ContactForm />
     </Container>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const name = await getName()
+  const settings = await getSettings()
+
+  return {
+    props: {
+      name,
+      settings,
+    },
+  }
 }

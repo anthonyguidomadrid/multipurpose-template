@@ -1,0 +1,31 @@
+/* Futura Cyrilic Book */
+@font-face {
+  font-family: 'Futura Cyrilic Book';
+  src: url('/fonts/FuturaCyrillicBook.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Eunomia Bold */
+@font-face {
+  font-family: 'Eunomia';
+  src: url('/fonts/eunomia.bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Eunomia Light */
+@font-face {
+  font-family: 'Eunomia';
+  src: url('/fonts/eunomia.light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Eunomia Regular */
+@font-face {
+  font-family: 'Eunomia';
+  src: url('/fonts/eunomia.regulat.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}

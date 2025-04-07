@@ -1,5 +1,5 @@
 import { createClient } from 'contentful'
-import { ThemeSettings } from './types'
+import { HomePage, ThemeSettings } from './types'
 
 const client = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || '',
@@ -16,7 +16,6 @@ export const getSettings = async () => {
     throw new Error('No settings found in Contentful')
   }
 
-
   return response.items[0].fields as ThemeSettings
 }
 
@@ -25,4 +24,16 @@ export const getName = async () => {
     content_type: 'test',
   })
   return response.items[0].fields.name as string
+}
+
+export const getHomePage = async () => {
+  const response = await client.getEntries({
+    content_type: 'home',
+  })
+
+  if (response.items.length === 0) {
+    throw new Error('No Home page data found in Contentful')
+  }
+
+  return response.items[0].fields as HomePage
 }

@@ -8,3 +8,28 @@ export type ThemeSettings = {
   titleFont?: string
   bodyFont?: string
 }
+
+export type Image = {
+  fields: {
+    title: string
+    description: string
+    file: {
+      url: string
+      fileName: string
+      contentType: string
+      details: { size: number; image: { width: number; height: number } }
+    }
+  }
+}
+
+export type Header = {
+  title: string
+  subtitle: string
+  ctaButtonText: string
+  sliderImages: Image[]
+}
+
+export type HomePage = {
+  websiteName: string
+  header: { fields: Header }
+}

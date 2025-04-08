@@ -1,6 +1,21 @@
 import { ThemeSettings } from '@/lib/types'
 import { createTheme } from '@mui/material/styles'
 
+const DEFAULT_COLORS = {
+  PRIMARY: '#1976d2',
+  SECONDARY: '#dc004e',
+  BODY: '#000000',
+  NEUTRAL: '#ffffff',
+  ACCENT: '#f5f5f5',
+  TITLEFONT: 'Roboto, cursive',
+  BODYFONT: 'Arial, sans-serif',
+}
+
+const DEFAULT_FONTS = {
+  TITLE: 'Roboto, cursive',
+  BODY: 'Arial, sans-serif',
+}
+
 const getTheme = ({
   primaryColor,
   secondaryColor,
@@ -9,33 +24,39 @@ const getTheme = ({
   titleFont,
   neutralColor,
   accentColor,
-}: ThemeSettings) =>
-  createTheme({
+}: ThemeSettings) => {
+  return createTheme({
     palette: {
       primary: {
-        main: primaryColor || '#1976d2',
+        main: primaryColor || DEFAULT_COLORS.PRIMARY,
       },
       secondary: {
-        main: secondaryColor || '#dc004e',
+        main: secondaryColor || DEFAULT_COLORS.SECONDARY,
       },
       text: {
-        primary: bodyColor || '#000000',
-        secondary: '#ffffff',
+        primary: bodyColor || DEFAULT_COLORS.BODY,
+        secondary: DEFAULT_COLORS.BODY,
       },
       background: {
-        default: neutralColor || '#ffffff',
-        paper: accentColor || '#f5f5f5',
+        default: neutralColor || DEFAULT_COLORS.NEUTRAL,
+        paper: accentColor || DEFAULT_COLORS.ACCENT,
       },
     },
     typography: {
-      fontFamily: `${bodyFont}, Arial, sans-serif`,
+      fontFamily: `${bodyFont || DEFAULT_FONTS.BODY}`,
       h1: {
-        fontFamily: `${titleFont}, cursive`,
+        fontFamily: `${titleFont || DEFAULT_FONTS.TITLE}`,
+        color: primaryColor || DEFAULT_COLORS.PRIMARY,
       },
       h2: {
-        fontFamily: `${titleFont}, cursive`,
+        fontFamily: `${titleFont || DEFAULT_FONTS.TITLE}`,
+      },
+      h6: {
+        textTransform: 'uppercase',
+        fontWeight: 100,
       },
     },
   })
+}
 
 export default getTheme

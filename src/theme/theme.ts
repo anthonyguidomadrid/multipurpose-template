@@ -47,6 +47,10 @@ const getTheme = ({
       h1: {
         fontFamily: `${titleFont || DEFAULT_FONTS.TITLE}`,
         color: primaryColor || DEFAULT_COLORS.PRIMARY,
+        fontSize: '6rem',
+        ['@media (max-width:600px)']: {
+          fontSize: '4rem',
+        },
       },
       h2: {
         fontFamily: `${titleFont || DEFAULT_FONTS.TITLE}`,
@@ -54,6 +58,10 @@ const getTheme = ({
       h6: {
         textTransform: 'uppercase',
         fontWeight: 100,
+        fontSize: '1.25rem',
+        ['@media (max-width:600px)']: {
+          fontSize: '1rem',
+        },
       },
     },
   })

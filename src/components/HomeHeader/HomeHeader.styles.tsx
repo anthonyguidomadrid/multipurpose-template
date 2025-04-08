@@ -6,20 +6,34 @@ import { Swiper } from 'swiper/react'
 import { motion } from 'framer-motion'
 
 export const MotionHeaderTitleWrapper = styled(motion.div)(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
-  padding: theme.spacing(4),
+  position: 'absolute',
+  zIndex: 2,
+  padding: theme.spacing(5),
+  margin: theme.spacing(5),
   justifyContent: 'center',
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(2),
   color: theme.palette.common.white,
-  height: '100%',
-  [theme.breakpoints.down('md')]: {
-    textAlign: 'center',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: theme.palette.background.paper,
+    opacity: 0.5,
+    zIndex: -1,
   },
 }))
 
-export const ImageSlider = styled(Swiper)(() => ({ width: '100%', height: '400px' }))
+export const ImageSlider = styled(Swiper)(() => ({
+  width: '100%',
+  height: '60vh',
+  position: 'relative',
+  zIndex: 0,
+}))
 
 export const SliderImage = styled(Image)(() => ({
   width: '100%',

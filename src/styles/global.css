@@ -6,6 +6,30 @@
   font-style: normal;
 }
 
+/* Futura Cyrilic Demi */
+@font-face {
+  font-family: 'Futura Cyrilic';
+  src: url('/fonts/FuturaCyrillicDemi.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Futura Cyrilic Bold */
+@font-face {
+  font-family: 'Futura Cyrilic';
+  src: url('/fonts/FuturaCyrillicBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Futura Cyrilic Extra Bold */
+@font-face {
+  font-family: 'Futura Cyrilic';
+  src: url('/fonts/FuturaCyrillicExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
 /* Eunomia Bold */
 @font-face {
   font-family: 'Eunomia';

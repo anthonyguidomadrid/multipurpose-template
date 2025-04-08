@@ -1,5 +1,5 @@
 import { Header } from '@/lib/types'
-import { Box, Button, Grid2, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import { SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade } from 'swiper/modules'
 import { MotionHeaderTitleWrapper, ImageSlider, SliderImage } from './HomeHeader.styles'

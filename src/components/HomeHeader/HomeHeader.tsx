@@ -2,7 +2,12 @@ import { Header } from '@/lib/types'
 import { Box, Button, Typography } from '@mui/material'
 import { SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade } from 'swiper/modules'
-import { MotionHeaderTitleWrapper, ImageSlider, SliderImage } from './HomeHeader.styles'
+import {
+  MotionHeaderTitleWrapper,
+  ImageSlider,
+  SliderImage,
+  SliderFilter,
+} from './HomeHeader.styles'
 import { motion } from 'framer-motion'
 
 const staggerContainer = {
@@ -22,11 +27,13 @@ const fadeInUp = {
 
 export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ctaButtonText }) => {
   return (
-    <>
+    <Box sx={{ position: 'relative', width: '100%', height: '60vh' }}>
+      <SliderFilter />
       <MotionHeaderTitleWrapper
         variants={staggerContainer}
         initial="hidden"
         animate="show"
+        sx={{ position: 'absolute', zIndex: 2 }}
       >
         <motion.div variants={fadeInUp}>
           <Typography variant="h6">{subtitle}</Typography>
@@ -36,7 +43,14 @@ export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ct
         </motion.div>
         <motion.div variants={fadeInUp}>
           <Box>
-            <Button variant="contained">{ctaButtonText}</Button>
+            <Button
+              variant="contained"
+              sx={{
+                fontWeight: 'bold', // Make the button text bold
+              }}
+            >
+              {ctaButtonText}
+            </Button>
           </Box>
         </motion.div>
       </MotionHeaderTitleWrapper>
@@ -45,7 +59,7 @@ export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ct
         pagination={{ clickable: true }}
         loop={true}
         autoplay={{
-          delay: 2000,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         effect="fade"
@@ -61,6 +75,6 @@ export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ct
           </SwiperSlide>
         ))}
       </ImageSlider>
-    </>
+    </Box>
   )
 }

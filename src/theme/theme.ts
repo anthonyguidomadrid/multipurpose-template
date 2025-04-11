@@ -46,7 +46,6 @@ const getTheme = ({
       fontFamily: `${bodyFont || DEFAULT_FONTS.BODY}`,
       h1: {
         fontFamily: `${titleFont || DEFAULT_FONTS.TITLE}`,
-        color: primaryColor || DEFAULT_COLORS.PRIMARY,
         fontSize: '6rem',
         ['@media (max-width:600px)']: {
           fontSize: '4rem',

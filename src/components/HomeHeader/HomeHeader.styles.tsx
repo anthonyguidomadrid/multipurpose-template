@@ -1,4 +1,4 @@
-import { styled } from '@mui/material'
+import { Box, styled } from '@mui/material'
 import Image from 'next/image'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
@@ -15,17 +15,6 @@ export const MotionHeaderTitleWrapper = styled(motion.div)(({ theme }) => ({
   flexDirection: 'column',
   gap: theme.spacing(2),
   color: theme.palette.common.white,
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: theme.palette.background.paper,
-    opacity: 0.5,
-    zIndex: -1,
-  },
 }))
 
 export const ImageSlider = styled(Swiper)(() => ({
@@ -39,4 +28,15 @@ export const SliderImage = styled(Image)(() => ({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
+}))
+
+export const SliderFilter = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  backgroundColor: theme.palette.background.paper,
+  opacity: 0.3,
+  zIndex: 2,
 }))

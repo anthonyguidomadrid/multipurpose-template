@@ -1,5 +1,5 @@
 import { HomeHeader } from '@/components/HomeHeader/HomeHeader'
-import { getHomePage, getName, getSettings } from '@/lib/contentful'
+import { getHomePage, getName } from '@/lib/contentful'
 import { Container, Typography, Button, Box } from '@mui/material'
 import { GetServerSideProps } from 'next'
 import { HomePage as ContentfulHomePage } from '@/lib/types'
@@ -71,13 +71,11 @@ export default function Home({
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const name = await getName()
-  const settings = await getSettings()
   const home = await getHomePage()
 
   return {
     props: {
       name,
-      settings,
       home,
     },
   }

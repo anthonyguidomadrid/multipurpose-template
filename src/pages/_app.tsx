@@ -3,6 +3,7 @@ import { CircularProgress, CssBaseline, ThemeProvider } from '@mui/material'
 import getTheme from '@/theme/theme'
 import Head from 'next/head'
 import '../styles/global.css'
+import { getSettings } from '@/lib/contentful'
 
 export default function App({ Component, pageProps }: AppProps) {
   const { settings } = pageProps
@@ -22,4 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
       </ThemeProvider>
     </>
   )
+}
+
+App.getInitialProps = async () => {
+  const settings = await getSettings()
+  return { pageProps: { settings } }
 }

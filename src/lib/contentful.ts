@@ -16,7 +16,7 @@ export const getSettings = async () => {
     throw new Error('No settings found in Contentful')
   }
 
-  return response.items[0].fields as ThemeSettings
+  return { ...response.items[0].fields, locale: response.items[0].sys.locale } as ThemeSettings
 }
 
 export const getName = async () => {

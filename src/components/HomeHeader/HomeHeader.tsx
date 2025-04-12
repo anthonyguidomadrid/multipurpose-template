@@ -1,5 +1,5 @@
 import { Header } from '@/lib/types'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade } from 'swiper/modules'
 import {
@@ -7,50 +7,32 @@ import {
   ImageSlider,
   SliderImage,
   SliderFilter,
+  CtaButton,
+  HomeHeaderContainer,
 } from './HomeHeader.styles'
 import { motion } from 'framer-motion'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
+import { FADE_IN_UP, STAGGER_CONTAINER } from './HomeHeader.constant'
 
 export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ctaButtonText }) => {
   return (
-    <Box sx={{ position: 'relative', width: '100%', height: '60vh' }}>
+    <HomeHeaderContainer>
       <SliderFilter />
-      <MotionHeaderTitleWrapper
-        variants={staggerContainer}
-        initial="hidden"
-        animate="show"
-        sx={{ position: 'absolute', zIndex: 2 }}
-      >
-        <motion.div variants={fadeInUp}>
-          <Typography variant="h6">{subtitle}</Typography>
+      <MotionHeaderTitleWrapper variants={STAGGER_CONTAINER} initial="hidden" animate="show">
+        <motion.div variants={FADE_IN_UP}>
+          <Typography variant="h6" data-testid="home-subtitle">
+            {subtitle}
+          </Typography>
         </motion.div>
-        <motion.div variants={fadeInUp}>
-          <Typography variant="h1">{title}</Typography>
+        <motion.div variants={FADE_IN_UP}>
+          <Typography variant="h1" data-testid="home-title">
+            {title}
+          </Typography>
         </motion.div>
-        <motion.div variants={fadeInUp}>
+        <motion.div variants={FADE_IN_UP}>
           <Box>
-            <Button
-              variant="contained"
-              sx={{
-                fontWeight: 'bold', // Make the button text bold
-              }}
-            >
+            <CtaButton variant="contained" data-testid="cta-button">
               {ctaButtonText}
-            </Button>
+            </CtaButton>
           </Box>
         </motion.div>
       </MotionHeaderTitleWrapper>
@@ -71,10 +53,11 @@ export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ct
               alt={imageFields.description || `Slide ${index + 1}`}
               width={imageFields.file.details.image.width}
               height={imageFields.file.details.image.height}
+              data-testid={`slider-image-${index}`}
             />
           </SwiperSlide>
         ))}
       </ImageSlider>
-    </Box>
+    </HomeHeaderContainer>
   )
 }

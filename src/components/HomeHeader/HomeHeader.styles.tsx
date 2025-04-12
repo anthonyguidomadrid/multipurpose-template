@@ -1,20 +1,27 @@
-import { Box, styled } from '@mui/material'
+import { Box, Button, styled } from '@mui/material'
 import Image from 'next/image'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import { Swiper } from 'swiper/react'
 import { motion } from 'framer-motion'
 
+export const HomeHeaderContainer = styled(Box)(() => ({
+  position: 'relative',
+  width: '100%',
+  height: '60vh',
+}))
+
 export const MotionHeaderTitleWrapper = styled(motion.div)(({ theme }) => ({
   position: 'absolute',
   zIndex: 2,
   padding: theme.spacing(5),
-  margin: theme.spacing(5),
   justifyContent: 'center',
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(2),
   color: theme.palette.common.white,
+  top: '50%',
+  transform: 'translate(0, -50%)',
 }))
 
 export const ImageSlider = styled(Swiper)(() => ({
@@ -39,4 +46,8 @@ export const SliderFilter = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   opacity: 0.3,
   zIndex: 2,
+}))
+
+export const CtaButton = styled(Button)(() => ({
+  fontWeight: 'bold',
 }))

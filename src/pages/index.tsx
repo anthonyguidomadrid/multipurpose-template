@@ -3,6 +3,7 @@ import { getHomePage, getName } from '@/lib/contentful'
 import { Container, Typography, Button, Box } from '@mui/material'
 import { GetServerSideProps } from 'next'
 import { HomePage as ContentfulHomePage } from '@/lib/types'
+import { About } from '@/components/About/About'
 
 interface HomePage {
   name: string
@@ -13,11 +14,13 @@ export default function Home({
   name,
   home: {
     header: { fields: homeHeader },
+    about: { fields: about },
   },
 }: HomePage) {
   return (
     <>
       <HomeHeader {...homeHeader} />
+      <About {...about} />
       <Container maxWidth="sm" sx={{ textAlign: 'center', mt: 4 }}>
         <Typography variant="h1" color="primary">
           Hello {name}!

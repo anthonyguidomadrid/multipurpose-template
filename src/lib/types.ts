@@ -29,7 +29,15 @@ export type Header = {
   sliderImages: Image[]
 }
 
+export type About = {
+  title: string
+  subtitle: string
+  description: string
+  photo: Image
+}
+
 export type HomePage = {
   websiteName: string
   header: { fields: Header }
+  about: { fields: About }
 }

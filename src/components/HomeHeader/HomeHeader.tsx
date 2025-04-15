@@ -11,7 +11,7 @@ import {
   HomeHeaderContainer,
 } from './HomeHeader.styles'
 import { motion } from 'framer-motion'
-import { FADE_IN_UP, STAGGER_CONTAINER } from './HomeHeader.constant'
+import { STAGGER_CONTAINER, FADE_IN_UP } from '../common/animation.constant'
 
 export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ctaButtonText }) => (
   <HomeHeaderContainer>

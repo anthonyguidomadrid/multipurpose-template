@@ -53,11 +53,13 @@ const getTheme = ({
       },
       h2: {
         fontFamily: `${titleFont || DEFAULT_FONTS.TITLE}`,
+        color: primaryColor || DEFAULT_COLORS.PRIMARY,
       },
       h6: {
         textTransform: 'uppercase',
         fontWeight: 100,
         fontSize: '1.25rem',
+        marginBottom: '1rem',
         ['@media (max-width:600px)']: {
           fontSize: '1rem',
         },

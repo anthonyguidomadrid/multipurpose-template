@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Home Header', () => {
-  test('should display the correct title, subtitle, button, and slider images', async ({
+  test('should display the home header', async ({
     page,
   }) => {
     // Navigate to the home page

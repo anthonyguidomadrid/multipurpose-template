@@ -1,3 +1,5 @@
+import { Document } from '@contentful/rich-text-types'
+
 export type ThemeSettings = {
   locale: string
   primaryColor?: string
@@ -32,7 +34,7 @@ export type Header = {
 export type About = {
   title: string
   subtitle: string
-  description: string
+  description: Document
   photo: Image
 }
 

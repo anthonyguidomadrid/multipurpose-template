@@ -35,5 +35,5 @@ export const getHomePage = async () => {
     throw new Error('No Home page data found in Contentful')
   }
 
-  return response.items[0].fields as HomePage
+  return response.items[0].fields as unknown as HomePage
 }

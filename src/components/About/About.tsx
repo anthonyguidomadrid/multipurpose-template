@@ -1,5 +1,5 @@
 import { About as AboutType } from '@/lib/types'
-import { Grid2, Typography } from '@mui/material'
+import { Box, Grid2, Typography } from '@mui/material'
 import { motion } from 'framer-motion'
 import { AboutImage } from './About.styles'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
@@ -21,7 +21,7 @@ export const About: React.FC<AboutType> = ({ title, subtitle, description, photo
         alt={photo.fields.description}
         width={photo.fields.file.details.image.width}
         height={photo.fields.file.details.image.height}
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        data-testid="about-image"
       />
     </Grid2>
     <Grid2
@@ -33,9 +33,13 @@ export const About: React.FC<AboutType> = ({ title, subtitle, description, photo
       viewport={{ once: true, amount: 0.3 }}
       variants={FADE_IN_UP}
     >
-      <Typography variant="h6">{subtitle}</Typography>
-      <Typography variant="h2">{title}</Typography>
-      {documentToReactComponents(description)}
+      <Typography variant="h6" data-testid="about-subtitle">
+        {subtitle}
+      </Typography>
+      <Typography variant="h2" data-testid="about-title">
+        {title}
+      </Typography>
+      <Box data-testid="about-description">{documentToReactComponents(description)}</Box>
     </Grid2>
   </Grid2>
 )

@@ -59,7 +59,7 @@ const getTheme = ({
         textTransform: 'uppercase',
         fontWeight: 100,
         fontSize: '1.25rem',
-        marginBottom: '1rem',
+        marginBottom: '0.5rem',
         ['@media (max-width:600px)']: {
           fontSize: '1rem',
         },

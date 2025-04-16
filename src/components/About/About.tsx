@@ -1,12 +1,17 @@
 import { About as AboutType } from '@/lib/types'
-import { Box, Grid2, Typography } from '@mui/material'
+import { Grid2 } from '@mui/material'
 import { motion } from 'framer-motion'
 import { AboutImage } from './About.styles'
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { FADE_IN_UP } from '../common/animation.constant'
+import { FADE_IN_UP } from '@/constants/animation'
+import { COMMON_SECTION_SPACING_PADDING } from '@/constants/spacing'
+import { ContentSection } from '../ContentSection/ContentSection'
 
 export const About: React.FC<AboutType> = ({ title, subtitle, description, photo }) => (
-  <Grid2 container spacing={{ xs: 4, md: 8 }} padding={{ xs: 4, md: 8 }}>
+  <Grid2
+    container
+    spacing={COMMON_SECTION_SPACING_PADDING}
+    padding={COMMON_SECTION_SPACING_PADDING}
+  >
     <Grid2
       size={{ xs: 12, md: 4 }}
       order={{ xs: 2, md: 1 }}
@@ -33,13 +38,12 @@ export const About: React.FC<AboutType> = ({ title, subtitle, description, photo
       viewport={{ once: true, amount: 0.3 }}
       variants={FADE_IN_UP}
     >
-      <Typography variant="h6" data-testid="about-subtitle">
-        {subtitle}
-      </Typography>
-      <Typography variant="h2" data-testid="about-title">
-        {title}
-      </Typography>
-      <Box data-testid="about-description">{documentToReactComponents(description)}</Box>
+      <ContentSection
+        subtitle={subtitle}
+        title={title}
+        description={description}
+        sectionName="about"
+      />
     </Grid2>
   </Grid2>
 )

@@ -6,7 +6,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { FADE_IN_UP } from '../common/animation.constant'
 
 export const About: React.FC<AboutType> = ({ title, subtitle, description, photo }) => (
-  <Grid2 container spacing={8} padding={8}>
+  <Grid2 container spacing={{ xs: 4, md: 8 }} padding={{ xs: 4, md: 8 }}>
     <Grid2
       size={{ xs: 12, md: 4 }}
       order={{ xs: 2, md: 1 }}

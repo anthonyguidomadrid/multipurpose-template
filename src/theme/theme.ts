@@ -48,12 +48,16 @@ const getTheme = ({
         fontFamily: `${titleFont || DEFAULT_FONTS.TITLE}`,
         fontSize: '6rem',
         ['@media (max-width:600px)']: {
-          fontSize: '4rem',
+          fontSize: '5rem',
         },
       },
       h2: {
         fontFamily: `${titleFont || DEFAULT_FONTS.TITLE}`,
-        color: primaryColor || DEFAULT_COLORS.PRIMARY,
+        color: secondaryColor || DEFAULT_COLORS.SECONDARY,
+      },
+      h3: {
+        textTransform: 'uppercase',
+        fontSize: '1.5rem',
       },
       h6: {
         textTransform: 'uppercase',

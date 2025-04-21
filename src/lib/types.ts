@@ -38,8 +38,22 @@ export type About = {
   photo: Image
 }
 
+export type Service = {
+  fields: {
+    mainTitle: string
+    subtitle: string
+    thumbnail: Image
+  }
+}
+
+export type Services = {
+  title: string
+  subtitle: string
+  services: Service[]
+}
 export type HomePage = {
   websiteName: string
-  header: { fields: Header }
-  about: { fields: About }
+  header: Header
+  about: About
+  services: Services
 }

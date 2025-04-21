@@ -1,16 +1,17 @@
 import { About as AboutType } from '@/lib/types'
 import { Grid2 } from '@mui/material'
 import { motion } from 'framer-motion'
-import { AboutImage } from './About.styles'
+import { AboutContainer, AboutImage } from './About.styles'
 import { FADE_IN_UP } from '@/constants/animation'
-import { COMMON_SECTION_SPACING_PADDING } from '@/constants/spacing'
 import { ContentSection } from '../ContentSection/ContentSection'
 
 export const About: React.FC<AboutType> = ({ title, subtitle, description, photo }) => (
-  <Grid2
+  <AboutContainer
     container
-    spacing={COMMON_SECTION_SPACING_PADDING}
-    padding={COMMON_SECTION_SPACING_PADDING}
+    spacing={{
+      xs: 4,
+      sm: 8,
+    }}
   >
     <Grid2
       size={{ xs: 12, md: 4 }}
@@ -45,5 +46,5 @@ export const About: React.FC<AboutType> = ({ title, subtitle, description, photo
         sectionName="about"
       />
     </Grid2>
-  </Grid2>
+  </AboutContainer>
 )

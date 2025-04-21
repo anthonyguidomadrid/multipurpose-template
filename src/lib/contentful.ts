@@ -27,13 +27,20 @@ export const getName = async () => {
 }
 
 export const getHomePage = async () => {
-  const response = await client.getEntries({
-    content_type: 'home',
+  const header = await client.getEntries({
+    content_type: 'header',
+  })
+  const about = await client.getEntries({
+    content_type: 'about',
+  })
+  const services = await client.getEntries({
+    content_type: 'services',
+    include: 1,
   })
 
-  if (response.items.length === 0) {
-    throw new Error('No Home page data found in Contentful')
-  }
-
-  return response.items[0].fields as unknown as HomePage
+  return {
+    about: about?.items?.[0]?.fields,
+    header: header?.items?.[0]?.fields,
+    services: services?.items?.[0]?.fields,
+  } as unknown as HomePage
 }

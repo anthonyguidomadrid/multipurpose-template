@@ -14,14 +14,17 @@ export const HomeHeaderContainer = styled(Box)(() => ({
 export const MotionHeaderTitleWrapper = styled(motion.div)(({ theme }) => ({
   position: 'absolute',
   zIndex: 2,
-  padding: theme.spacing(5),
+  width: '100%',
+  padding: theme.spacing(2),
   justifyContent: 'center',
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(2),
+  textAlign: 'center',
   color: theme.palette.common.white,
   top: '50%',
-  transform: 'translate(0, -50%)',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
 }))
 
 export const ImageSlider = styled(Swiper)(() => ({

@@ -4,23 +4,19 @@ import { Container, Typography, Button, Box } from '@mui/material'
 import { GetServerSideProps } from 'next'
 import { HomePage as ContentfulHomePage } from '@/lib/types'
 import { About } from '@/components/About/About'
+import { ServicesSection } from '@/components/ServicesSection/ServicesSection'
 
 interface HomePage {
   name: string
   home: ContentfulHomePage
 }
 
-export default function Home({
-  name,
-  home: {
-    header: { fields: homeHeader },
-    about: { fields: about },
-  },
-}: HomePage) {
+export default function Home({ name, home: { header, about, services } }: HomePage) {
   return (
     <>
-      <HomeHeader {...homeHeader} />
+      <HomeHeader {...header} />
       <About {...about} />
+      <ServicesSection {...services} />
       <Container maxWidth="sm" sx={{ textAlign: 'center', mt: 4 }}>
         <Typography variant="h1" color="primary">
           Hello {name}!

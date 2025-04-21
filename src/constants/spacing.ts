@@ -1,4 +1,4 @@
-export const COMMON_SECTION_SPACING_PADDING = {
-  xs: 4,
-  sm: 8,
+export const COMMON_PAGE_WRAPPER = {
+  maxWidth: '1200px',
+  margin: '0 auto',
 }

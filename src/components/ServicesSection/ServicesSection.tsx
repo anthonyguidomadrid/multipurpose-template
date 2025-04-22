@@ -1,41 +1,58 @@
 import { Services } from '@/lib/types'
-import { Box, Grid2 } from '@mui/material'
+import { Grid2 } from '@mui/material'
 import { ContentSection } from '../ContentSection/ContentSection'
-import { COMMON_PAGE_WRAPPER } from '@/constants/spacing'
 import { Service } from '../Service/Service'
+import { ServiceSectionWrapper } from './ServiceSections.styles'
+import { SectionWrapper } from '../common/styles'
+import { motion } from 'framer-motion'
+import { FADE_IN_UP } from '@/constants/animation'
 
 export const ServicesSection: React.FC<Services> = ({ title, subtitle, services }) => {
-  const getSmSize = (itemCount: number) => {
+  const itemCount = services.length
+
+  const getSmSize = () => {
     if (itemCount === 1) return 12
     return 6
   }
-  const getMdSize = (itemCount: number) => {
+
+  const getMdSize = () => {
     if (itemCount === 1) return 12
     if (itemCount === 2 || itemCount === 4) return 6
     if (itemCount === 3) return 4
     return 4
   }
+
+  const FADE_IN_VARIANTS = {
+    ...FADE_IN_UP,
+    show: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: index * 0.3,
+      },
+    }),
+  }
+
   return (
-    <Box
-      style={{
-        backgroundColor: '#dfe3e2',
-        textAlign: 'center',
-        paddingTop: '50px',
-        paddingBottom: '50px',
-      }}
-      id="services"
-    >
+    <ServiceSectionWrapper id="services">
       <ContentSection subtitle={subtitle} title={title} sectionName="services" />
-      <Grid2 container style={{ ...COMMON_PAGE_WRAPPER, padding: '16px' }} spacing={4}>
+      <SectionWrapper container spacing={4}>
         {services.map((item, index) => (
           <Grid2
             key={index}
-            size={{ xs: 12, sm: getSmSize(services.length), md: getMdSize(services.length) }}
+            size={{ xs: 12, sm: getSmSize(), md: getMdSize() }}
+            component={motion.div}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            custom={index}
+            variants={FADE_IN_VARIANTS}
           >
             <Service {...item} />
           </Grid2>
         ))}
-      </Grid2>
-    </Box>
+      </SectionWrapper>
+    </ServiceSectionWrapper>
   )
 }

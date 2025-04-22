@@ -1,12 +1,13 @@
 import { About as AboutType } from '@/lib/types'
 import { Grid2 } from '@mui/material'
 import { motion } from 'framer-motion'
-import { AboutContainer, AboutImage } from './About.styles'
+import { AboutImage } from './About.styles'
 import { FADE_IN_UP } from '@/constants/animation'
 import { ContentSection } from '../ContentSection/ContentSection'
+import { SectionWrapper } from '../common/styles'
 
 export const About: React.FC<AboutType> = ({ title, subtitle, description, photo }) => (
-  <AboutContainer
+  <SectionWrapper
     container
     spacing={{
       xs: 4,
@@ -46,5 +47,5 @@ export const About: React.FC<AboutType> = ({ title, subtitle, description, photo
         sectionName="about"
       />
     </Grid2>
-  </AboutContainer>
+  </SectionWrapper>
 )

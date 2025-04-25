@@ -10,6 +10,7 @@ export const Service: React.FC<ServiceType> = ({ fields: { mainTitle, subtitle, 
     <StyledServiceCard
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      data-testid="service-card"
     >
       <CardActionArea>
         <CardMedia
@@ -20,12 +21,13 @@ export const Service: React.FC<ServiceType> = ({ fields: { mainTitle, subtitle, 
             height: 300,
             objectFit: 'cover',
           }}
+          data-testid="service-image"
         />
         <ServiceCardContent className="hover-content">
-          <Typography gutterBottom variant="h3">
+          <Typography gutterBottom variant="h3" data-testid="service-title">
             {mainTitle}
           </Typography>
-          {isHovered && <Typography>{subtitle}</Typography>}
+          {isHovered && <Typography data-testid="service-subtitle">{subtitle}</Typography>}
         </ServiceCardContent>
       </CardActionArea>
     </StyledServiceCard>

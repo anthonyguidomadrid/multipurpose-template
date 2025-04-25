@@ -46,4 +46,35 @@ test.describe('Home Header', () => {
     const aboutImage = page.getByTestId('about-image')
     await expect(aboutImage).toBeVisible()
   })
+
+  test('should display the services section', async ({ page }) => {
+    // Navigate to the home page
+    await page.goto('/')
+
+    // Check the title
+    const servicesTitle = page.getByTestId('services-title')
+    await expect(servicesTitle).toHaveText('Service Title')
+
+    // Check the subtitle
+    const servicesSubtitle = page.getByTestId('services-subtitle')
+    await expect(servicesSubtitle).toHaveText('Service Subtitle')
+
+    // Check the service cards
+    const serviceCards = page.locator('[data-testid^="service-card"]')
+    const cardCount = await serviceCards.count()
+    expect(cardCount).toBe(3)
+
+    // Check the service card images, titles and subtitles
+    for (let i = 0; i < cardCount; i++) {
+      const card = serviceCards.nth(i)
+      const cardTitle = card.getByTestId('service-title')
+      const cardDescription = card.getByTestId('service-subtitle')
+      const cardImage = card.getByTestId('service-image')
+      await expect(cardImage).toBeVisible()
+      await expect(cardTitle).toBeVisible()
+      await expect(cardDescription).not.toBeVisible()
+      await card.hover()
+      await expect(cardDescription).toBeVisible()
+    }
+  })
 })

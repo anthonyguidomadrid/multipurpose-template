@@ -6,33 +6,23 @@ import { ServiceSectionWrapper } from './ServiceSections.styles'
 import { SectionWrapper } from '../common/styles'
 import { motion } from 'framer-motion'
 import { FADE_IN_UP } from '@/constants/animation'
+import { useGridSize } from '@/hooks/useGridSize'
+
+const FADE_IN_VARIANTS = {
+  ...FADE_IN_UP,
+  show: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: index * 0.3,
+    },
+  }),
+}
 
 export const ServicesSection: React.FC<Services> = ({ title, subtitle, services }) => {
   const itemCount = services.length
-
-  const getSmSize = () => {
-    if (itemCount === 1) return 12
-    return 6
-  }
-
-  const getMdSize = () => {
-    if (itemCount === 1) return 12
-    if (itemCount === 2 || itemCount === 4) return 6
-    if (itemCount === 3) return 4
-    return 4
-  }
-
-  const FADE_IN_VARIANTS = {
-    ...FADE_IN_UP,
-    show: (index: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        delay: index * 0.3,
-      },
-    }),
-  }
+  const gridSize = useGridSize(itemCount)
 
   return (
     <ServiceSectionWrapper id="services">
@@ -41,7 +31,7 @@ export const ServicesSection: React.FC<Services> = ({ title, subtitle, services 
         {services.map((item, index) => (
           <Grid2
             key={index}
-            size={{ xs: 12, sm: getSmSize(), md: getMdSize() }}
+            size={gridSize}
             component={motion.div}
             initial="hidden"
             whileInView="show"

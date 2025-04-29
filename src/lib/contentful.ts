@@ -19,13 +19,6 @@ export const getSettings = async () => {
   return { ...response.items[0].fields, locale: response.items[0].sys.locale } as ThemeSettings
 }
 
-export const getName = async () => {
-  const response = await client.getEntries({
-    content_type: 'test',
-  })
-  return response.items[0].fields.name as string
-}
-
 export const getHomePage = async () => {
   const header = await client.getEntries({
     content_type: 'header',
@@ -38,9 +31,14 @@ export const getHomePage = async () => {
     include: 1,
   })
 
+  const testimonials = await client.getEntries({
+    content_type: 'testimonials',
+  })
+
   return {
     about: about?.items?.[0]?.fields,
     header: header?.items?.[0]?.fields,
     services: services?.items?.[0]?.fields,
+    testimonials: testimonials?.items?.[0]?.fields,
   } as unknown as HomePage
 }

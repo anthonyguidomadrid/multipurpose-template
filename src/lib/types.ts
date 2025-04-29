@@ -51,9 +51,27 @@ export type Services = {
   subtitle: string
   services: Service[]
 }
+
+export type Testimonial = {
+  fields: {
+    title: string
+    description: string
+    author: string
+    date: Date
+    image: Image
+  }
+}
+
+export type Testimonials = {
+  title: string
+  subtitle: string
+  testimonials: Testimonial[]
+}
+
 export type HomePage = {
   websiteName: string
   header: Header
   about: About
   services: Services
+  testimonials: Testimonials
 }

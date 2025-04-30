@@ -73,7 +73,23 @@
 /* Eunomia Regular */
 @font-face {
   font-family: 'Eunomia';
-  src: url('/fonts/eunomia.regulat.otf') format('opentype');
+  src: url('/fonts/eunomia.regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Flatlion */
+@font-face {
+  font-family: 'Flatlion';
+  src: url('/fonts/Flatlion.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Billstone Signature */
+@font-face {
+  font-family: 'Billstone Signature';
+  src: url('/fonts/BillstoneSignature.ttf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }

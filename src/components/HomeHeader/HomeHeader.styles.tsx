@@ -51,6 +51,7 @@ export const SliderFilter = styled(Box)(({ theme }) => ({
   zIndex: 2,
 }))
 
-export const CtaButton = styled(Button)(() => ({
+export const CtaButton = styled(Button)(({ theme }) => ({
   fontWeight: 'medium',
+  color: theme.palette.common.white,
 }))

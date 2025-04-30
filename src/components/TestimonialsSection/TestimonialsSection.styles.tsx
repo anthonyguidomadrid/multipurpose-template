@@ -1,5 +1,5 @@
 import { styled } from '@mui/material'
-import { Swiper } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 export const Slider = styled(Swiper)(({ theme }) => ({
   height: '600px',
@@ -9,4 +9,11 @@ export const Slider = styled(Swiper)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     height: '300px',
   },
+}))
+
+export const Slide = styled(SwiperSlide)(() => ({
+  display: 'flex !important',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
 }))

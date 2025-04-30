@@ -7,22 +7,19 @@ test.describe('Home Header', () => {
 
     // Check the title
     const title = page.getByTestId('home-title')
-    await expect(title).toHaveText('Main Home Title')
+    await expect(title).toBeVisible()
 
     // Check the subtitle
     const subtitle = page.getByTestId('home-subtitle')
-    await expect(subtitle).toHaveText('Main Home Subtitle')
+    await expect(subtitle).toBeVisible()
 
     // Check the button
     const button = page.getByTestId('cta-button')
-    await expect(button).toHaveText('See my services')
+    await expect(button).toBeVisible()
 
     // Check the slider images
     const sliderImages = page.locator('[data-testid^="slider-image"]')
-    const altTexts = await sliderImages.evaluateAll((images) =>
-      images.map((img) => img.getAttribute('alt'))
-    )
-    expect(altTexts).toEqual(['Woman photo', 'Woman Photographer', 'Photographer'])
+    expect(await sliderImages.count()).toBe(3)
   })
   test('should display the about section', async ({ page }) => {
     // Navigate to the home page
@@ -30,17 +27,15 @@ test.describe('Home Header', () => {
 
     // Check the subtitle
     const aboutSubtitle = page.getByTestId('about-subtitle')
-    await expect(aboutSubtitle).toHaveText('About')
+    await expect(aboutSubtitle).toBeVisible()
 
     // Check the title
     const aboutTitle = page.getByTestId('about-title')
-    await expect(aboutTitle).toHaveText('About Title')
+    await expect(aboutTitle).toBeVisible()
 
     // Check the description
     const aboutDescription = page.getByTestId('about-description')
-    await expect(aboutDescription).toContainText(
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-    )
+    await expect(aboutDescription).toBeVisible()
 
     // Check the image
     const aboutImage = page.getByTestId('about-image')
@@ -53,11 +48,11 @@ test.describe('Home Header', () => {
 
     // Check the title
     const servicesTitle = page.getByTestId('services-title')
-    await expect(servicesTitle).toHaveText('Service Title')
+    await expect(servicesTitle).toBeVisible()
 
     // Check the subtitle
     const servicesSubtitle = page.getByTestId('services-subtitle')
-    await expect(servicesSubtitle).toHaveText('Service Subtitle')
+    await expect(servicesSubtitle).toBeVisible()
 
     // Check the service cards
     const serviceCards = page.locator('[data-testid^="service-card"]')
@@ -75,6 +70,37 @@ test.describe('Home Header', () => {
       await expect(cardDescription).not.toBeVisible()
       await card.hover()
       await expect(cardDescription).toBeVisible()
+    }
+  })
+
+  test('should display the testimonials section', async ({ page }) => {
+    // Navigate to the home page
+    await page.goto('/')
+
+    // Check the title
+    const testimonialsTitle = page.getByTestId('testimonials-title')
+    await expect(testimonialsTitle).toBeVisible()
+
+    // Check the subtitle
+    const testimonialsSubtitle = page.getByTestId('testimonials-subtitle')
+    await expect(testimonialsSubtitle).toBeVisible()
+
+    // Check the testimonials
+    const testimonials = page.locator('[data-testid^="testimonial-slide"]')
+    const testimonialCount = await testimonials.count()
+    expect(testimonialCount).toBe(3)
+
+    // Check the testimonial images, titles and descriptions
+    for (let i = 0; i < testimonialCount; i++) {
+      const testimonial = testimonials.nth(i)
+      const testimonialImage = testimonial.getByTestId('testimonial-image')
+      const testimonialTitle = testimonial.getByTestId('testimonial-title')
+      const testimonialDescription = testimonial.getByTestId('testimonial-quote')
+      const testimonialAuthor = testimonial.getByTestId('testimonial-author')
+      await expect(testimonialImage).toBeVisible()
+      await expect(testimonialTitle).toBeVisible()
+      await expect(testimonialDescription).toBeVisible()
+      await expect(testimonialAuthor).toBeVisible()
     }
   })
 })

@@ -1,4 +1,4 @@
-import { Box, Grid2, styled, Typography } from '@mui/material'
+import { Grid2, styled, Typography } from '@mui/material'
 import Image from 'next/image'
 
 export const TestimonialContainer = styled(Grid2)(({ theme }) => ({

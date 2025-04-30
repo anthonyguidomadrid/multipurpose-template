@@ -1,5 +1,5 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { Box, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { Document } from '@contentful/rich-text-types'
 import { DescriptionWrapper } from './ContentSection.style'
 

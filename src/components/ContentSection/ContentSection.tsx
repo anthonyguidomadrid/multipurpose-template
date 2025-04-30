@@ -1,6 +1,7 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { Box, Typography } from '@mui/material'
 import { Document } from '@contentful/rich-text-types'
+import { DescriptionWrapper } from './ContentSection.style'
 
 interface ContentSectionProps {
   title: string
@@ -23,7 +24,9 @@ export const ContentSection: React.FC<ContentSectionProps> = ({
       {title}
     </Typography>
     {description && (
-      <Box data-testid={`${sectionName}-description`}>{documentToReactComponents(description)}</Box>
+      <DescriptionWrapper data-testid={`${sectionName}-description`}>
+        {documentToReactComponents(description)}
+      </DescriptionWrapper>
     )}
   </>
 )

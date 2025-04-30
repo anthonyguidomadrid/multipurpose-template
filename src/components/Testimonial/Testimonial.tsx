@@ -4,6 +4,7 @@ import { Grid2, Typography } from '@mui/material'
 import { format } from 'date-fns'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { TestimonialContainer } from './Testimonial.styles'
 
 export const Testimonial: React.FC<TestimonialType> = ({
   fields: { title, description, author, date, image },
@@ -13,8 +14,13 @@ export const Testimonial: React.FC<TestimonialType> = ({
   const formattedDate = format(new Date(date), 'MMMM yyyy', { locale: dateLocale })
   const capitalizedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)
   return (
-    <Grid2 container style={{ padding: '50px' }} spacing={2}>
-      <Grid2 size={2}>
+    <TestimonialContainer container spacing={2}>
+      <Grid2
+        size={2}
+        sx={{
+          display: { xs: 'none', md: 'block' },
+        }}
+      >
         <Image
           src={`https:${image.fields.file.url}`}
           alt={image.fields.description}
@@ -42,6 +48,6 @@ export const Testimonial: React.FC<TestimonialType> = ({
           {author}, {capitalizedDate}
         </Typography>
       </Grid2>
-    </Grid2>
+    </TestimonialContainer>
   )
 }

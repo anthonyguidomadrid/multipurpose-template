@@ -1,4 +1,5 @@
 import { Document } from '@contentful/rich-text-types'
+import { SpotifyEpisode } from './spotify'
 
 export type ThemeSettings = {
   locale: string
@@ -68,10 +69,19 @@ export type Testimonials = {
   testimonials: Testimonial[]
 }
 
+export type Podcasts = {
+  fields: {
+    title: string
+    subtitle: string
+    episodes: SpotifyEpisode[]
+  }
+}
+
 export type HomePage = {
   websiteName: string
   header: Header
   about: About
   services: Services
   testimonials: Testimonials
+  podcasts: Podcasts
 }

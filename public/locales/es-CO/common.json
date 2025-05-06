@@ -1,0 +1,10 @@
+{
+  "podcast": {
+    "button": {
+      "seeMore": "Ver más",
+      "seeLess": "Ver menos",
+      "fullEpisode": "Ver episodio completo",
+      "seeAll": "Ver todos los episodios"
+    }
+  }
+}

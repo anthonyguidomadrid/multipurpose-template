@@ -1,30 +1,23 @@
-import { localeMap } from '@/constants/localeMap'
 import { Testimonial as TestimonialType } from '@/lib/types'
 import { Grid2, Typography } from '@mui/material'
-import { format } from 'date-fns'
 import { useRouter } from 'next/router'
 import {
   Author,
   TestimonialContainer,
   TestimonialImage,
+  TestimonialImageWrapper,
   TestimonialQuote,
 } from './Testimonial.styles'
+import { getDate } from '@/helpers/date'
 
 export const Testimonial: React.FC<TestimonialType> = ({
   fields: { title, description, author, date, image },
 }) => {
   const { locale } = useRouter()
-  const dateLocale = localeMap[locale || 'en']
-  const formattedDate = format(new Date(date), 'MMMM yyyy', { locale: dateLocale })
-  const capitalizedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)
+  const formattedDate = getDate(date, 'MMMM yyyy', locale)
   return (
     <TestimonialContainer container spacing={2} data-testid="testimonial-slide">
-      <Grid2
-        size={2}
-        sx={{
-          display: { xs: 'none', md: 'block' },
-        }}
-      >
+      <TestimonialImageWrapper size={2}>
         <TestimonialImage
           src={`https:${image.fields.file.url}`}
           alt={image.fields.description}
@@ -32,12 +25,16 @@ export const Testimonial: React.FC<TestimonialType> = ({
           height={image.fields.file.details.image.height}
           data-testid="testimonial-image"
         />
-      </Grid2>
+      </TestimonialImageWrapper>
       <Grid2 size={10}>
-        <Typography variant="h6" data-testid="testimonial-title">{title}</Typography>
-        <TestimonialQuote component="blockquote" data-testid="testimonial-quote">{description}</TestimonialQuote>
+        <Typography variant="h6" data-testid="testimonial-title">
+          {title}
+        </Typography>
+        <TestimonialQuote component="blockquote" data-testid="testimonial-quote">
+          {description}
+        </TestimonialQuote>
         <Author data-testid="testimonial-author">
-          {author}, {capitalizedDate}
+          {author}, {formattedDate}
         </Author>
       </Grid2>
     </TestimonialContainer>

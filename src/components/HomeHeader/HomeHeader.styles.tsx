@@ -1,4 +1,4 @@
-import { Box, Button, styled } from '@mui/material'
+import { Box, styled } from '@mui/material'
 import Image from 'next/image'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
@@ -51,7 +51,3 @@ export const SliderFilter = styled(Box)(({ theme }) => ({
   zIndex: 2,
 }))
 
-export const CtaButton = styled(Button)(({ theme }) => ({
-  fontWeight: 'medium',
-  color: theme.palette.common.white,
-}))

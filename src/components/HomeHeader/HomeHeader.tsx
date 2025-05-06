@@ -1,5 +1,5 @@
 import { Header } from '@/lib/types'
-import { Box, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import { SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade } from 'swiper/modules'
 import {
@@ -7,7 +7,6 @@ import {
   ImageSlider,
   SliderImage,
   SliderFilter,
-  CtaButton,
   HomeHeaderContainer,
 } from './HomeHeader.styles'
 import { motion } from 'framer-motion'
@@ -40,14 +39,14 @@ export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ct
         </motion.div>
         <motion.div variants={FADE_IN_UP}>
           <Box>
-            <CtaButton
+            <Button
               variant="contained"
               data-testid="cta-button"
               size="large"
               onClick={handleScrollToServices}
             >
               {ctaButtonText}
-            </CtaButton>
+            </Button>
           </Box>
         </motion.div>
       </MotionHeaderTitleWrapper>

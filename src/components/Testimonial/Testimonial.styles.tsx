@@ -23,4 +23,12 @@ export const TestimonialQuote = styled(Typography)(({ theme }) => ({
 
 export const Author = styled(Typography)(() => ({
   textAlign: 'right',
+  textTransform: 'capitalize',
+}))
+
+export const TestimonialImageWrapper = styled(Grid2)(({ theme }) => ({
+  display: 'none',
+  [theme.breakpoints.up('md')]: {
+    display: 'block',
+  },
 }))

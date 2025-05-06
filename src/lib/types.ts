@@ -70,11 +70,9 @@ export type Testimonials = {
 }
 
 export type Podcasts = {
-  fields: {
-    title: string
-    subtitle: string
-    episodes: SpotifyEpisode[]
-  }
+  title: string
+  subtitle: string
+  episodes: SpotifyEpisode[]
 }
 
 export type HomePage = {

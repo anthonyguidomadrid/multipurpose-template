@@ -69,6 +69,15 @@ const getTheme = ({
         },
       },
     },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          contained: {
+            color: '#ffffff',
+          },
+        },
+      },
+    },
   })
 }
 

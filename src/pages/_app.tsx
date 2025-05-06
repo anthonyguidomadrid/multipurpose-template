@@ -6,8 +6,9 @@ import '../styles/global.css'
 import { getSettings } from '@/lib/contentful'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { appWithTranslation } from 'next-i18next'
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   const { settings } = pageProps
   const locale = settings?.locale
   const router = useRouter()
@@ -39,3 +40,5 @@ App.getInitialProps = async () => {
   const settings = await getSettings()
   return { pageProps: { settings } }
 }
+
+export default appWithTranslation(App)

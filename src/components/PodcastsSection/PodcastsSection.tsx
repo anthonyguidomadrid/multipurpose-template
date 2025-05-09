@@ -2,20 +2,52 @@ import { Podcasts } from '@/lib/types'
 import { ContentSection } from '../ContentSection/ContentSection'
 import { SectionWrapper } from '../common/styles'
 import { PodcastEpisode } from '../PodcastEpisode/PodcastEpisode'
-import { Box, Button } from '@mui/material'
+import { Button } from '@mui/material'
 import { useTranslation } from 'next-i18next'
+import { motion } from 'framer-motion'
+import { AllPodcastsButtonWrapper } from './PodcastsSection.styles'
+
+const FADE_IN_VARIANTS = {
+  hidden: { opacity: 0, y: 20 },
+  show: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: index * 0.3,
+    },
+  }),
+}
 
 export const PodcastsSection: React.FC<Podcasts> = ({ title, subtitle, episodes }) => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
+
   return (
     <SectionWrapper>
       <ContentSection subtitle={subtitle} title={title} sectionName="podcasts" />
-      {episodes.map((episode) => (
-        <PodcastEpisode key={episode.id} {...episode} />
+      {episodes.map((episode, index) => (
+        <motion.div
+          key={episode.id}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          custom={index}
+          variants={FADE_IN_VARIANTS}
+        >
+          <PodcastEpisode {...episode} />
+        </motion.div>
       ))}
-      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 4 }}>
-        <Button variant="contained">{t('podcast.button.seeAll')}</Button>
-      </Box>{' '}
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
+        custom={episodes.length}
+        variants={FADE_IN_VARIANTS}
+      >
+        <AllPodcastsButtonWrapper>
+          <Button variant="contained">{t('podcast.button.seeAll')}</Button>
+        </AllPodcastsButtonWrapper>
+      </motion.div>
     </SectionWrapper>
   )
 }

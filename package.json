@@ -11,7 +11,7 @@
     "type:watch": "tsc --noEmit --watch",
     "format": "prettier --write .",
     "test": "playwright test",
-    "verify": "yarn lint && yarn type:check  && yarn test"
+    "verify": "yarn lint && yarn type:check && yarn test"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.0.1",

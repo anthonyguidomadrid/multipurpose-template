@@ -103,4 +103,62 @@ test.describe('Home Header', () => {
       await expect(testimonialAuthor).toBeVisible()
     }
   })
+
+  test('should display the podcasts section', async ({ page }) => {
+    // Navigate to the home page
+    await page.goto('/')
+
+    // Check the title
+    const podcastsTitle = page.getByTestId('podcasts-title')
+    await expect(podcastsTitle).toBeVisible()
+
+    // Check the subtitle
+    const podcastsSubtitle = page.getByTestId('podcasts-subtitle')
+    await expect(podcastsSubtitle).toBeVisible()
+
+    // Check the "See All Episodes" button
+    const seeAllButton = page.getByTestId('see-all-podcasts')
+    await expect(seeAllButton).toBeVisible()
+
+    // Check the podcast episodes
+    const podcastEpisodes = page.locator('[data-testid^="podcast-episode"]')
+    const episodeCount = await podcastEpisodes.count()
+    expect(episodeCount).toBeGreaterThan(0)
+
+    // Check each podcast episode
+    for (let i = 0; i < episodeCount; i++) {
+      const episode = podcastEpisodes.nth(i)
+
+      // Check the podcast image
+      const podcastImage = episode.getByTestId('podcast-image')
+      await expect(podcastImage).toBeVisible()
+
+      // Check the podcast name
+      const podcastName = episode.getByTestId('podcast-name')
+      await expect(podcastName).toBeVisible()
+
+      // Check the podcast date
+      const podcastDate = episode.getByTestId('podcast-date')
+      await expect(podcastDate).toBeVisible()
+
+      // Check the podcast description
+      const podcastDescription = episode.getByTestId('podcast-description')
+      await expect(podcastDescription).toBeVisible()
+
+      // Check the expand/collapse button
+      const seeMoreButton = episode.getByTestId('podcast-see-more-button')
+      await expect(seeMoreButton).toBeVisible()
+      await expect(seeMoreButton).toHaveText('See more')
+      await seeMoreButton.click()
+      await expect(seeMoreButton).toHaveText('See less')
+
+      // Check the audio player
+      const podcastPlayer = episode.getByTestId('podcast-player')
+      await expect(podcastPlayer).toBeVisible()
+
+      // Check the "See Full Episode" button
+      const fullEpisodeButton = episode.getByTestId('podcast-link-button')
+      await expect(fullEpisodeButton).toBeVisible()
+    }
+  })
 })

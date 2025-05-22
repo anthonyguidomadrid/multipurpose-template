@@ -45,7 +45,9 @@ export const PodcastsSection: React.FC<Podcasts> = ({ title, subtitle, episodes 
         variants={FADE_IN_VARIANTS}
       >
         <AllPodcastsButtonWrapper>
-          <Button variant="contained">{t('podcast.button.seeAll')}</Button>
+          <Button variant="contained" data-testid="see-all-podcasts">
+            {t('podcast.button.seeAll')}
+          </Button>
         </AllPodcastsButtonWrapper>
       </motion.div>
     </SectionWrapper>

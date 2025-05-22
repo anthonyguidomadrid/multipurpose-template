@@ -31,7 +31,7 @@ export default function Home({
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const home = await getHomePage()
-  const episodes = await getSpotifyEpisodes({ limit: 3, offset: 3 })
+  const episodes = await getSpotifyEpisodes({ limit: 3 })
 
   if (!home) {
     return {

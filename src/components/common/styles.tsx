@@ -8,3 +8,9 @@ export const SectionWrapper = styled(Grid2)(({ theme }) => ({
     padding: theme.spacing(8, 2),
   },
 }))
+
+export const SectionWithBackground = styled('section')(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  textAlign: 'center',
+  paddingTop: theme.spacing(6),
+}))

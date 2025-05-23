@@ -3,8 +3,9 @@ import Image from 'next/image'
 
 export const EpisodeWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
-  backgroundColor: theme.palette.background.default,
   marginBottom: theme.spacing(2),
+  borderRadius: theme.spacing(2),
+  border: `1px solid ${theme.palette.divider}`,
 }))
 
 export const EpisodeHeader = styled(Grid2)(({ theme }) => ({

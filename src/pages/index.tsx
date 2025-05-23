@@ -8,22 +8,24 @@ import { TestimonialsSection } from '@/components/TestimonialsSection/Testimonia
 import { getSpotifyEpisodes } from '@/lib/spotify'
 import { PodcastsSection } from '@/components/PodcastsSection/PodcastsSection'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { EventsSection } from '@/components/EventsSection/EventsSection'
 
 interface HomePage {
   home: ContentfulHomePage
 }
 
 export default function Home({
-  home: { header, about, services, testimonials, podcasts },
+  home: { header, about, services, testimonials, podcasts, events },
 }: HomePage) {
   const hasPodcasts = podcasts.episodes.length > 0
+  const hasEvents = events.events.length > 0
   return (
     <>
       <HomeHeader {...header} />
       <About {...about} />
       <ServicesSection {...services} />
       <TestimonialsSection {...testimonials} />
-      {hasPodcasts && <ServicesSection {...services} />}
+      {hasEvents && <EventsSection {...events} />}
       {hasPodcasts && <PodcastsSection {...podcasts} />}
     </>
   )

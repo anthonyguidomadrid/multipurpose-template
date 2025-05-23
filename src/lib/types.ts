@@ -75,6 +75,30 @@ export type Podcasts = {
   episodes: SpotifyEpisode[]
 }
 
+export type Event = {
+  fields: {
+    title: string
+    subtitle: string
+    secondaryTitle: string
+    startDate: string
+    finishingDate: string
+    description: string
+    location: {
+      lon: number
+      lat: number
+    }
+    contactEmail: string
+    contactPhone: string
+    thumbnail: Image
+  }
+}
+
+export type Events = {
+  title: string
+  subtitle: string
+  events: Event[]
+}
+
 export type HomePage = {
   websiteName: string
   header: Header
@@ -82,4 +106,5 @@ export type HomePage = {
   services: Services
   testimonials: Testimonials
   podcasts: Podcasts
+  events: Events
 }

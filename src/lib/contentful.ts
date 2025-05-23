@@ -39,11 +39,16 @@ export const getHomePage = async () => {
     content_type: 'podcasts',
   })
 
+  const events = await client.getEntries({
+    content_type: 'events',
+  })
+
   return {
     about: about?.items?.[0]?.fields,
     header: header?.items?.[0]?.fields,
     services: services?.items?.[0]?.fields,
     testimonials: testimonials?.items?.[0]?.fields,
     podcasts: podcasts?.items?.[0]?.fields,
+    events: events?.items?.[0]?.fields,
   } as unknown as HomePage
 }

@@ -2,8 +2,7 @@ import { Services } from '@/lib/types'
 import { Grid2 } from '@mui/material'
 import { ContentSection } from '../ContentSection/ContentSection'
 import { Service } from '../Service/Service'
-import { ServiceSectionWrapper } from './ServiceSections.styles'
-import { SectionWrapper } from '../common/styles'
+import { SectionWithBackground, SectionWrapper } from '../common/styles'
 import { motion } from 'framer-motion'
 import { FADE_IN_UP } from '@/constants/animation'
 import { useGridSize } from '@/hooks/useGridSize'
@@ -25,7 +24,7 @@ export const ServicesSection: React.FC<Services> = ({ title, subtitle, services 
   const gridSize = useGridSize(itemCount)
 
   return (
-    <ServiceSectionWrapper id="services">
+    <SectionWithBackground id="services">
       <ContentSection subtitle={subtitle} title={title} sectionName="services" />
       <SectionWrapper container spacing={4}>
         {services.map((item, index) => (
@@ -43,6 +42,6 @@ export const ServicesSection: React.FC<Services> = ({ title, subtitle, services 
           </Grid2>
         ))}
       </SectionWrapper>
-    </ServiceSectionWrapper>
+    </SectionWithBackground>
   )
 }

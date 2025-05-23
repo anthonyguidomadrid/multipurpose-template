@@ -17,8 +17,8 @@ interface HomePage {
 export default function Home({
   home: { header, about, services, testimonials, podcasts, events },
 }: HomePage) {
-  const hasPodcasts = podcasts.episodes.length > 0
-  const hasEvents = events.events.length > 0
+  const hasPodcasts = podcasts?.episodes.length > 0
+  const hasEvents = events?.events.length > 0
   return (
     <>
       <HomeHeader {...header} />

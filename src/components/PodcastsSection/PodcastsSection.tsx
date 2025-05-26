@@ -46,7 +46,7 @@ export const PodcastsSection: React.FC<Podcasts> = ({ title, subtitle, episodes 
       >
         <AllPodcastsButtonWrapper>
           <Button variant="contained" data-testid="see-all-podcasts">
-            {t('podcast.button.seeAll')}
+            {t('button.seeAllEpisodes')}
           </Button>
         </AllPodcastsButtonWrapper>
       </motion.div>

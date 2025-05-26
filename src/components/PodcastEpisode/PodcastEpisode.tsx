@@ -60,7 +60,7 @@ export const PodcastEpisode: React.FC<SpotifyEpisode> = ({
         <EpisodeDescription data-testid="podcast-description">{description}</EpisodeDescription>
       </Collapse>
       <Button onClick={toggleDescription} data-testid="podcast-see-more-button">
-        {isExpanded ? t('podcast.button.seeLess') : t('podcast.button.seeMore')}
+        {isExpanded ? t('button.seeLess') : t('button.seeMore')}
       </Button>
       <AudioPlayerWrapper container spacing={2} alignItems="center" data-testid="podcast-player">
         <Grid2 size={{ xs: 12, md: 9 }}>
@@ -76,7 +76,7 @@ export const PodcastEpisode: React.FC<SpotifyEpisode> = ({
         <AudioPlayerButtonWrapper size={{ xs: 12, md: 3 }}>
           <Link href={spotify} target="_blank" rel="noopener noreferrer">
             <Button variant="outlined" data-testid="podcast-link-button">
-              {t('podcast.button.fullEpisode')}
+              {t('button.fullEpisode')}
             </Button>
           </Link>
         </AudioPlayerButtonWrapper>

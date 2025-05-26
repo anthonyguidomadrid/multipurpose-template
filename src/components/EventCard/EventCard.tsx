@@ -1,8 +1,14 @@
 import { getDate } from '@/helpers/date'
 import { Event } from '@/lib/types'
-import { Card, CardMedia, CardContent, Typography, Box } from '@mui/material'
-import Link from 'next/link'
+import { CardMedia, CardContent, Typography, Button } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import {
+  EventButtonWrapper,
+  EventCardWrapper,
+  EventRibbon,
+  StyledEventCard,
+} from './EventCard.styles'
 
 export const EventCard: React.FC<Event> = ({
   fields: {
@@ -18,43 +24,22 @@ export const EventCard: React.FC<Event> = ({
   },
 }) => {
   const { locale } = useRouter()
+  const { t } = useTranslation()
   return (
-    <Link
-      href={`/events/${title.toLowerCase().replaceAll(' ', '-')}`}
-      passHref
-      style={{ textDecoration: 'none' }}
-    >
-      <Box sx={{ position: 'relative', display: 'inline-block', width: '100%' }}>
-        {/* Ribbon for startingDate */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            backgroundColor: '#004D59',
-            color: 'white',
-            padding: '4px 8px',
-            fontSize: '0.75rem',
-            fontWeight: 'bold',
-            borderBottomLeftRadius: '4px',
-            zIndex: 1,
-            textTransform: 'capitalize',
-          }}
-        >
-          {getDate(new Date(startDate), 'dd MMMM yyyy', locale)}
-        </Box>
-        <Card sx={{ marginBottom: 6, backgroundColor: 'white' }}>
-          <CardMedia component="img" alt={thumbnailTitle} height="140" image={thumbnailUrl} />
-          <CardContent style={{ backgroundColor: 'transparent' }}>
-            <Typography gutterBottom variant="h5" component="div">
-              {title}
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              {subtitle}
-            </Typography>
-          </CardContent>
-        </Card>
-      </Box>
-    </Link>
+    <EventCardWrapper>
+      <EventRibbon>{getDate(new Date(startDate), 'dd MMMM yyyy', locale)}</EventRibbon>
+      <StyledEventCard>
+        <CardMedia component="img" alt={thumbnailTitle} height="200" image={thumbnailUrl} />
+        <CardContent>
+          <Typography gutterBottom variant="h5">
+            {title}
+          </Typography>
+          <Typography variant="body2">{subtitle}</Typography>
+          <EventButtonWrapper>
+            <Button size="small">{t('button.seeMore')}</Button>
+          </EventButtonWrapper>
+        </CardContent>
+      </StyledEventCard>
+    </EventCardWrapper>
   )
 }

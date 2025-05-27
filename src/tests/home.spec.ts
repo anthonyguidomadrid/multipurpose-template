@@ -161,4 +161,48 @@ test.describe('Home Header', () => {
       await expect(fullEpisodeButton).toBeVisible()
     }
   })
+
+  test('should display the events section', async ({ page }) => {
+    // Navigate to the home page
+    await page.goto('/')
+
+    // Check the title
+    const eventsTitle = page.getByTestId('events-title')
+    await expect(eventsTitle).toBeVisible()
+
+    // Check the subtitle
+    const eventsSubtitle = page.getByTestId('events-subtitle')
+    await expect(eventsSubtitle).toBeVisible()
+
+    // Check the event cards
+    const eventCards = page.locator('[data-testid^="event-card"]')
+    const eventCount = await eventCards.count()
+    expect(eventCount).toBeGreaterThan(0)
+
+    // Check each event card
+    for (let i = 0; i < eventCount; i++) {
+      const eventCard = eventCards.nth(i)
+
+      // Check the event ribbon
+      const eventRibbon = eventCard.getByTestId('event-ribbon')
+      await expect(eventRibbon).toBeVisible()
+
+      // Check the event image
+      const eventImage = eventCard.getByTestId('event-image')
+      await expect(eventImage).toBeVisible()
+
+      // Check the event title
+      const eventTitle = eventCard.getByTestId('event-title')
+      await expect(eventTitle).toBeVisible()
+
+      // Check the event subtitle
+      const eventSubtitle = eventCard.getByTestId('event-subtitle')
+      await expect(eventSubtitle).toBeVisible()
+
+      // Check the "See More" button
+      const seeMoreButton = eventCard.getByTestId('event-button')
+      await expect(seeMoreButton).toBeVisible()
+      await expect(seeMoreButton).toHaveText('See more')
+    }
+  })
 })

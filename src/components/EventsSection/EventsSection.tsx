@@ -15,7 +15,7 @@ const FADE_IN_VARIANTS = {
     y: 0,
     transition: {
       duration: 0.5,
-      // Stagger the animation for first 4 cards
+      // Delay the animation for first 4 cards only
       delay: index < 4 ? index * 0.3 : 0,
     },
   }),

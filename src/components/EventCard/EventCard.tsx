@@ -26,17 +26,29 @@ export const EventCard: React.FC<Event> = ({
   const { locale } = useRouter()
   const { t } = useTranslation()
   return (
-    <EventCardWrapper>
-      <EventRibbon>{getDate(new Date(startDate), 'dd MMMM yyyy', locale)}</EventRibbon>
+    <EventCardWrapper data-testid="event-card">
+      <EventRibbon data-testid="event-ribbon">
+        {getDate(new Date(startDate), 'dd MMMM yyyy', locale)}
+      </EventRibbon>
       <StyledEventCard>
-        <CardMedia component="img" alt={thumbnailTitle} height="200" image={thumbnailUrl} />
+        <CardMedia
+          component="img"
+          alt={thumbnailTitle}
+          height="200"
+          image={thumbnailUrl}
+          data-testid="event-image"
+        />
         <CardContent>
-          <Typography gutterBottom variant="h5">
+          <Typography gutterBottom variant="h5" data-testid="event-title">
             {title}
           </Typography>
-          <Typography variant="body2">{subtitle}</Typography>
+          <Typography variant="body2" data-testid="event-subtitle">
+            {subtitle}
+          </Typography>
           <EventButtonWrapper>
-            <Button size="small">{t('button.seeMore')}</Button>
+            <Button size="small" data-testid="event-button">
+              {t('button.seeMore')}
+            </Button>
           </EventButtonWrapper>
         </CardContent>
       </StyledEventCard>

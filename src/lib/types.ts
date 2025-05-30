@@ -108,3 +108,13 @@ export type HomePage = {
   podcasts: Podcasts
   events: Events
 }
+
+export type Contact = {
+  email: string
+  phone: string
+  facebookUrl?: string
+  instagramUrl?: string
+  linkedInUrl?: string
+  twitterUrl?: string
+  galleryImages: Image[]
+}

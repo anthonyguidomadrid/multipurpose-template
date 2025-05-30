@@ -1,10 +1,16 @@
 {
-  "podcast": {
-    "button": {
-      "seeMore": "Voir plus",
-      "seeLess": "Voir moins",
-      "fullEpisode": "Voir l'épisode complet",
-      "seeAllEpisodes": "Voir tous les épisodes"
-    }
+  "button": {
+    "seeMore": "Voir plus",
+    "seeLess": "Voir moins",
+    "fullEpisode": "Voir l'épisode complet",
+    "seeAllEpisodes": "Voir tous les épisodes",
+    "send": "Envoyer"
+  },
+  "title": {
+    "contactUs": "Contactez-nous",
+    "phone": "Téléphone",
+    "email": "E-mail",
+    "sendMessage": "Envoyez-nous un message",
+    "gallery": "Galerie"
   }
 }

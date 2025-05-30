@@ -1,24 +1,16 @@
-import { TextField, Button } from '@mui/material'
-import { useForm } from 'react-hook-form'
+import { TextField, Button, Box } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 
 export default function ContactForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
-
+  const { t } = useTranslation()
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
-      <TextField
-        label="Name"
-        {...register('name', { required: 'Name is required' })}
-        error={!!errors.name}
-        helperText={typeof errors.name?.message === 'string' ? errors.name.message : undefined}
-      />
-      <Button type="submit" variant="contained">
-        Submit
+    <Box component="form" sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <TextField label="Your Name" variant="outlined" size="small" fullWidth />
+      <TextField label="Your Email" variant="outlined" size="small" fullWidth />
+      <TextField label="Message" variant="outlined" size="small" fullWidth multiline minRows={3} />
+      <Button variant="contained" color="primary">
+        {t('button.send')}
       </Button>
-    </form>
+    </Box>
   )
 }

@@ -17,6 +17,7 @@
     "@contentful/rich-text-react-renderer": "^16.0.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.1.0",
     "@mui/material": "^6.4.8",
     "contentful": "^11.5.11",
     "contentful-management": "^11.48.1",
@@ -30,6 +31,7 @@
     "react-h5-audio-player": "^3.10.0-rc.1",
     "react-hook-form": "^7.54.2",
     "react-i18next": "^15.5.1",
+    "react-image-lightbox": "^5.1.4",
     "swiper": "^11.2.6"
   },
   "devDependencies": {

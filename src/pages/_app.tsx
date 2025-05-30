@@ -1,15 +1,16 @@
 import { AppProps } from 'next/app'
-import { CircularProgress, CssBaseline, ThemeProvider } from '@mui/material'
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import getTheme from '@/theme/theme'
 import Head from 'next/head'
 import '../styles/global.css'
-import { getSettings } from '@/lib/contentful'
+import { getContact, getSettings } from '@/lib/contentful'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { appWithTranslation } from 'next-i18next'
+import { PageWrapper } from '@/components/PageWrapper/PageWrapper'
 
 function App({ Component, pageProps }: AppProps) {
-  const { settings } = pageProps
+  const { settings, contact } = pageProps
   const locale = settings?.locale
   const router = useRouter()
 
@@ -18,10 +19,6 @@ function App({ Component, pageProps }: AppProps) {
       router.push(router.asPath, router.asPath, { locale })
     }
   }, [locale, router])
-
-  if (!settings) {
-    return <CircularProgress />
-  }
 
   const fontFamily = settings.bodyFont.replaceAll(' ', '+')
   const googleFontUrl = `https://fonts.googleapis.com/css2?family=${fontFamily}:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap`
@@ -34,7 +31,9 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <CssBaseline />
       <ThemeProvider theme={getTheme(settings)}>
-        <Component {...pageProps} />
+        <PageWrapper contact={contact}>
+          <Component {...pageProps} />
+        </PageWrapper>
       </ThemeProvider>
     </>
   )
@@ -42,7 +41,8 @@ function App({ Component, pageProps }: AppProps) {
 
 App.getInitialProps = async () => {
   const settings = await getSettings()
-  return { pageProps: { settings } }
+  const contact = await getContact()
+  return { pageProps: { settings, contact } }
 }
 
 export default appWithTranslation(App)

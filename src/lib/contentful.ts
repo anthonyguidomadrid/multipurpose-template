@@ -19,6 +19,16 @@ export const getSettings = async () => {
   return { ...response.items[0].fields, locale: response.items[0].sys.locale } as ThemeSettings
 }
 
+export const getContact = async () => {
+  const response = await client.getEntries({
+    content_type: 'contact',
+  })
+  if (response.items.length === 0) {
+    throw new Error('No contact info found in Contentful')
+  }
+  return response.items[0].fields
+}
+
 export const getHomePage = async () => {
   const header = await client.getEntries({
     content_type: 'header',

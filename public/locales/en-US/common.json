@@ -3,6 +3,14 @@
     "seeMore": "See more",
     "seeLess": "See less",
     "fullEpisode": "See full episode",
-    "seeAllEpisodes": "See all episodes"
+    "seeAllEpisodes": "See all episodes",
+    "send": "Send"
+  },
+  "title": {
+    "contactUs": "Contact Us",
+    "phone": "Phone",
+    "email": "Email",
+    "sendMessage": "Send us a message",
+    "gallery": "Gallery"
   }
 }

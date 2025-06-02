@@ -2,6 +2,7 @@ import { Document } from '@contentful/rich-text-types'
 import { SpotifyEpisode } from './spotify'
 
 export type ThemeSettings = {
+  websiteName: string
   locale: string
   primaryColor?: string
   secondaryColor?: string

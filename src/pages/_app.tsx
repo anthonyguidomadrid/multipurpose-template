@@ -11,7 +11,7 @@ import { PageWrapper } from '@/components/PageWrapper/PageWrapper'
 
 function App({ Component, pageProps }: AppProps) {
   const { settings, contact } = pageProps
-  const locale = settings?.locale
+  const { locale, bodyFont, websiteName } = settings
   const router = useRouter()
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function App({ Component, pageProps }: AppProps) {
     }
   }, [locale, router])
 
-  const fontFamily = settings.bodyFont.replaceAll(' ', '+')
+  const fontFamily = bodyFont.replaceAll(' ', '+')
   const googleFontUrl = `https://fonts.googleapis.com/css2?family=${fontFamily}:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap`
 
   return (
@@ -31,7 +31,7 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <CssBaseline />
       <ThemeProvider theme={getTheme(settings)}>
-        <PageWrapper contact={contact}>
+        <PageWrapper contact={contact} websiteName={websiteName}>
           <Component {...pageProps} />
         </PageWrapper>
       </ThemeProvider>

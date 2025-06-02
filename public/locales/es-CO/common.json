@@ -12,5 +12,16 @@
     "email": "Correo electrónico",
     "sendMessage": "Envíanos un mensaje",
     "gallery": "Galería"
+  },
+  "field": {
+    "name": "Nombre",
+    "email": "Email",
+    "message": "Mensaje",
+    "required": "{{field}} es obligatorio",
+    "invalid": "{{field}} no es válido"
+  },
+  "notification": {
+    "successSent": "Mensaje enviado exitosamente",
+    "errorSent": "Error al enviar el mensaje"
   }
 }

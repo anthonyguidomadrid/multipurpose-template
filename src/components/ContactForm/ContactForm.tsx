@@ -1,9 +1,10 @@
 import { EMAIL_REGEX } from '@/constants/regex'
 import { sendEmail } from '@/lib/emailjs'
-import { TextField, Button, Box } from '@mui/material'
+import { Button, Box } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { ContactFormWrapper, StyledTextField } from './ContactForm.styles'
 
 interface ContactFormProps {
   email: string
@@ -15,7 +16,7 @@ type FormValues = {
   message: string
 }
 
-export default function ContactForm({ email }: ContactFormProps) {
+export const ContactForm = ({ email }: ContactFormProps) => {
   const { t } = useTranslation()
   const [emailSuccess, setEmailSuccess] = useState(false)
   const [emailError, setEmailError] = useState(false)
@@ -47,12 +48,8 @@ export default function ContactForm({ email }: ContactFormProps) {
   }
 
   return (
-    <Box
-      component="form"
-      sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <TextField
+    <ContactFormWrapper component="form" onSubmit={handleSubmit(onSubmit)}>
+      <StyledTextField
         label={t('field.name')}
         variant="outlined"
         size="small"
@@ -61,7 +58,7 @@ export default function ContactForm({ email }: ContactFormProps) {
         helperText={errors.name?.message}
         {...register('name', { required: t('field.required', { field: t('field.name') }) })}
       />
-      <TextField
+      <StyledTextField
         label={t('field.email')}
         variant="outlined"
         size="small"
@@ -77,7 +74,7 @@ export default function ContactForm({ email }: ContactFormProps) {
           },
         })}
       />
-      <TextField
+      <StyledTextField
         label={t('field.message')}
         variant="outlined"
         size="small"
@@ -96,11 +93,11 @@ export default function ContactForm({ email }: ContactFormProps) {
       >
         {t('button.send')}
       </Button>
-      {(emailSuccess || emailError) && (
+      {!hasAnyErrors && (emailSuccess || emailError) && (
         <Box color={`${emailSuccess ? 'success' : 'error'}.main`}>
           {t(`notification.${emailSuccess ? 'successSent' : 'errorSent'}`)}
         </Box>
       )}
-    </Box>
+    </ContactFormWrapper>
   )
 }

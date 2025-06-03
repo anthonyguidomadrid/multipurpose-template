@@ -23,5 +23,9 @@
   "notification": {
     "successSent": "Message sent successfully",
     "errorSent": "Error sending message"
+  },
+  "footer": {
+    "copyright": "© {{year}} {{websiteName}} developed by ",
+    "developer": "Anthony Guido Developer"
   }
 }

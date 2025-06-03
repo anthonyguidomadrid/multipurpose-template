@@ -1,5 +1,5 @@
 import { Contact } from '@/lib/types'
-import { Box, Grid2, Paper, Typography } from '@mui/material'
+import { Box, Grid2, Typography } from '@mui/material'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
@@ -9,9 +9,16 @@ import EmailIcon from '@mui/icons-material/Email'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { SocialMediaButton } from '../SocialMediaButton/SocialMediaButton'
-import ContactForm from '../ContactForm/ContactForm'
+import { ContactForm } from '../ContactForm/ContactForm'
 import { GalleryLightbox } from '../Lightbox/Lightbox'
-import Link from 'next/link'
+import {
+  ContactInfoWrapper,
+  CopywrightWrapper,
+  FooterLink,
+  FooterTitle,
+  FooterWrapper,
+  ImageGrid,
+} from './Footer.styles'
 
 interface FooterProps extends Contact {
   websiteName: string
@@ -45,79 +52,64 @@ export const Footer: React.FC<FooterProps> = ({
 
   return (
     <>
-      <Paper
-        sx={{ mt: 8, py: 6, px: { xs: 2, md: 6 }, background: '#f5f5f5' }}
-        component="footer"
-        elevation={0}
-      >
+      <FooterWrapper component="footer" elevation={0}>
         <Grid2 container spacing={4}>
           {/* Column 1: Contact Info */}
-          <Grid2 size={4}>
-            <Typography variant="h6" gutterBottom>
+          <Grid2 size={{ xs: 12, md: 4 }}>
+            <FooterTitle variant="h6" gutterBottom>
               {t('title.contactUs')}
-            </Typography>
-            <Typography variant="subtitle2" sx={{ mt: 2 }}>
-              {t('title.phone')}
-            </Typography>
-            <Box display="flex" alignItems="center" gap={1}>
-              <PhoneIcon fontSize="small" />
-              <Typography variant="body2">
-                <a
-                  href={`tel:${phone.replaceAll(' ', '')}`}
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                >
-                  {phone}
-                </a>
-              </Typography>
-            </Box>
-            <Typography variant="subtitle2" sx={{ mt: 2 }}>
-              {t('title.email')}
-            </Typography>
-            <Box display="flex" alignItems="center" gap={1}>
-              <EmailIcon fontSize="small" />
-              <Typography variant="body2">
-                <a href={`mailto:${email}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                  {email}
-                </a>
-              </Typography>
-            </Box>
-            <Box sx={{ mt: 2 }}>
-              {socialMediaArray.map(
-                (social, index) =>
-                  social.url && (
-                    <SocialMediaButton key={index} url={social.url} icon={social.icon} />
-                  )
-              )}
-            </Box>
+            </FooterTitle>
+            <ContactInfoWrapper container spacing={2}>
+              <Grid2 size={12}>
+                <Typography variant="subtitle2">{t('title.phone')}</Typography>
+                <Box display="flex" alignItems="center" gap={1}>
+                  <PhoneIcon fontSize="small" />
+                  <Typography variant="body2">
+                    <FooterLink href={`tel:${phone.replaceAll(' ', '')}`}>{phone}</FooterLink>
+                  </Typography>
+                </Box>
+              </Grid2>
+              <Grid2 size={12}>
+                <Typography variant="subtitle2">{t('title.email')}</Typography>
+                <Box display="flex" alignItems="center" gap={1}>
+                  <EmailIcon fontSize="small" />
+                  <Typography variant="body2">
+                    <FooterLink href={`mailto:${email}`}>{email}</FooterLink>
+                  </Typography>
+                </Box>
+              </Grid2>
+              <Grid2 size={12}>
+                {socialMediaArray.map(
+                  (social, index) =>
+                    social.url && (
+                      <SocialMediaButton key={index} url={social.url} icon={social.icon} />
+                    )
+                )}
+              </Grid2>
+            </ContactInfoWrapper>
           </Grid2>
 
           {/* Column 2: Contact Form */}
-          <Grid2 size={4}>
-            <Typography variant="h6" gutterBottom>
+          <Grid2 size={{ xs: 12, md: 4 }}>
+            <FooterTitle variant="h6" gutterBottom>
               {t('title.sendMessage')}
-            </Typography>
+            </FooterTitle>
             <ContactForm email={email} />
           </Grid2>
 
           {/* Column 3: Gallery Grid */}
-          <Grid2 size={4}>
-            <Typography variant="h6" gutterBottom>
+          <Grid2 size={{ xs: 12, md: 4 }}>
+            <FooterTitle variant="h6" gutterBottom>
               {t('title.gallery')}
-            </Typography>
-            <Grid2 container spacing={1} sx={{ mt: 2 }}>
-              {galleryImages.slice(0, 6).map((img, idx) => (
-                <Grid2 size={4} key={img.fields.file.fileName}>
-                  <Box
-                    component="img"
-                    src={img.fields.file.url}
-                    alt={img.fields.title}
-                    sx={{
-                      width: '100%',
-                      aspectRatio: '1/1',
-                      objectFit: 'cover',
-                      borderRadius: 1,
-                      cursor: 'pointer',
-                    }}
+            </FooterTitle>
+            <Grid2 container spacing={2}>
+              {galleryImages.slice(0, 6).map(({ fields }, idx) => (
+                <Grid2 size={4} key={fields.file.fileName}>
+                  <ImageGrid
+                    src={`https:${fields.file.url}`}
+                    alt={fields.title}
+                    width={fields.file.details.image.width}
+                    height={fields.file.details.image.height}
                     onClick={() => {
                       setPhotoIndex(idx)
                       setLightboxOpen(true)
@@ -137,21 +129,20 @@ export const Footer: React.FC<FooterProps> = ({
             )}
           </Grid2>
         </Grid2>
-      </Paper>
+      </FooterWrapper>
       {/* Footer copyright */}
-      <Box sx={{ textAlign: 'center', py: 2, background: '#f5f5f5' }}>
-        <Typography variant="body2" color="text.secondary">
-          &copy; {new Date().getFullYear()} {websiteName} by{' '}
-          <Link
-            href="https://anthonyguido.dev"
+      <CopywrightWrapper>
+        <Typography variant="body2">
+          {t('footer.copyright', { websiteName, year: new Date().getFullYear() })}
+          <FooterLink
+            href="https://www.anthonyguido.dev/"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: 'inherit', textDecoration: 'underline' }}
           >
-            Anthony Guido Developer
-          </Link>
+            {t('footer.developer')}
+          </FooterLink>
         </Typography>
-      </Box>
+      </CopywrightWrapper>
     </>
   )
 }

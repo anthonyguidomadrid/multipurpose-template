@@ -56,25 +56,36 @@ export const Footer: React.FC<FooterProps> = ({
         <Grid2 container spacing={4}>
           {/* Column 1: Contact Info */}
           <Grid2 size={{ xs: 12, md: 4 }}>
-            <FooterTitle variant="h6" gutterBottom>
+            <FooterTitle variant="h6" gutterBottom data-testid="footer-contact-title">
               {t('title.contactUs')}
             </FooterTitle>
             <ContactInfoWrapper container spacing={2}>
               <Grid2 size={12}>
-                <Typography variant="subtitle2">{t('title.phone')}</Typography>
+                <Typography variant="subtitle2" data-testid="footer-phone-label">
+                  {t('title.phone')}
+                </Typography>
                 <Box display="flex" alignItems="center" gap={1}>
                   <PhoneIcon fontSize="small" />
                   <Typography variant="body2">
-                    <FooterLink href={`tel:${phone.replaceAll(' ', '')}`}>{phone}</FooterLink>
+                    <FooterLink
+                      href={`tel:${phone.replaceAll(' ', '')}`}
+                      data-testid="footer-phone-link"
+                    >
+                      {phone}
+                    </FooterLink>
                   </Typography>
                 </Box>
               </Grid2>
               <Grid2 size={12}>
-                <Typography variant="subtitle2">{t('title.email')}</Typography>
+                <Typography variant="subtitle2" data-testid="footer-email-label">
+                  {t('title.email')}
+                </Typography>
                 <Box display="flex" alignItems="center" gap={1}>
                   <EmailIcon fontSize="small" />
                   <Typography variant="body2">
-                    <FooterLink href={`mailto:${email}`}>{email}</FooterLink>
+                    <FooterLink href={`mailto:${email}`} data-testid="footer-email-link">
+                      {email}
+                    </FooterLink>
                   </Typography>
                 </Box>
               </Grid2>
@@ -91,7 +102,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Column 2: Contact Form */}
           <Grid2 size={{ xs: 12, md: 4 }}>
-            <FooterTitle variant="h6" gutterBottom>
+            <FooterTitle variant="h6" gutterBottom data-testid="footer-form-title">
               {t('title.sendMessage')}
             </FooterTitle>
             <ContactForm email={email} />
@@ -99,7 +110,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Column 3: Gallery Grid */}
           <Grid2 size={{ xs: 12, md: 4 }}>
-            <FooterTitle variant="h6" gutterBottom>
+            <FooterTitle variant="h6" gutterBottom data-testid="footer-gallery-title">
               {t('title.gallery')}
             </FooterTitle>
             <Grid2 container spacing={2}>
@@ -114,6 +125,7 @@ export const Footer: React.FC<FooterProps> = ({
                       setPhotoIndex(idx)
                       setLightboxOpen(true)
                     }}
+                    data-testid={`footer-gallery-image-${idx}`}
                   />
                 </Grid2>
               ))}
@@ -132,7 +144,7 @@ export const Footer: React.FC<FooterProps> = ({
       </FooterWrapper>
       {/* Footer copyright */}
       <CopywrightWrapper>
-        <Typography variant="body2">
+        <Typography variant="body2" data-testid="footer-copyright">
           {t('footer.copyright', { websiteName, year: new Date().getFullYear() })}
           <FooterLink
             href="https://www.anthonyguido.dev/"

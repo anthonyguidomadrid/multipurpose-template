@@ -25,18 +25,21 @@ export const PodcastsSection: React.FC<Podcasts> = ({ title, subtitle, episodes 
   return (
     <SectionWrapper>
       <ContentSection subtitle={subtitle} title={title} sectionName="podcasts" />
-      {episodes.map((episode, index) => (
-        <motion.div
-          key={episode.id}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
-          custom={index}
-          variants={FADE_IN_VARIANTS}
-        >
-          <PodcastEpisode {...episode} />
-        </motion.div>
-      ))}
+      {episodes.map(
+        (episode, index) =>
+          episode && (
+            <motion.div
+              key={episode.id}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+              custom={index}
+              variants={FADE_IN_VARIANTS}
+            >
+              <PodcastEpisode {...episode} />
+            </motion.div>
+          )
+      )}
       <motion.div
         initial="hidden"
         whileInView="show"

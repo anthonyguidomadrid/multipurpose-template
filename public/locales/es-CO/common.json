@@ -21,10 +21,12 @@
     "invalid": "{{field}} no es válido"
   },
   "notification": {
-    "successSent": "Mensaje enviado exitosamente",
-    "errorSent": "Error al enviar el mensaje"
+    "email": {
+      "success": "Mensaje electrónico enviado exitosamente",
+      "error": "Error al enviar el mensaje"
+    }
   },
-    "footer": {
+  "footer": {
     "copyright": "© {{year}} {{websiteName}} desarollado por ",
     "developer": "Anthony Guido Developer"
   }

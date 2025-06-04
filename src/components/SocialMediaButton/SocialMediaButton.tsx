@@ -7,7 +7,13 @@ interface SocialMediaButtonProps {
 
 export const SocialMediaButton = ({ icon, url }: SocialMediaButtonProps) => {
   return (
-    <StyledSocialMediaButton component="a" href={url} target="_blank" rel="noopener noreferrer">
+    <StyledSocialMediaButton
+      component="a"
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-testid={`footer-social-${url}`}
+    >
       {icon}
     </StyledSocialMediaButton>
   )

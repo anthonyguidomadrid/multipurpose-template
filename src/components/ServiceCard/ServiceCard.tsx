@@ -1,9 +1,9 @@
 import { Typography, CardActionArea, CardMedia } from '@mui/material'
 import { useState } from 'react'
 import { Service as ServiceType } from '@/lib/types'
-import { ServiceCardContent, StyledServiceCard } from './Service.styles'
+import { ServiceCardContent, StyledServiceCard } from './ServiceCard.styles'
 
-export const Service: React.FC<ServiceType> = ({ fields: { mainTitle, subtitle, thumbnail } }) => {
+export const ServiceCard: React.FC<ServiceType> = ({ fields: { mainTitle, subtitle, thumbnail } }) => {
   const [isHovered, setIsHovered] = useState(false)
 
   return (

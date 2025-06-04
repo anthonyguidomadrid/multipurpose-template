@@ -1,7 +1,7 @@
 import { Services } from '@/lib/types'
 import { Grid2 } from '@mui/material'
 import { ContentSection } from '../ContentSection/ContentSection'
-import { Service } from '../Service/Service'
+import { ServiceCard } from '../ServiceCard/ServiceCard'
 import { SectionWithBackground, SectionWrapper } from '../common/styles'
 import { motion } from 'framer-motion'
 import { FADE_IN_UP } from '@/constants/animation'
@@ -38,7 +38,7 @@ export const ServicesSection: React.FC<Services> = ({ title, subtitle, services 
             custom={index}
             variants={FADE_IN_VARIANTS}
           >
-            <Service {...item} />
+            <ServiceCard {...item} />
           </Grid2>
         ))}
       </SectionWrapper>

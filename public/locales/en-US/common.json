@@ -21,8 +21,10 @@
     "invalid": "{{field}} is invalid"
   },
   "notification": {
-    "successSent": "Message sent successfully",
-    "errorSent": "Error sending message"
+    "email": {
+      "success": "Email sent successfully",
+      "error": "Error sending email"
+    }
   },
   "footer": {
     "copyright": "© {{year}} {{websiteName}} developed by ",

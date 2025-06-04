@@ -6,7 +6,6 @@ export const StyledServiceCard = styled(Card)(() => ({
   borderRadius: 0,
   '&:hover .hover-content': {
     height: '100%',
-    opacity: 1,
   },
 }))
 

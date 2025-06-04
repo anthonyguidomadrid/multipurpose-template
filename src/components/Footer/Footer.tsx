@@ -1,5 +1,5 @@
 import { Contact } from '@/lib/types'
-import { Box, Grid2, Typography } from '@mui/material'
+import { Grid2, Typography } from '@mui/material'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
@@ -13,6 +13,7 @@ import { ContactForm } from '../ContactForm/ContactForm'
 import { GalleryLightbox } from '../Lightbox/Lightbox'
 import {
   ContactInfoWrapper,
+  ContactWrapper,
   CopywrightWrapper,
   FooterLink,
   FooterTitle,
@@ -64,7 +65,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <Typography variant="subtitle2" data-testid="footer-phone-label">
                   {t('title.phone')}
                 </Typography>
-                <Box display="flex" alignItems="center" gap={1}>
+                <ContactWrapper>
                   <PhoneIcon fontSize="small" />
                   <Typography variant="body2">
                     <FooterLink
@@ -74,20 +75,20 @@ export const Footer: React.FC<FooterProps> = ({
                       {phone}
                     </FooterLink>
                   </Typography>
-                </Box>
+                </ContactWrapper>
               </Grid2>
               <Grid2 size={12}>
                 <Typography variant="subtitle2" data-testid="footer-email-label">
                   {t('title.email')}
                 </Typography>
-                <Box display="flex" alignItems="center" gap={1}>
+                <ContactWrapper>
                   <EmailIcon fontSize="small" />
                   <Typography variant="body2">
                     <FooterLink href={`mailto:${email}`} data-testid="footer-email-link">
                       {email}
                     </FooterLink>
                   </Typography>
-                </Box>
+                </ContactWrapper>
               </Grid2>
               <Grid2 size={12}>
                 {socialMediaArray.map(

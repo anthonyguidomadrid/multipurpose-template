@@ -61,3 +61,14 @@ export const ContactInfoWrapper = styled(Grid2)(({ theme }) => ({
     textAlign: 'left',
   },
 }))
+
+export const ContactWrapper = styled(Box)(({ theme }) => ({
+  marginTop: theme.spacing(1),
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+  justifyContent: 'center',
+  [theme.breakpoints.up('md')]: {
+    justifyContent: 'flex-start',
+  },
+}))

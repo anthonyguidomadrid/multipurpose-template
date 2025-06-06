@@ -8,6 +8,7 @@ import { SectionWrapper } from '../common/styles'
 
 export const About: React.FC<AboutType> = ({ title, subtitle, description, photo }) => (
   <SectionWrapper
+    id="about"
     container
     spacing={{
       xs: 4,

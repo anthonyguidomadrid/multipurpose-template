@@ -29,6 +29,17 @@ export const getContact = async () => {
   return response.items[0].fields
 }
 
+export const getMenu = async () => {
+  const response = await client.getEntries({
+    content_type: 'menu',
+    include: 1,
+  })
+  if (response.items.length === 0) {
+    throw new Error('No menu found in Contentful')
+  }
+  return response.items[0].fields
+}
+
 export const getHomePage = async () => {
   const header = await client.getEntries({
     content_type: 'header',

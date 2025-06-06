@@ -23,7 +23,7 @@ export const PodcastsSection: React.FC<Podcasts> = ({ title, subtitle, episodes 
   const { t } = useTranslation()
 
   return (
-    <SectionWrapper>
+    <SectionWrapper id="podcasts">
       <ContentSection subtitle={subtitle} title={title} sectionName="podcasts" />
       {episodes.map(
         (episode, index) =>

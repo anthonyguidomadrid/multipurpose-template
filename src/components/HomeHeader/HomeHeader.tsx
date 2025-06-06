@@ -11,18 +11,9 @@ import {
 } from './HomeHeader.styles'
 import { motion } from 'framer-motion'
 import { STAGGER_CONTAINER, FADE_IN_UP } from '@/constants/animation'
+import { handleScrollToSection } from '@/helpers/scroll'
 
 export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ctaButtonText }) => {
-  const handleScrollToServices = () => {
-    const servicesSection = document.getElementById('services')
-    if (servicesSection) {
-      const top = servicesSection.getBoundingClientRect().top + window.scrollY
-      window.scrollTo({
-        top,
-        behavior: 'smooth',
-      })
-    }
-  }
   return (
     <HomeHeaderContainer>
       <SliderFilter />
@@ -43,7 +34,7 @@ export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ct
               variant="contained"
               data-testid="cta-button"
               size="large"
-              onClick={handleScrollToServices}
+              onClick={() => handleScrollToSection('services')}
             >
               {ctaButtonText}
             </Button>

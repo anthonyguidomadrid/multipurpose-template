@@ -119,3 +119,18 @@ export type Contact = {
   twitterUrl?: string
   galleryImages: Image[]
 }
+
+export type MenuItem = {
+  fields: {
+    isCta: boolean
+    label: string
+    link: string
+    shouldOpenInANewTab: boolean
+    shouldOpenInModal: boolean
+  }
+}
+
+export type Menu = {
+  logo: Image
+  menuItems: MenuItem[]
+}

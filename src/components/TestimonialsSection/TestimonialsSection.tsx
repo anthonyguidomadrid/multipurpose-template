@@ -9,7 +9,7 @@ import { Testimonial } from '../Testimonial/Testimonial'
 import { Slide, Slider } from './TestimonialsSection.styles'
 
 export const TestimonialsSection: React.FC<Testimonials> = ({ title, subtitle, testimonials }) => (
-  <SectionWrapper>
+  <SectionWrapper id="testimonials">
     <ContentSection subtitle={subtitle} title={title} sectionName="testimonials" />
     <Slider
       direction="vertical"

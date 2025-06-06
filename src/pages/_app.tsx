@@ -3,14 +3,14 @@ import { CssBaseline, ThemeProvider } from '@mui/material'
 import getTheme from '@/theme/theme'
 import Head from 'next/head'
 import '../styles/global.css'
-import { getContact, getSettings } from '@/lib/contentful'
+import { getContact, getMenu, getSettings } from '@/lib/contentful'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { appWithTranslation } from 'next-i18next'
 import { PageWrapper } from '@/components/PageWrapper/PageWrapper'
 
 function App({ Component, pageProps }: AppProps) {
-  const { settings, contact } = pageProps
+  const { settings, contact, menu } = pageProps
   const { locale, bodyFont, websiteName } = settings
   const router = useRouter()
 
@@ -31,7 +31,7 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <CssBaseline />
       <ThemeProvider theme={getTheme(settings)}>
-        <PageWrapper contact={contact} websiteName={websiteName}>
+        <PageWrapper contact={contact} websiteName={websiteName} menu={menu}>
           <Component {...pageProps} />
         </PageWrapper>
       </ThemeProvider>
@@ -42,7 +42,8 @@ function App({ Component, pageProps }: AppProps) {
 App.getInitialProps = async () => {
   const settings = await getSettings()
   const contact = await getContact()
-  return { pageProps: { settings, contact } }
+  const menu = await getMenu()
+  return { pageProps: { settings, contact, menu } }
 }
 
 export default appWithTranslation(App)

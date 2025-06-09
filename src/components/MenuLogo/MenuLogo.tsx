@@ -1,7 +1,7 @@
-import { handleScrollToTop } from '@/helpers/scroll'
 import { useRouter } from 'next/router'
 import { Menu } from '@/lib/types'
 import { MenuLogoImage, MenuLogoWrapper } from './MenuLogo.styles'
+import { animateScroll as scroll } from 'react-scroll'
 
 export const MenuLogo: React.FC<Pick<Menu, 'logo'>> = ({
   logo: {
@@ -23,7 +23,7 @@ export const MenuLogo: React.FC<Pick<Menu, 'logo'>> = ({
       onClick={async (e) => {
         e.preventDefault()
         if (isHomePage) {
-          handleScrollToTop()
+          scroll.scrollToTop()
         } else {
           await router.push('/')
         }

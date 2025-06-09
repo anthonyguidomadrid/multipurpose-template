@@ -1,5 +1,5 @@
 import { Header } from '@/lib/types'
-import { Box, Button, Typography } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import { SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade } from 'swiper/modules'
 import {
@@ -11,7 +11,7 @@ import {
 } from './HomeHeader.styles'
 import { motion } from 'framer-motion'
 import { STAGGER_CONTAINER, FADE_IN_UP } from '@/constants/animation'
-import { handleScrollToSection } from '@/helpers/scroll'
+import { Link } from 'react-scroll'
 
 export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ctaButtonText }) => {
   return (
@@ -29,16 +29,11 @@ export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ct
           </Typography>
         </motion.div>
         <motion.div variants={FADE_IN_UP}>
-          <Box>
-            <Button
-              variant="contained"
-              data-testid="cta-button"
-              size="large"
-              onClick={() => handleScrollToSection('services')}
-            >
+          <Link to="services" smooth={true}>
+            <Button variant="contained" data-testid="cta-button" size="large">
               {ctaButtonText}
             </Button>
-          </Box>
+          </Link>
         </motion.div>
       </MotionHeaderTitleWrapper>
       <ImageSlider

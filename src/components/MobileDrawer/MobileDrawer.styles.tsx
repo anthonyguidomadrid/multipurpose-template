@@ -1,4 +1,5 @@
 import { Box, Button, Drawer, styled } from '@mui/material'
+import { Link as ScrollLink } from 'react-scroll'
 
 export const StyledDrawer = styled(Drawer)(({ theme }) => ({
   '& .MuiDrawer-paper': {
@@ -20,3 +21,5 @@ export const CloseButtonWrapper = styled(Box)(({ theme }) => ({
   width: '100%',
   padding: theme.spacing(1, 2, 0, 0),
 }))
+
+export const StyledScrollLink = styled(ScrollLink)(() => ({ width: '100%', display: 'block' }))

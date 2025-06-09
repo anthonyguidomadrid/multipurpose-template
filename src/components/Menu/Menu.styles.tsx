@@ -5,6 +5,7 @@ export const StyledMenu = styled(AppBar)<{ isAtTop: boolean }>(({ isAtTop, theme
   color: isAtTop ? theme.palette.common.white : theme.palette.text.primary,
   boxShadow: isAtTop ? 'none' : theme.shadows[4],
   transition: 'background 0.3s, color 0.3s, box-shadow 0.3s',
+  zIndex: 900,
 }))
 
 export const MenuBar = styled(Toolbar)(() => ({

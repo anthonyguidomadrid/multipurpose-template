@@ -1,26 +1,36 @@
 import { Menu } from '@/lib/types'
-import { handleMenuClickType } from '../Menu/Menu'
 import { MenuItemButton, MenuItemsWrapper } from './MenuItems.styles'
+import { Link as ScrollLink } from 'react-scroll'
+import NextLink from 'next/link'
 
 interface MenuItemsProps {
   menuItems: Pick<Menu, 'menuItems'>['menuItems']
-  handleMenuClick: handleMenuClickType
 }
 
-export const MenuItems: React.FC<MenuItemsProps> = ({ menuItems, handleMenuClick }) => {
+export const MenuItems: React.FC<MenuItemsProps> = ({ menuItems }) => {
   return (
     <MenuItemsWrapper>
-      {menuItems.map(({ fields: { link, label, isCta, shouldOpenInANewTab } }, idx) => (
-        <MenuItemButton
-          key={idx}
-          color={isCta ? 'primary' : 'inherit'}
-          variant={isCta ? 'contained' : 'text'}
-          onClick={() => handleMenuClick(link, isCta, shouldOpenInANewTab)}
-          isCta={isCta}
-        >
-          {label}
-        </MenuItemButton>
-      ))}
+      {menuItems.map(({ fields: { link, label, isCta, shouldOpenInANewTab } }, idx) =>
+        isCta ? (
+          <NextLink
+            href={link}
+            passHref
+            key={idx}
+            target={shouldOpenInANewTab ? '_blank' : undefined}
+            rel={shouldOpenInANewTab ? 'noopener noreferrer' : undefined}
+          >
+            <MenuItemButton color="primary" variant="contained" isCta>
+              {label}
+            </MenuItemButton>
+          </NextLink>
+        ) : (
+          <ScrollLink to={link} key={idx} smooth={true} duration={500} offset={-70}>
+            <MenuItemButton color="inherit" variant="text" isCta={false}>
+              {label}
+            </MenuItemButton>
+          </ScrollLink>
+        )
+      )}
     </MenuItemsWrapper>
   )
 }

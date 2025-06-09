@@ -1,5 +1,3 @@
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
 import { Menu as MenuType } from '@/lib/types'
 import { handleScrollToSection } from '@/helpers/scroll'
 import { useRouter } from 'next/router'
@@ -8,6 +6,8 @@ import { MenuLogo } from '../MenuLogo/MenuLogo'
 import { MenuItems } from '../MenuItems/MenuItems'
 import { MobileMenuIcon } from '../MobileMenuIcon/MobileMenuIcon'
 import { MobileDrawer } from '../MobileDrawer/MobileDrawer'
+import { StyledMenu, MenuBar } from './Menu.styles'
+import { useScroll } from '@/hooks/useScroll'
 
 export type handleMenuClickType = (
   link: string,
@@ -18,6 +18,7 @@ export type handleMenuClickType = (
 export const Menu: React.FC<MenuType> = ({ logo, menuItems }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const router = useRouter()
+  const { isAtTop } = useScroll()
   const isHomePage = router.pathname === '/'
 
   const handleDrawerToggle = () => setDrawerOpen((open) => !open)
@@ -39,18 +40,18 @@ export const Menu: React.FC<MenuType> = ({ logo, menuItems }) => {
     }
   }
   return (
-    <AppBar position="fixed" color="default" elevation={1}>
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <StyledMenu position="fixed" color="default" elevation={1} isAtTop={isAtTop}>
+      <MenuBar>
         <MenuLogo logo={logo} />
         <MenuItems menuItems={menuItems} handleMenuClick={handleMenuClick} />
         <MobileMenuIcon handleDrawerToggle={handleDrawerToggle} />
-      </Toolbar>
+      </MenuBar>
       <MobileDrawer
         drawerOpen={drawerOpen}
         handleDrawerToggle={handleDrawerToggle}
         menuItems={menuItems}
         handleMenuClick={handleMenuClick}
       />
-    </AppBar>
+    </StyledMenu>
   )
 }

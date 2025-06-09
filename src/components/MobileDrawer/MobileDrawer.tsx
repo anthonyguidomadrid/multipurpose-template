@@ -1,15 +1,13 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-} from '@mui/material'
+import { IconButton, List, ListItem, ListItemButton, ListItemText } from '@mui/material'
 import { Menu } from '@/lib/types'
 import { handleMenuClickType } from '../Menu/Menu'
+import CloseIcon from '@mui/icons-material/Close'
+import {
+  CloseButtonWrapper,
+  DrawerCtaButton,
+  MobileMenuItemsWrapper,
+  StyledDrawer,
+} from './MobileDrawer.styles'
 
 interface MobileDrawerProps {
   drawerOpen: boolean
@@ -24,36 +22,36 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   menuItems,
   handleMenuClick,
 }) => (
-  <Drawer
+  <StyledDrawer
     anchor="left"
     open={drawerOpen}
     onClose={handleDrawerToggle}
     ModalProps={{ keepMounted: true }}
   >
-    <Box sx={{ width: 250 }} role="presentation" onClick={handleDrawerToggle}>
+    <MobileMenuItemsWrapper role="presentation" onClick={handleDrawerToggle}>
+      <CloseButtonWrapper>
+        <IconButton>
+          <CloseIcon />
+        </IconButton>
+      </CloseButtonWrapper>
       <List>
         {menuItems.map(({ fields: { link, label, isCta, shouldOpenInANewTab } }, idx) => (
           <ListItem key={idx} disablePadding>
             {isCta ? (
-              <Button
+              <DrawerCtaButton
                 variant="contained"
                 onClick={() => handleMenuClick(link, true, shouldOpenInANewTab)}
-                sx={{ margin: '8px 16px' }}
               >
                 {label}
-              </Button>
+              </DrawerCtaButton>
             ) : (
-              <ListItemButton
-                onClick={() => handleMenuClick(link, false, shouldOpenInANewTab)}
-                sx={{ color: 'white' }}
-              >
+              <ListItemButton onClick={() => handleMenuClick(link, false, shouldOpenInANewTab)}>
                 <ListItemText primary={label} />
               </ListItemButton>
             )}
           </ListItem>
         ))}
       </List>
-      <Divider />
-    </Box>
-  </Drawer>
+    </MobileMenuItemsWrapper>
+  </StyledDrawer>
 )

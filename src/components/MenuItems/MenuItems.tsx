@@ -1,6 +1,6 @@
 import { Menu } from '@/lib/types'
-import { Box, Button } from '@mui/material'
 import { handleMenuClickType } from '../Menu/Menu'
+import { MenuItemButton, MenuItemsWrapper } from './MenuItems.styles'
 
 interface MenuItemsProps {
   menuItems: Pick<Menu, 'menuItems'>['menuItems']
@@ -9,17 +9,18 @@ interface MenuItemsProps {
 
 export const MenuItems: React.FC<MenuItemsProps> = ({ menuItems, handleMenuClick }) => {
   return (
-    <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+    <MenuItemsWrapper>
       {menuItems.map(({ fields: { link, label, isCta, shouldOpenInANewTab } }, idx) => (
-        <Button
+        <MenuItemButton
           key={idx}
           color={isCta ? 'primary' : 'inherit'}
           variant={isCta ? 'contained' : 'text'}
           onClick={() => handleMenuClick(link, isCta, shouldOpenInANewTab)}
+          isCta={isCta}
         >
           {label}
-        </Button>
+        </MenuItemButton>
       ))}
-    </Box>
+    </MenuItemsWrapper>
   )
 }

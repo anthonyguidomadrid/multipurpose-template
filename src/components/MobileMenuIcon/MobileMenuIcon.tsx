@@ -1,5 +1,6 @@
-import { Box, IconButton } from '@mui/material'
+import { IconButton } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
+import { MobileMenuIconWrapper } from './MobileMenuIcon.styles'
 
 interface MobileMenuIconProps {
   handleDrawerToggle: () => void
@@ -7,7 +8,7 @@ interface MobileMenuIconProps {
 
 export const MobileMenuIcon: React.FC<MobileMenuIconProps> = ({ handleDrawerToggle }) => {
   return (
-    <Box sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }}>
+    <MobileMenuIconWrapper>
       <IconButton
         size="large"
         edge="start"
@@ -17,6 +18,6 @@ export const MobileMenuIcon: React.FC<MobileMenuIconProps> = ({ handleDrawerTogg
       >
         <MenuIcon />
       </IconButton>
-    </Box>
+    </MobileMenuIconWrapper>
   )
 }

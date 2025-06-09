@@ -145,7 +145,7 @@ export const Footer: React.FC<FooterProps> = ({
       </FooterWrapper>
       {/* Footer copyright */}
       <CopywrightWrapper>
-        <Typography variant="body2" data-testid="footer-copyright">
+        <Typography variant="caption" data-testid="footer-copyright">
           {t('footer.copyright', { websiteName, year: new Date().getFullYear() })}
           <FooterLink
             href="https://www.anthonyguido.dev/"

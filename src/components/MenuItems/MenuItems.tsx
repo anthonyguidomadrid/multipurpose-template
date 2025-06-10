@@ -19,13 +19,13 @@ export const MenuItems: React.FC<MenuItemsProps> = ({ menuItems }) => {
             target={shouldOpenInANewTab ? '_blank' : undefined}
             rel={shouldOpenInANewTab ? 'noopener noreferrer' : undefined}
           >
-            <MenuItemButton color="primary" variant="contained" isCta>
+            <MenuItemButton color="primary" variant="contained" isCta data-testid="menuItemCta">
               {label}
             </MenuItemButton>
           </NextLink>
         ) : (
           <ScrollLink to={link} key={idx} smooth={true} duration={500} offset={-70}>
-            <MenuItemButton color="inherit" variant="text" isCta={false}>
+            <MenuItemButton color="inherit" variant="text" isCta={false} data-testid="menuItemButton">
               {label}
             </MenuItemButton>
           </ScrollLink>

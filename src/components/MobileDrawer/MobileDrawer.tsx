@@ -26,10 +26,11 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
     open={drawerOpen}
     onClose={handleDrawerToggle}
     ModalProps={{ keepMounted: true }}
+    data-testid="mobileDrawer"
   >
     <MobileMenuItemsWrapper role="presentation" onClick={handleDrawerToggle}>
       <CloseButtonWrapper>
-        <IconButton>
+        <IconButton data-testid="mobileDrawerCloseButton">
           <CloseIcon />
         </IconButton>
       </CloseButtonWrapper>
@@ -42,6 +43,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 passHref
                 target={shouldOpenInANewTab ? '_blank' : undefined}
                 rel={shouldOpenInANewTab ? 'noopener noreferrer' : undefined}
+                data-testid="mobileDrawerCtaLink"
               >
                 <DrawerCtaButton variant="contained">{label}</DrawerCtaButton>
               </NextLink>
@@ -52,6 +54,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 duration={500}
                 offset={-70}
                 onClick={handleDrawerToggle}
+                data-testid="mobileDrawerScrollLink"
               >
                 <ListItemButton>
                   <ListItemText primary={label} />

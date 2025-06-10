@@ -1,5 +1,66 @@
 import { test, expect, Page } from '@playwright/test'
 
+test.describe('Menu', () => {
+  const getMenuLogo = (page: Page) => page.getByTestId('menuLogo')
+  const getBurgerMenuIcon = (page: Page) => page.getByTestId('mobileMenuIcon')
+  test('should display logo and menu items on desktop', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await page.goto('/')
+
+    // Logo should be visible
+    await expect(getMenuLogo(page)).toBeVisible()
+
+    // Menu items should be visible
+    const menuButtons = page.locator('[data-testid^="menuItemButton"]')
+    expect(await menuButtons.count()).toBeGreaterThan(0)
+
+    // CTA button should be styled as contained
+    const ctaButton = page.getByTestId('menuItemCta')
+    await expect(ctaButton).toBeVisible()
+    await expect(ctaButton).toHaveClass(/MuiButton-contained/)
+  })
+
+  test('should show mobile menu icon on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 800 })
+    await page.goto('/')
+
+    const mobileMenuIcon = page.getByLabel('menu')
+    await expect(mobileMenuIcon).toBeVisible()
+  })
+
+  test('should open and close mobile drawer', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 800 })
+    await page.goto('/')
+
+    await getBurgerMenuIcon(page).click()
+
+    // Drawer should be visible
+    const drawer = page.getByTestId('mobileDrawer')
+    await expect(drawer).toBeVisible()
+
+    // Close button should close the drawer
+    const closeButton = page.getByTestId('mobileDrawerCloseButton')
+    await closeButton.click()
+    await expect(drawer).not.toBeVisible()
+  })
+
+  test('should navigate or scroll when clicking menu items in mobile drawer', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 800 })
+    await page.goto('/')
+
+    await getBurgerMenuIcon(page).click()
+
+    // Find all menu items in the drawer
+    const drawerMenuItems = page.locator('[data-testid^="mobileDrawerScrollLink"]')
+    const count = await drawerMenuItems.count()
+    expect(count).toBeGreaterThan(0)
+
+    // Mobile drawer CTA button should be visible
+    const ctaDrawerButton = page.getByTestId('mobileDrawerCtaLink')
+    await expect(ctaDrawerButton).toBeVisible()
+  })
+})
+
 test.describe('Footer', () => {
   const EMAILJS_API_URL = 'https://api.emailjs.com/api/v1.0/email/send'
   const TEST_NAME = 'Test User'

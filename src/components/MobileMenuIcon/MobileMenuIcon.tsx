@@ -8,7 +8,7 @@ interface MobileMenuIconProps {
 
 export const MobileMenuIcon: React.FC<MobileMenuIconProps> = ({ handleDrawerToggle }) => {
   return (
-    <MobileMenuIconWrapper>
+    <MobileMenuIconWrapper data-testid="mobileMenuIcon">
       <IconButton
         size="large"
         edge="start"

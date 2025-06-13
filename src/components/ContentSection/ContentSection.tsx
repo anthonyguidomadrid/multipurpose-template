@@ -3,7 +3,7 @@ import { Typography } from '@mui/material'
 import { Document } from '@contentful/rich-text-types'
 import { DescriptionWrapper } from './ContentSection.style'
 
-interface ContentSectionProps {
+export interface ContentSectionProps {
   title: string
   subtitle: string
   description?: Document

@@ -73,3 +73,29 @@ export const getHomePage = async () => {
     events: events?.items?.[0]?.fields || null,
   } as unknown as HomePage
 }
+
+export const getServiceBySlug = async (slug: string) => {
+  const response = await client.getEntries({
+    content_type: 'service',
+    'fields.slug': slug,
+  })
+
+  if (response.items.length === 0) {
+    return null
+  }
+
+  return response.items[0].fields
+}
+
+export const getCtaByType = async (type: string) => {
+  const response = await client.getEntries({
+    content_type: 'cta',
+    'fields.type': type,
+  })
+
+  if (response.items.length === 0) {
+    return null
+  }
+
+  return response.items[0].fields
+}

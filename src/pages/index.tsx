@@ -1,6 +1,6 @@
 import { HomeHeader } from '@/components/HomeHeader/HomeHeader'
 import { getHomePage } from '@/lib/contentful'
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import { HomePage as ContentfulHomePage } from '@/lib/types'
 import { About } from '@/components/About/About'
 import { ServicesSection } from '@/components/ServicesSection/ServicesSection'
@@ -14,9 +14,9 @@ interface HomePage {
   home: ContentfulHomePage
 }
 
-export default function Home({
+const Home: NextPage<HomePage> = ({
   home: { header, about, services, testimonials, podcasts, events },
-}: HomePage) {
+}) => {
   const hasPodcasts = podcasts?.episodes.length > 0
   const hasEvents = events?.events.length > 0
   return (
@@ -54,3 +54,5 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
     },
   }
 }
+
+export default Home

@@ -40,18 +40,25 @@ export type About = {
   photo: Image
 }
 
+export type ServiceFields = {
+  mainTitle: string
+  subtitle: string
+  secondaryTitle: string
+  description: Document
+  carrouselImages: Image[]
+  thumbnail: Image
+  slug: string
+}
+
 export type Service = {
-  fields: {
-    mainTitle: string
-    subtitle: string
-    thumbnail: Image
-  }
+  fields: ServiceFields
 }
 
 export type Services = {
   title: string
   subtitle: string
   services: Service[]
+  slug: string
 }
 
 export type Testimonial = {
@@ -133,4 +140,11 @@ export type MenuItem = {
 export type Menu = {
   logo: Image
   menuItems: MenuItem[]
+}
+
+export type Cta = {
+  title: string
+  description: string
+  phone: string
+  email: string
 }

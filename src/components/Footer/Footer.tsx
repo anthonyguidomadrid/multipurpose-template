@@ -20,6 +20,7 @@ import {
   FooterWrapper,
   ImageGrid,
 } from './Footer.styles'
+import { getEmailLink, getPhoneLink } from '@/helpers/link'
 
 interface FooterProps extends Contact {
   websiteName: string
@@ -68,10 +69,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <ContactWrapper>
                   <PhoneIcon fontSize="small" />
                   <Typography variant="body2">
-                    <FooterLink
-                      href={`tel:${phone.replaceAll(' ', '')}`}
-                      data-testid="footer-phone-link"
-                    >
+                    <FooterLink href={getPhoneLink(phone)} data-testid="footer-phone-link">
                       {phone}
                     </FooterLink>
                   </Typography>
@@ -84,7 +82,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <ContactWrapper>
                   <EmailIcon fontSize="small" />
                   <Typography variant="body2">
-                    <FooterLink href={`mailto:${email}`} data-testid="footer-email-link">
+                    <FooterLink href={getEmailLink(email)} data-testid="footer-email-link">
                       {email}
                     </FooterLink>
                   </Typography>

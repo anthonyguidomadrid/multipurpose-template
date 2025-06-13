@@ -29,5 +29,8 @@
   "footer": {
     "copyright": "© {{year}} {{websiteName}} desarollado por ",
     "developer": "Anthony Guido Developer"
+  },
+  "breadcrumb": {
+    "services": "Servicios"
   }
 }

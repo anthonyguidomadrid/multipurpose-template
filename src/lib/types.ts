@@ -58,7 +58,6 @@ export type Services = {
   title: string
   subtitle: string
   services: Service[]
-  slug: string
 }
 
 export type Testimonial = {

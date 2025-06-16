@@ -6,7 +6,6 @@ import {
   DrawerCtaButton,
   MobileMenuItemsWrapper,
   StyledDrawer,
-  StyledScrollLink,
 } from './MobileDrawer.styles'
 import NextLink from 'next/link'
 
@@ -14,11 +13,13 @@ interface MobileDrawerProps {
   drawerOpen: boolean
   handleDrawerToggle: () => void
   menuItems: Pick<Menu, 'menuItems'>['menuItems']
+  handleScrollOrNavigate: (link: string) => (e: React.MouseEvent) => void
 }
 
 export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   drawerOpen,
   handleDrawerToggle,
+  handleScrollOrNavigate,
   menuItems,
 }) => (
   <StyledDrawer
@@ -26,11 +27,11 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
     open={drawerOpen}
     onClose={handleDrawerToggle}
     ModalProps={{ keepMounted: true }}
-    data-testid="mobileDrawer"
+    data-testid="mobile-drawer"
   >
     <MobileMenuItemsWrapper role="presentation" onClick={handleDrawerToggle}>
       <CloseButtonWrapper>
-        <IconButton data-testid="mobileDrawerCloseButton">
+        <IconButton data-testid="mobile-drawer-close-button">
           <CloseIcon />
         </IconButton>
       </CloseButtonWrapper>
@@ -43,23 +44,17 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 passHref
                 target={shouldOpenInANewTab ? '_blank' : undefined}
                 rel={shouldOpenInANewTab ? 'noopener noreferrer' : undefined}
-                data-testid="mobileDrawerCtaLink"
+                data-testid="mobile-drawer-cta-link"
               >
                 <DrawerCtaButton variant="contained">{label}</DrawerCtaButton>
               </NextLink>
             ) : (
-              <StyledScrollLink
-                to={link}
-                smooth={true}
-                duration={500}
-                offset={-70}
-                onClick={handleDrawerToggle}
-                data-testid="mobileDrawerScrollLink"
+              <ListItemButton
+                onClick={handleScrollOrNavigate(link)}
+                data-testid={`mobile-drawer-scroll-link-${link}`}
               >
-                <ListItemButton>
-                  <ListItemText primary={label} />
-                </ListItemButton>
-              </StyledScrollLink>
+                <ListItemText primary={label} />
+              </ListItemButton>
             )}
           </ListItem>
         ))}

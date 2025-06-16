@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const FooterWrapper = styled(Paper)(({ theme }) => ({
-  marginTop: theme.spacing(8),
   padding: theme.spacing(6, 2),
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.common.white,

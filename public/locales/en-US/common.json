@@ -11,7 +11,11 @@
     "phone": "Phone",
     "email": "Email",
     "sendMessage": "Send us a message",
-    "gallery": "Gallery"
+    "gallery": "Gallery",
+    "otherServices": "These other services might interest you"
+  },
+  "subtitle": {
+    "otherServices": "Other services"
   },
   "field": {
     "name": "Name",

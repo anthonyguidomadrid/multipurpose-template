@@ -39,8 +39,6 @@ export const Footer: React.FC<FooterProps> = ({
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
 
-  const images = galleryImages.map((img) => img.fields.file.url)
-
   const { t } = useTranslation()
 
   const socialMediaArray = useMemo(() => {
@@ -131,7 +129,6 @@ export const Footer: React.FC<FooterProps> = ({
             </Grid2>
             {lightboxOpen && (
               <GalleryLightbox
-                images={images}
                 setLightboxOpen={setLightboxOpen}
                 galleryImages={galleryImages}
                 photoIndex={photoIndex}

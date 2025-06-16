@@ -8,6 +8,8 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { appWithTranslation } from 'next-i18next'
 import { PageWrapper } from '@/components/PageWrapper/PageWrapper'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 function App({ Component, pageProps }: AppProps) {
   const { settings, contact, menu } = pageProps

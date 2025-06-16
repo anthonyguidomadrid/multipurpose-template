@@ -1,6 +1,5 @@
 import { Box, styled } from '@mui/material'
 import Image from 'next/image'
-import 'swiper/css'
 import 'swiper/css/effect-fade'
 import { Swiper } from 'swiper/react'
 import { motion } from 'framer-motion'

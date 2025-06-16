@@ -30,7 +30,7 @@ export const MenuLogo: React.FC<Pick<Menu, 'logo'>> = ({
       }}
       component="a"
       href="/"
-      data-testid="menuLogo"
+      data-testid="menu-logo"
     >
       <MenuLogoImage
         src={`https:${logoUrl}`}

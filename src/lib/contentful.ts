@@ -87,6 +87,18 @@ export const getServiceBySlug = async (slug: string) => {
   return response.items[0].fields
 }
 
+export const getOtherServices = async (serviceSlug: string) => {
+  const response = await client.getEntries({
+    content_type: 'service',
+  })
+
+  if (response.items.length === 0) {
+    return []
+  }
+  const otherServices = response.items.filter((item) => item.fields.slug !== serviceSlug)
+  return otherServices
+}
+
 export const getCtaByType = async (type: string) => {
   const response = await client.getEntries({
     content_type: 'cta',

@@ -5,8 +5,6 @@ import { SwiperSlide, Swiper } from 'swiper/react'
 import { Pagination } from 'swiper/modules'
 import { EventCard } from '../EventCard/EventCard'
 import { motion } from 'framer-motion'
-import 'swiper/css'
-import 'swiper/css/pagination'
 
 const FADE_IN_VARIANTS = {
   hidden: { opacity: 0, y: 20 },

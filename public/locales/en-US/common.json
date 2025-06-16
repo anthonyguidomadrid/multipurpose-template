@@ -12,10 +12,10 @@
     "email": "Email",
     "sendMessage": "Send us a message",
     "gallery": "Gallery",
-    "otherServices": "These other services might interest you"
+    "otherServices": "Other services"
   },
   "subtitle": {
-    "otherServices": "Other services"
+    "otherServices": "These other services might interest you"
   },
   "field": {
     "name": "Name",

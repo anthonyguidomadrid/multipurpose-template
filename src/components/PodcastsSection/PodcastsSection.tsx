@@ -6,18 +6,7 @@ import { Button } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import { motion } from 'framer-motion'
 import { AllPodcastsButtonWrapper } from './PodcastsSection.styles'
-
-const FADE_IN_VARIANTS = {
-  hidden: { opacity: 0, y: 20 },
-  show: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      delay: index * 0.3,
-    },
-  }),
-}
+import { FADE_IN_VARIANTS } from '@/constants/animation'
 
 export const PodcastsSection: React.FC<Podcasts> = ({ title, subtitle, episodes }) => {
   const { t } = useTranslation()

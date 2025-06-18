@@ -5,6 +5,8 @@ import 'swiper/css/navigation'
 import { useState } from 'react'
 import { GalleryLightbox } from '../Lightbox/Lightbox'
 import { GalleryImage } from './SlideGallery.styles'
+import { motion } from 'framer-motion'
+import { FADE_IN_VARIANTS } from '@/constants/animation'
 
 interface SlideGalleryProps {
   images: Image[]
@@ -32,9 +34,15 @@ export const SlideGallery: React.FC<SlideGalleryProps> = ({ images }) => {
           },
         }}
       >
-        {images.map(({ fields }, index) => {
-          return (
-            <SwiperSlide key={index}>
+        {images.map(({ fields }, index) => (
+          <SwiperSlide key={index}>
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+              custom={index}
+              variants={FADE_IN_VARIANTS}
+            >
               <GalleryImage
                 src={`https:${fields.file.url}`}
                 alt={fields.title}
@@ -46,9 +54,9 @@ export const SlideGallery: React.FC<SlideGalleryProps> = ({ images }) => {
                 }}
                 data-testid={`footer-gallery-image-${index}`}
               />
-            </SwiperSlide>
-          )
-        })}
+            </motion.div>
+          </SwiperSlide>
+        ))}
       </Swiper>
       {lightboxOpen && (
         <GalleryLightbox

@@ -1,6 +1,14 @@
-import { Box, Typography, Breadcrumbs } from '@mui/material'
-import NextLink from 'next/link'
+import { Typography } from '@mui/material'
 import { Image } from '@/lib/types'
+import {
+  BackgroundImage,
+  BreadcrumbLabel,
+  DetailsHeaderWrapper,
+  Overlay,
+  StyledBreadcrumbs,
+} from './DetailsHeader.styles'
+import { motion } from 'framer-motion'
+import { FADE_IN_UP } from '@/constants/animation'
 
 interface DetailsHeaderProps {
   title: string
@@ -13,50 +21,25 @@ interface DetailsHeaderProps {
 
 export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ title, breadcrumb, image }) => {
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        width: '100%',
-        minHeight: { xs: 200, md: 320 },
-        display: 'flex',
-        alignItems: 'flex-end',
-        color: '#fff',
-        overflow: 'hidden',
-        mb: 4,
-      }}
-    >
-      {/* Background image */}
-      <Box
-        sx={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          backgroundImage: `url(${image.fields.file.url})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          zIndex: 1,
-          filter: 'brightness(0.5)',
-        }}
-      />
-      {/* Overlay content */}
-      <Box
-        sx={{
-          position: 'relative',
-          zIndex: 2,
-          width: '100%',
-          p: { xs: 2, md: 4 },
-        }}
-      >
-        <Breadcrumbs sx={{ color: '#fff', mb: 1 }}>
-          <NextLink href={breadcrumb.link} passHref>
-            {breadcrumb.label}
-          </NextLink>
-          <Typography variant="h3" component="h1" sx={{ fontWeight: 700 }}>
-            {title}
-          </Typography>
-        </Breadcrumbs>
-      </Box>
-    </Box>
+    <DetailsHeaderWrapper>
+      <BackgroundImage backgroundImage={image.fields.file.url} />
+      <Overlay>
+        <motion.nav
+          variants={FADE_IN_UP}
+          initial="hidden"
+          animate="show"
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
+          <StyledBreadcrumbs>
+            <BreadcrumbLabel href={breadcrumb.link} passHref>
+              {breadcrumb.label}
+            </BreadcrumbLabel>
+            <Typography variant="h3" component="h1">
+              {title}
+            </Typography>
+          </StyledBreadcrumbs>
+        </motion.nav>
+      </Overlay>
+    </DetailsHeaderWrapper>
   )
 }

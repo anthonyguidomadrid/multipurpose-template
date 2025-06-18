@@ -1,22 +1,25 @@
-import { Box, Link, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { Cta } from '@/lib/types'
 import PhoneIcon from '@mui/icons-material/Phone'
 import EmailIcon from '@mui/icons-material/Email'
 import { getEmailLink, getPhoneLink } from '@/helpers/link'
+import { CtaWrapper, StackLink, StackWrapper } from './DetailsCta.styles'
 
 export const DetailsCta: React.FC<Cta> = ({ title, description, phone, email }) => {
   return (
-    <Box>
+    <CtaWrapper>
       <Typography variant="h5">{title}</Typography>
       <Typography>{description}</Typography>
-      <Stack direction="row" spacing={2}>
-        <PhoneIcon />
-        <Link href={getPhoneLink(phone)}>{phone}</Link>
-      </Stack>
-      <Stack direction="row" spacing={2}>
-        <EmailIcon />
-        <Link href={getEmailLink(email)}>{email}</Link>
-      </Stack>
-    </Box>
+      <StackWrapper>
+        <Stack direction="row" spacing={2}>
+          <PhoneIcon />
+          <StackLink href={getPhoneLink(phone)}>{phone}</StackLink>
+        </Stack>
+        <Stack direction="row" spacing={2}>
+          <EmailIcon />
+          <StackLink href={getEmailLink(email)}>{email}</StackLink>
+        </Stack>
+      </StackWrapper>
+    </CtaWrapper>
   )
 }

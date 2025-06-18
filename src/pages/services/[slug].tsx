@@ -1,3 +1,4 @@
+import { SectionWrapper } from '@/components/common/styles'
 import { DetailsContent } from '@/components/DetailsContent/DetailsContent'
 import { DetailsHeader } from '@/components/DetailsHeader/DetailsHeader'
 import { ServicesSection } from '@/components/ServicesSection/ServicesSection'
@@ -28,14 +29,16 @@ const ServicePage: NextPage<ServicePageProps> = ({
         image={thumbnail}
         breadcrumb={{ label: t('breadcrumb.services'), link: LINK.SERVICES }}
       />
-      <DetailsContent
-        sectionName="service-details"
-        title={secondaryTitle}
-        subtitle={subtitle}
-        description={description}
-        cta={cta}
-      />
-      <SlideGallery images={carrouselImages} />
+      <SectionWrapper>
+        <DetailsContent
+          sectionName="service-details"
+          title={secondaryTitle}
+          subtitle={subtitle}
+          description={description}
+          cta={cta}
+        />
+        <SlideGallery images={carrouselImages} />
+      </SectionWrapper>
       <ServicesSection
         title={t('title.otherServices')}
         subtitle={t('subtitle.otherServices')}

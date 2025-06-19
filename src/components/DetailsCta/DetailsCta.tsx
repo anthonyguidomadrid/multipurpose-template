@@ -5,19 +5,35 @@ import EmailIcon from '@mui/icons-material/Email'
 import { getEmailLink, getPhoneLink } from '@/helpers/link'
 import { CtaWrapper, StackLink, StackWrapper } from './DetailsCta.styles'
 
-export const DetailsCta: React.FC<Cta> = ({ title, description, phone, email }) => {
+interface DetailsCtaProps extends Cta {
+  sectionName: string
+}
+
+export const DetailsCta: React.FC<DetailsCtaProps> = ({
+  title,
+  description,
+  phone,
+  email,
+  sectionName,
+}) => {
   return (
     <CtaWrapper>
-      <Typography variant="h5">{title}</Typography>
-      <Typography>{description}</Typography>
+      <Typography variant="h5" data-testid={`${sectionName}-cta-title`}>
+        {title}
+      </Typography>
+      <Typography data-testid={`${sectionName}-cta-description`}>{description}</Typography>
       <StackWrapper>
         <Stack direction="row" spacing={2}>
           <PhoneIcon />
-          <StackLink href={getPhoneLink(phone)}>{phone}</StackLink>
+          <StackLink href={getPhoneLink(phone)} data-testid={`${sectionName}-cta-phone-link`}>
+            {phone}
+          </StackLink>
         </Stack>
         <Stack direction="row" spacing={2}>
           <EmailIcon />
-          <StackLink href={getEmailLink(email)}>{email}</StackLink>
+          <StackLink href={getEmailLink(email)} data-testid={`${sectionName}-cta-email-link`}>
+            {email}
+          </StackLink>
         </Stack>
       </StackWrapper>
     </CtaWrapper>

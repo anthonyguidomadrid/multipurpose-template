@@ -52,7 +52,7 @@ export const SlideGallery: React.FC<SlideGalleryProps> = ({ images }) => {
                   setPhotoIndex(index)
                   setLightboxOpen(true)
                 }}
-                data-testid={`footer-gallery-image-${index}`}
+                data-testid={`slide-gallery-image-${index}`}
               />
             </motion.div>
           </SwiperSlide>

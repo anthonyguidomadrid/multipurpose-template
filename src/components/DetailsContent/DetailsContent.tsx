@@ -47,7 +47,7 @@ export const DetailsContent: React.FC<DetailsContentProps> = ({
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
         >
-          <DetailsCta {...cta} />
+          <DetailsCta sectionName={sectionName} {...cta} />
         </motion.div>
       </Grid2>
     </ContentWrapper>

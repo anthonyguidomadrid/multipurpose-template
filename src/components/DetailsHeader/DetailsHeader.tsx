@@ -17,12 +17,21 @@ interface DetailsHeaderProps {
     link: string
   }
   image: Image
+  sectionName: string
 }
 
-export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ title, breadcrumb, image }) => {
+export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
+  title,
+  breadcrumb,
+  image,
+  sectionName,
+}) => {
   return (
     <DetailsHeaderWrapper>
-      <BackgroundImage backgroundImage={image.fields.file.url} />
+      <BackgroundImage
+        backgroundImage={image.fields.file.url}
+        data-testid={`${sectionName}-background-image`}
+      />
       <Overlay>
         <motion.nav
           variants={FADE_IN_UP}
@@ -31,10 +40,14 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ title, breadcrumb,
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
           <StyledBreadcrumbs>
-            <BreadcrumbLabel href={breadcrumb.link} passHref>
+            <BreadcrumbLabel
+              href={breadcrumb.link}
+              passHref
+              data-testid={`${sectionName}-breadcrumb-label`}
+            >
               {breadcrumb.label}
             </BreadcrumbLabel>
-            <Typography variant="h3" component="h1">
+            <Typography variant="h3" component="h1" data-testid={`${sectionName}-header-title`}>
               {title}
             </Typography>
           </StyledBreadcrumbs>

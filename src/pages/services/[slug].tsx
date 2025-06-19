@@ -22,16 +22,18 @@ const ServicePage: NextPage<ServicePageProps> = ({
   cta,
 }) => {
   const { t } = useTranslation()
+  const sectionName = 'service-details'
   return (
     <>
       <DetailsHeader
         title={mainTitle}
         image={thumbnail}
         breadcrumb={{ label: t('breadcrumb.services'), link: LINK.SERVICES }}
+        sectionName={sectionName}
       />
       <SectionWrapper>
         <DetailsContent
-          sectionName="service-details"
+          sectionName={sectionName}
           title={secondaryTitle}
           subtitle={subtitle}
           description={description}

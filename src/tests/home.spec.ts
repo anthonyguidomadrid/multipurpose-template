@@ -71,6 +71,12 @@ test.describe('Home Header', () => {
       await card.hover()
       await expect(cardDescription).toBeVisible()
     }
+
+    const firstCard = page.locator('[data-testid^="service-card"]').first()
+
+    await firstCard.click()
+
+    await expect(page).toHaveURL(/\/services\/[a-zA-Z0-9-]+/)
   })
 
   test('should display the testimonials section', async ({ page }) => {

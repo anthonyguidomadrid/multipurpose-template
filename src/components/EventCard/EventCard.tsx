@@ -21,10 +21,14 @@ export const EventCard: React.FC<Event> = ({
         file: { url: thumbnailUrl },
       },
     },
+    slug,
   },
 }) => {
-  const { locale } = useRouter()
+  const { locale, push } = useRouter()
   const { t } = useTranslation()
+
+  const handleClick = () => push(`/events/${slug}`)
+
   return (
     <EventCardWrapper data-testid="event-card">
       <EventRibbon data-testid="event-ribbon">
@@ -46,7 +50,7 @@ export const EventCard: React.FC<Event> = ({
             {subtitle}
           </Typography>
           <EventButtonWrapper>
-            <Button size="small" data-testid="event-button">
+            <Button size="small" data-testid="event-button" onClick={handleClick}>
               {t('button.seeMore')}
             </Button>
           </EventButtonWrapper>

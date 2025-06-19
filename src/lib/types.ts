@@ -82,22 +82,25 @@ export type Podcasts = {
   episodes: SpotifyEpisode[]
 }
 
-export type Event = {
-  fields: {
-    title: string
-    subtitle: string
-    secondaryTitle: string
-    startDate: string
-    finishingDate: string
-    description: string
-    location: {
-      lon: number
-      lat: number
-    }
-    contactEmail: string
-    contactPhone: string
-    thumbnail: Image
+export type EventFields = {
+  title: string
+  subtitle: string
+  secondaryTitle: string
+  startDate: string
+  finishingDate: string
+  description: Document
+  location: {
+    lon: number
+    lat: number
   }
+  contactEmail: string
+  contactPhone: string
+  thumbnail: Image
+  slug: string
+}
+
+export type Event = {
+  fields: EventFields
 }
 
 export type Events = {

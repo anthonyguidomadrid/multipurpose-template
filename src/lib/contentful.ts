@@ -74,9 +74,9 @@ export const getHomePage = async () => {
   } as unknown as HomePage
 }
 
-export const getServiceBySlug = async (slug: string) => {
+export const getDetailsBySlug = async (slug: string, contentType: string) => {
   const response = await client.getEntries({
-    content_type: 'service',
+    content_type: contentType,
     'fields.slug': slug,
   })
 
@@ -87,16 +87,16 @@ export const getServiceBySlug = async (slug: string) => {
   return response.items[0].fields
 }
 
-export const getOtherServices = async (serviceSlug: string) => {
+export const getOtherDetails = async (serviceSlug: string, contentType: string) => {
   const response = await client.getEntries({
-    content_type: 'service',
+    content_type: contentType,
   })
 
   if (response.items.length === 0) {
     return []
   }
-  const otherServices = response.items.filter((item) => item.fields.slug !== serviceSlug)
-  return otherServices
+  const otherDetails = response.items.filter((item) => item.fields.slug !== serviceSlug)
+  return otherDetails
 }
 
 export const getCtaByType = async (type: string) => {

@@ -12,10 +12,12 @@
     "email": "Correo electrónico",
     "sendMessage": "Envíanos un mensaje",
     "gallery": "Galería",
-    "otherServices": "Otros servicios"
+    "otherServices": "Otros servicios",
+    "otherEvents": "Otros eventos"
   },
   "subtitle": {
-    "otherServices": "Estos otros servicios podrían interesarte"
+    "otherServices": "Estos otros servicios podrían interesarte",
+    "otherEvents": "Estos otros eventos podrían interesarte"
   },
   "field": {
     "name": "Nombre",
@@ -35,6 +37,7 @@
     "developer": "Anthony Guido Developer"
   },
   "breadcrumb": {
-    "services": "Servicios"
+    "services": "Servicios",
+    "events": "Eventos"
   }
 }

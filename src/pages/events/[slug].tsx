@@ -1,6 +1,7 @@
 import { SectionWrapper } from '@/components/common/styles'
 import { DetailsContent } from '@/components/DetailsContent/DetailsContent'
 import { DetailsHeader } from '@/components/DetailsHeader/DetailsHeader'
+import { EventDetails } from '@/components/EventDetails/EventDetails'
 import { EventsSection } from '@/components/EventsSection/EventsSection'
 import { LINK } from '@/constants/link'
 import { getCtaByType, getOtherDetails, getDetailsBySlug } from '@/lib/contentful'
@@ -16,7 +17,19 @@ interface EventsPageProps {
 }
 
 const ServicePage: NextPage<EventsPageProps> = ({
-  event: { title, thumbnail, secondaryTitle, subtitle, description },
+  event: {
+    title,
+    thumbnail,
+    secondaryTitle,
+    subtitle,
+    description,
+    startDate,
+    finishingDate,
+    location,
+    contactEmail,
+    contactPhone,
+    placeName,
+  },
   otherEvents,
   cta,
 }) => {
@@ -37,6 +50,14 @@ const ServicePage: NextPage<EventsPageProps> = ({
           subtitle={subtitle}
           description={description}
           cta={cta}
+        />
+        <EventDetails
+          startDate={startDate}
+          finishingDate={finishingDate}
+          location={location}
+          contactEmail={contactEmail}
+          contactPhone={contactPhone}
+          placeName={placeName}
         />
       </SectionWrapper>
       <EventsSection

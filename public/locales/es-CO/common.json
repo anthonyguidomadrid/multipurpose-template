@@ -13,7 +13,8 @@
     "sendMessage": "Envíanos un mensaje",
     "gallery": "Galería",
     "otherServices": "Otros servicios",
-    "otherEvents": "Otros eventos"
+    "otherEvents": "Otros eventos",
+    "eventDetails": "Detalles del evento"
   },
   "subtitle": {
     "otherServices": "Estos otros servicios podrían interesarte",
@@ -39,5 +40,9 @@
   "breadcrumb": {
     "services": "Servicios",
     "events": "Eventos"
+  },
+  "event": {
+    "start": "Inicia el {{date}}",
+    "end": "Termina el {{date}}"
   }
 }

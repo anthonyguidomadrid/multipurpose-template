@@ -97,6 +97,7 @@ export type EventFields = {
   contactPhone: string
   thumbnail: Image
   slug: string
+  placeName: string
 }
 
 export type Event = {

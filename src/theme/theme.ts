@@ -58,6 +58,7 @@ const getTheme = ({
       h3: {
         textTransform: 'uppercase',
         fontSize: '1.5rem',
+        paddingBottom: '0.5rem',
       },
       h6: {
         textTransform: 'uppercase',

@@ -18,17 +18,19 @@ export const DetailsHeaderWrapper = styled(Box)(({ theme }) => ({
   },
 }))
 
-export const BackgroundImage = styled(Box)<{ backgroundImage: string }>(({ backgroundImage }) => ({
-  position: 'absolute',
-  inset: 0,
-  width: '100%',
-  height: '100%',
-  backgroundImage: `url(${backgroundImage})`,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  zIndex: 1,
-  filter: 'opacity(0.7)',
-}))
+export const BackgroundImage = styled(Box)<{ backgroundImage: string; backgroundPosition: string }>(
+  ({ backgroundImage, backgroundPosition }) => ({
+    position: 'absolute',
+    inset: 0,
+    width: '100%',
+    height: '100%',
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: backgroundPosition,
+    zIndex: 1,
+    filter: 'opacity(0.7)',
+  })
+)
 
 export const Overlay = styled(Box)(({ theme }) => ({
   position: 'relative',

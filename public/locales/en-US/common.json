@@ -39,7 +39,8 @@
   },
   "breadcrumb": {
     "services": "Services",
-    "events": "Events"
+    "events": "Events",
+    "podcasts": "Podcasts"
   },
   "event": {
     "start": "Start on {{date}}",

@@ -28,6 +28,10 @@ export interface SpotifyEpisode {
   uri: string
 }
 
+const CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID
+const CLIENT_SECRET = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET
+const SHOW_ID = process.env.NEXT_PUBLIC_SPOTIFY_SHOW_ID
+
 async function getSpotifyAccessToken(clientId: string, clientSecret: string): Promise<string> {
   const authResponse = await fetch(SPOTIFY_AUTH_URL, {
     method: 'POST',
@@ -50,23 +54,17 @@ export async function getSpotifyEpisodes({
   limit = 5,
   offset = 0,
 }: {
-  showId?: string
   limit?: number
   offset?: number
-  market?: string
 }): Promise<{ items: SpotifyEpisode[] }> {
-  const clientId = process.env.SPOTIFY_CLIENT_ID
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
-  const showId = process.env.SPOTIFY_SHOW_ID
-
-  if (!clientId || !clientSecret || !showId) {
+  if (!CLIENT_ID || !CLIENT_SECRET || !SHOW_ID) {
     return { items: [] }
   }
 
-  const accessToken = await getSpotifyAccessToken(clientId, clientSecret)
+  const accessToken = await getSpotifyAccessToken(CLIENT_ID, CLIENT_SECRET)
 
   const response = await fetch(
-    `${SPOTIFY_API_URL}/shows/${showId}/episodes?offset=${offset}&limit=${limit}`,
+    `${SPOTIFY_API_URL}/shows/${SHOW_ID}/episodes?offset=${offset}&limit=${limit}`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -78,5 +76,21 @@ export async function getSpotifyEpisodes({
     throw new Error('Failed to fetch Spotify episodes')
   }
 
+  return response.json()
+}
+
+export async function getShowInformation() {
+  if (!CLIENT_ID || !CLIENT_SECRET || !SHOW_ID) {
+    return null
+  }
+  const accessToken = await getSpotifyAccessToken(CLIENT_ID, CLIENT_SECRET)
+  const response = await fetch(`${SPOTIFY_API_URL}/shows/${SHOW_ID}`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
+  if (!response.ok) {
+    throw new Error('Failed to fetch Spotify show information')
+  }
   return response.json()
 }

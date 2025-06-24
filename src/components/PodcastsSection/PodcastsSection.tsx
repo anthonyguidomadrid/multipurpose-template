@@ -7,9 +7,13 @@ import { useTranslation } from 'next-i18next'
 import { motion } from 'framer-motion'
 import { AllPodcastsButtonWrapper } from './PodcastsSection.styles'
 import { FADE_IN_VARIANTS } from '@/constants/animation'
+import { useRouter } from 'next/router'
 
 export const PodcastsSection: React.FC<Podcasts> = ({ title, subtitle, episodes }) => {
   const { t } = useTranslation()
+  const { push } = useRouter()
+
+  const handleSeeAllEpisodes = () => push('/podcasts')
 
   return (
     <SectionWrapper id="podcasts">
@@ -37,7 +41,7 @@ export const PodcastsSection: React.FC<Podcasts> = ({ title, subtitle, episodes 
         variants={FADE_IN_VARIANTS}
       >
         <AllPodcastsButtonWrapper>
-          <Button variant="contained" data-testid="see-all-podcasts">
+          <Button variant="contained" data-testid="see-all-podcasts" onClick={handleSeeAllEpisodes}>
             {t('button.seeAllEpisodes')}
           </Button>
         </AllPodcastsButtonWrapper>

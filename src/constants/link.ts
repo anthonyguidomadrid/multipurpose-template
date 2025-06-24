@@ -1,4 +1,5 @@
 export const LINK = {
   SERVICES: '/#services',
-  EVENTS: '/#events'
+  EVENTS: '/#events',
+  PODCASTS: '/#podcasts',
 }

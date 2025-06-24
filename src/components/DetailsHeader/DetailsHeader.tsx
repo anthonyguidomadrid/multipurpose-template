@@ -18,6 +18,7 @@ interface DetailsHeaderProps {
   }
   image: Image
   sectionName: string
+  backgroundPosition?: string
 }
 
 export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
@@ -25,12 +26,14 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
   breadcrumb,
   image,
   sectionName,
+  backgroundPosition = 'center',
 }) => {
   return (
     <DetailsHeaderWrapper>
       <BackgroundImage
         backgroundImage={image.fields.file.url}
         data-testid={`${sectionName}-background-image`}
+        backgroundPosition={backgroundPosition}
       />
       <Overlay>
         <motion.nav

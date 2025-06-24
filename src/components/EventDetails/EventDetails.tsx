@@ -41,7 +41,9 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
         viewport={{ once: true, amount: 0.3 }}
         variants={FADE_IN_UP}
       >
-        <Typography variant="h3">{t('title.eventDetails')}</Typography>
+        <Typography variant="h3" data-testid="event-details-secondary-title">
+          {t('title.eventDetails')}
+        </Typography>
         <LabelWithIcon
           label={
             <Typography>
@@ -51,6 +53,7 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
             </Typography>
           }
           icon={<EventIcon />}
+          name="event-start-date"
         />
         <LabelWithIcon
           label={
@@ -61,15 +64,22 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
             </Typography>
           }
           icon={<EventIcon />}
+          name="event-finishing-date"
         />
-        <LabelWithIcon label={<Typography>{placeName}</Typography>} icon={<PlaceIcon />} />
+        <LabelWithIcon
+          label={<Typography>{placeName}</Typography>}
+          icon={<PlaceIcon />}
+          name="event-place"
+        />
         <LabelWithIcon
           label={<Link href={getPhoneLink(contactPhone)}>{contactPhone}</Link>}
           icon={<PhoneIcon />}
+          name="event-contact-phone"
         />
         <LabelWithIcon
           label={<Link href={getEmailLink(contactEmail)}>{contactEmail}</Link>}
           icon={<EmailIcon />}
+          name="event-contact-email"
         />
       </DetailsWrapper>
       <Grid2

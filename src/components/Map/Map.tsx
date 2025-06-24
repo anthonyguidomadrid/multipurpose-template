@@ -9,7 +9,11 @@ export const Map = ({ lat, lon }: { lat: number; lon: number }) => {
   if (!isLoaded) return <Spinner />
 
   return (
-    <GoogleMap mapContainerStyle={CONTAINER_STYLE} center={{ lat, lng: lon }} zoom={13}>
+    <GoogleMap
+      mapContainerStyle={CONTAINER_STYLE}
+      center={{ lat, lng: lon }}
+      zoom={13}
+    >
       <Marker position={{ lat, lng: lon }} />
     </GoogleMap>
   )

@@ -154,9 +154,9 @@ test.describe('Home Header', () => {
       // Check the expand/collapse button
       const seeMoreButton = episode.getByTestId('podcast-see-more-button')
       await expect(seeMoreButton).toBeVisible()
-      await expect(seeMoreButton).toHaveText('See more')
+      await expect(seeMoreButton).toHaveText('Ver más')
       await seeMoreButton.click()
-      await expect(seeMoreButton).toHaveText('See less')
+      await expect(seeMoreButton).toHaveText('Ver menos')
 
       // Check the audio player
       const podcastPlayer = episode.getByTestId('podcast-player')

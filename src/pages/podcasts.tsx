@@ -53,7 +53,7 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
       <SectionWrapper>
         <Grid2 container spacing={5} direction="column">
           <Grid2 size={12}>
-            <Typography>{description}</Typography>
+            <Typography data-testid="podcasts-description">{description}</Typography>
           </Grid2>
           <Grid2 size={12}>
             {episodes?.length > 0 ? (
@@ -79,7 +79,7 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
           </Grid2>
           <Grid2 size={12} display="flex" justifyContent="center">
             {hasMore && (
-              <Button variant="contained" onClick={handleSeeMore} disabled={loading}>
+              <Button variant="contained" onClick={handleSeeMore} disabled={loading} data-testid="see-more-episodes-button">
                 {t('button.seeMoreEpisodes')}
               </Button>
             )}

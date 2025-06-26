@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { DetailsHeader } from '@/components/DetailsHeader/DetailsHeader'
 import { getShowInformation, getSpotifyEpisodes, SpotifyEpisode } from '@/lib/spotify'
 import { GetServerSideProps, NextPage } from 'next'
@@ -6,9 +5,12 @@ import { Image } from '@/lib/types'
 import { useTranslation } from 'next-i18next'
 import { LINK } from '@/constants/link'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Button, Typography } from '@mui/material'
+import { Button, Grid2, Typography } from '@mui/material'
 import { SectionWrapper } from '@/components/common/styles'
 import { PodcastEpisode } from '@/components/PodcastEpisode/PodcastEpisode'
+import { usePaginatedEpisodes } from '@/hooks/usePaginatedEpisodes'
+import { motion } from 'framer-motion'
+import { FADE_IN_UP } from '@/constants/animation'
 
 interface PodcastsPageProps {
   name: string
@@ -34,26 +36,10 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
   } as Image
   const { t } = useTranslation()
 
-  const [episodes, setEpisodes] = useState<SpotifyEpisode[]>(initialEpisodes)
-  const [offset, setOffset] = useState(initialEpisodes.length)
-  const [loading, setLoading] = useState(false)
-  const [hasMore, setHasMore] = useState(initialEpisodes.length === EPISODES_PER_PAGE)
-
-  const handleSeeMore = async () => {
-    setLoading(true)
-    const data = await getSpotifyEpisodes({
-      limit: EPISODES_PER_PAGE,
-      offset,
-    })
-    if (data.items.length === 0) {
-      setHasMore(false)
-      setLoading(false)
-      return
-    }
-    setEpisodes((prev) => [...prev, ...data.items])
-    setOffset((prev) => prev + data.items.length)
-    setLoading(false)
-  }
+  const { episodes, hasMore, handleSeeMore, loading } = usePaginatedEpisodes({
+    initialEpisodes,
+    episodesPerPage: EPISODES_PER_PAGE,
+  })
 
   return (
     <>
@@ -65,19 +51,40 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
         backgroundPosition="top"
       />
       <SectionWrapper>
-        <Typography>{description}</Typography>
-        {episodes.length > 0 ? (
-          episodes.map((episode) => <PodcastEpisode key={episode.id} {...episode} />)
-        ) : (
-          <Typography variant="body1" color="text.secondary">
-            {t('podcasts.noEpisodes')}
-          </Typography>
-        )}
-        {hasMore && (
-          <Button variant="contained" onClick={handleSeeMore} disabled={loading}>
-            {loading ? t('loading') : t('See more episodes')}
-          </Button>
-        )}
+        <Grid2 container spacing={5} direction="column">
+          <Grid2 size={12}>
+            <Typography>{description}</Typography>
+          </Grid2>
+          <Grid2 size={12}>
+            {episodes?.length > 0 ? (
+              episodes.map(
+                (episode) =>
+                  episode && (
+                    <motion.div
+                      key={episode.id}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.3 }}
+                      variants={FADE_IN_UP}
+                    >
+                      <PodcastEpisode key={episode.id} {...episode} />
+                    </motion.div>
+                  )
+              )
+            ) : (
+              <Typography variant="body1" color="text.secondary">
+                {t('podcasts.noEpisodes')}
+              </Typography>
+            )}
+          </Grid2>
+          <Grid2 size={12} display="flex" justifyContent="center">
+            {hasMore && (
+              <Button variant="contained" onClick={handleSeeMore} disabled={loading}>
+                {t('button.seeMoreEpisodes')}
+              </Button>
+            )}
+          </Grid2>
+        </Grid2>
       </SectionWrapper>
     </>
   )

@@ -11,6 +11,7 @@ export type ThemeSettings = {
   bodyColor?: string
   titleFont?: string
   bodyFont?: string
+  pageNotFoundBackgroundImage: Image
 }
 
 export type Image = {

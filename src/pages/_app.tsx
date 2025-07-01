@@ -1,4 +1,4 @@
-import { AppProps } from 'next/app'
+import { AppProps, AppType } from 'next/app'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import getTheme from '@/theme/theme'
 import Head from 'next/head'
@@ -11,7 +11,7 @@ import { PageWrapper } from '@/components/PageWrapper/PageWrapper'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
-function App({ Component, pageProps }: AppProps) {
+const App: AppType = ({ Component, pageProps }: AppProps) => {
   const { settings, contact, menu } = pageProps
   const { locale, bodyFont, websiteName } = settings
   const router = useRouter()

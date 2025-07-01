@@ -5,7 +5,8 @@
     "fullEpisode": "See full episode",
     "seeAllEpisodes": "See all episodes",
     "send": "Send",
-    "seeMoreEpisodes": "See more episodes"
+    "seeMoreEpisodes": "See more episodes",
+    "goHome": "Go Home"
   },
   "title": {
     "contactUs": "Contact Us",
@@ -15,11 +16,13 @@
     "gallery": "Gallery",
     "otherServices": "Other services",
     "otherEvents": "Other events",
-    "eventDetails": "Event details"
+    "eventDetails": "Event details",
+    "notFound": "Page Not Found"
   },
   "subtitle": {
     "otherServices": "These other services might interest you",
-    "otherEvents": "These other events might interest you"
+    "otherEvents": "These other events might interest you",
+    "notFound": "Sorry, the page you are looking for does not exist."
   },
   "field": {
     "name": "Name",

@@ -5,7 +5,8 @@
     "fullEpisode": "Voir l'épisode complet",
     "seeAllEpisodes": "Voir tous les épisodes",
     "send": "Envoyer",
-    "seeMoreEpisodes": "Voir plus d'épisodes"
+    "seeMoreEpisodes": "Voir plus d'épisodes",
+    "goHome": "Aller à l'accueil"
   },
   "title": {
     "contactUs": "Contactez-nous",
@@ -15,11 +16,13 @@
     "gallery": "Galerie",
     "otherServices": "Autres services",
     "otherEvents": "Autres évènements",
-    "eventDetails": "Détails de l'événement"
+    "eventDetails": "Détails de l'événement",
+    "notFound": "Page non trouvée"
   },
   "subtitle": {
     "otherServices": "Ces autres services pourraient vous intéresser",
-    "otherEvents": "Ces autres évènements pourraient vous intéresser"
+    "otherEvents": "Ces autres évènements pourraient vous intéresser",
+    "notFound": "Désolé, la page que vous recherchez n'existe pas."
   },
   "field": {
     "name": "Nom",

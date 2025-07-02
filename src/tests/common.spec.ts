@@ -66,10 +66,8 @@ test.describe('Footer', () => {
   const TEST_NAME = 'Test User'
   const TEST_EMAIL = 'test@example.com'
   const TEST_MESSAGE = 'Hello from test!'
-  const getFieldErrorMessage = (fieldName: string, page: Page) =>
-    page.getByText(`${fieldName} is required`)
-  const getInput = (name: string, page: Page) =>
-    page.getByTestId(`footer-contact-${name}`).getByRole('textbox')
+  const getInput = (name: string, page: Page, role: Parameters<Page['getByRole']>[0] = 'textbox') =>
+    page.getByTestId(`footer-contact-${name}`).getByRole(role)
   const getSendButton = (page: Page) => page.getByTestId('footer-contact-send')
 
   test('should display contact info and social links', async ({ page }) => {
@@ -105,9 +103,7 @@ test.describe('Footer', () => {
 
     // Try submitting empty form
     await sendButton.click()
-    await expect(getFieldErrorMessage('Name', page)).toBeVisible()
-    await expect(getFieldErrorMessage('Email', page)).toBeVisible()
-    await expect(getFieldErrorMessage('Message', page)).toBeVisible()
+    await expect(page.getByTestId('footer-contact-privacy-error')).toBeVisible()
     await expect(sendButton).toBeDisabled()
   })
 
@@ -126,6 +122,7 @@ test.describe('Footer', () => {
     await getInput('name', page).fill(TEST_NAME)
     await getInput('email', page).fill(TEST_EMAIL)
     await getInput('message', page).fill(TEST_MESSAGE)
+    await getInput('privacy', page, 'checkbox').check()
     await getSendButton(page).click()
 
     const successMsg = page.getByTestId('footer-contact-success')
@@ -147,10 +144,29 @@ test.describe('Footer', () => {
     await getInput('name', page).fill(TEST_NAME)
     await getInput('email', page).fill(TEST_EMAIL)
     await getInput('message', page).fill(TEST_MESSAGE)
+    await getInput('privacy', page, 'checkbox').check()
     await getSendButton(page).click()
 
     const errorMsg = page.getByTestId('footer-contact-error')
     await expect(errorMsg).toBeVisible()
+  })
+
+  test('should display the Privacy Policy Dialog', async ({ page }) => {
+    await page.goto('/')
+    const privacyPolicyLink = page.getByTestId('footer-contact-privacy-link')
+    await expect(privacyPolicyLink).toBeVisible()
+    const privacyDialog = page.getByTestId('dialog')
+    await expect(privacyDialog).not.toBeVisible()
+    await privacyPolicyLink.click()
+    await expect(privacyDialog).toBeVisible()
+    const privacyTitle = privacyDialog.getByTestId('dialog-title')
+    await expect(privacyTitle).toBeVisible()
+    const privacyContent = privacyDialog.getByTestId('dialog-content')
+    await expect(privacyContent).toBeVisible()
+    const closeButton = privacyDialog.getByTestId('dialog-close-button')
+    await expect(closeButton).toBeVisible()
+    await closeButton.click()
+    await expect(privacyDialog).not.toBeVisible()
   })
 
   test('should display the gallery grid and open lightbox', async ({ page }) => {

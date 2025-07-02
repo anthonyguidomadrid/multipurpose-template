@@ -35,6 +35,7 @@ export const Footer: React.FC<FooterProps> = ({
   twitterUrl,
   galleryImages,
   websiteName,
+  privacyPolicy,
 }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
@@ -102,7 +103,7 @@ export const Footer: React.FC<FooterProps> = ({
             <FooterTitle variant="h6" gutterBottom data-testid="footer-form-title">
               {t('title.sendMessage')}
             </FooterTitle>
-            <ContactForm email={email} />
+            <ContactForm email={email} privacyPolicy={privacyPolicy} />
           </Grid2>
 
           {/* Column 3: Gallery Grid */}

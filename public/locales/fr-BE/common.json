@@ -6,7 +6,8 @@
     "seeAllEpisodes": "Voir tous les épisodes",
     "send": "Envoyer",
     "seeMoreEpisodes": "Voir plus d'épisodes",
-    "goHome": "Aller à l'accueil"
+    "goHome": "Aller à l'accueil",
+    "close": "Fermer"
   },
   "title": {
     "contactUs": "Contactez-nous",
@@ -17,7 +18,8 @@
     "otherServices": "Autres services",
     "otherEvents": "Autres évènements",
     "eventDetails": "Détails de l'événement",
-    "notFound": "Page non trouvée"
+    "notFound": "Page non trouvée",
+    "privacyPolicy": "Politique de confidentialité"
   },
   "subtitle": {
     "otherServices": "Ces autres services pourraient vous intéresser",
@@ -25,9 +27,12 @@
     "notFound": "Désolé, la page que vous recherchez n'existe pas."
   },
   "field": {
-    "name": "Nom",
-    "email": "Email",
-    "message": "Message",
+    "name": "Votre nom",
+    "email": "Votre email",
+    "message": "Votre message",
+    "privacyPolicy": "Je consens au traitement de mes données personnelles comme indiqué dans la ",
+    "privacyPolicyLink": "Politique de confidentialité",
+    "privacyConsent": "Votre consentement à notre politique de confidentialité",
     "required": "{{field}} est requis",
     "invalid": "{{field}} n'est pas valide"
   },

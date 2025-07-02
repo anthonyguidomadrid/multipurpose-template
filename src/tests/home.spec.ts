@@ -125,6 +125,8 @@ test.describe('Home Header', () => {
     // Check the "See All Episodes" button
     const seeAllButton = page.getByTestId('see-all-podcasts')
     await expect(seeAllButton).toBeVisible()
+    await seeAllButton.click()
+    expect(page).toHaveURL(/\/podcasts/)
 
     // Check the podcast episodes
     const podcastEpisodes = page.locator('[data-testid^="podcast-episode"]')
@@ -208,7 +210,7 @@ test.describe('Home Header', () => {
       // Check the "See More" button
       const seeMoreButton = eventCard.getByTestId('event-button')
       await expect(seeMoreButton).toBeVisible()
-      await expect(seeMoreButton).toHaveText('See more')
+      await expect(seeMoreButton).toHaveText('Ver más')
     }
   })
 })

@@ -129,6 +129,7 @@ export type Contact = {
   linkedInUrl?: string
   twitterUrl?: string
   galleryImages: Image[]
+  privacyPolicy: Document
 }
 
 export type MenuItem = {

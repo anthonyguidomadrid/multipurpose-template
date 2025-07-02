@@ -1,4 +1,4 @@
-import { Box, styled, TextField } from '@mui/material'
+import { Box, Checkbox, styled, TextField } from '@mui/material'
 
 export const ContactFormWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -27,5 +27,12 @@ export const StyledTextField = styled(TextField)(({ theme }) => ({
     '&.Mui-focused fieldset': {
       borderColor: theme.palette.common.white,
     },
+  },
+}))
+
+export const PrivacyCheckbox = styled(Checkbox)(({ theme }) => ({
+  color: theme.palette.common.white,
+  '&.Mui-checked': {
+    color: theme.palette.common.white,
   },
 }))

@@ -6,7 +6,6 @@ import {
   Typography,
   FormHelperText,
   FormControlLabel,
-  Checkbox,
   Link,
 } from '@mui/material'
 import { useTranslation } from 'next-i18next'

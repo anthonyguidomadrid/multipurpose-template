@@ -1,41 +1,51 @@
-import { Menu } from '@/lib/types'
-import { MenuItemButton, MenuItemsWrapper } from './MenuItems.styles'
+import { MenuItem } from '@/lib/types'
+import { MenuItemsWrapper } from './MenuItems.styles'
 import NextLink from 'next/link'
-import React, { MouseEventHandler } from 'react'
+import React from 'react'
+import { MenuButton, MenuButtonProps } from '../MenuButton/MenuButton'
 
 interface MenuItemsProps {
-  menuItems: Pick<Menu, 'menuItems'>['menuItems']
-  handleScrollOrNavigate: (link: string) => MouseEventHandler<HTMLButtonElement> | undefined
+  menuItems: MenuItem[]
+  handleClick: Pick<MenuButtonProps, 'handleClick'>['handleClick']
 }
 
-export const MenuItems: React.FC<MenuItemsProps> = ({ menuItems, handleScrollOrNavigate }) => {
+export const MenuItems: React.FC<MenuItemsProps> = ({ menuItems, handleClick }) => {
   return (
     <MenuItemsWrapper>
-      {menuItems.map(({ fields: { link, label, isCta, shouldOpenInANewTab } }, idx) =>
-        isCta ? (
-          <NextLink
-            href={link}
-            passHref
-            key={idx}
-            target={shouldOpenInANewTab ? '_blank' : undefined}
-            rel={shouldOpenInANewTab ? 'noopener noreferrer' : undefined}
-          >
-            <MenuItemButton color="primary" variant="contained" isCta data-testid="menu-item-cta">
-              {label}
-            </MenuItemButton>
-          </NextLink>
-        ) : (
-          <MenuItemButton
-            key={idx}
-            color="inherit"
-            variant="text"
-            isCta={false}
-            data-testid="menu-item-button"
-            onClick={handleScrollOrNavigate(link)}
-          >
-            {label}
-          </MenuItemButton>
-        )
+      {menuItems.map(
+        (
+          { fields: { link, label, isCta, isLink, shouldOpenInANewTab, shouldOpenInModal } },
+          idx
+        ) =>
+          isLink || shouldOpenInANewTab ? (
+            <NextLink
+              href={link}
+              passHref
+              key={idx}
+              target={shouldOpenInANewTab ? '_blank' : undefined}
+              rel={shouldOpenInANewTab ? 'noopener noreferrer' : undefined}
+            >
+              <MenuButton
+                link={link}
+                label={label}
+                isCta={isCta}
+                isLink={isLink}
+                shouldOpenInANewTab={shouldOpenInANewTab}
+                shouldOpenInModal={shouldOpenInModal}
+              />
+            </NextLink>
+          ) : (
+            <MenuButton
+              key={idx}
+              link={link}
+              label={label}
+              isCta={isCta}
+              isLink={isLink}
+              shouldOpenInANewTab={shouldOpenInANewTab}
+              shouldOpenInModal={shouldOpenInModal}
+              handleClick={handleClick}
+            />
+          )
       )}
     </MenuItemsWrapper>
   )

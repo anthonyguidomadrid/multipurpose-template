@@ -1,4 +1,4 @@
-import { Box, Button, Drawer, styled } from '@mui/material'
+import { Box, Drawer, styled } from '@mui/material'
 import { Link as ScrollLink } from 'react-scroll'
 
 export const StyledDrawer = styled(Drawer)(({ theme }) => ({
@@ -9,10 +9,6 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
 
 export const MobileMenuItemsWrapper = styled(Box)(() => ({
   width: 250,
-}))
-
-export const DrawerCtaButton = styled(Button)(({ theme }) => ({
-  margin: theme.spacing(2),
 }))
 
 export const CloseButtonWrapper = styled(Box)(({ theme }) => ({

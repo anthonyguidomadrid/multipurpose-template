@@ -1,25 +1,21 @@
-import { IconButton, List, ListItem, ListItemButton, ListItemText } from '@mui/material'
+import { IconButton, List, ListItem } from '@mui/material'
 import { Menu } from '@/lib/types'
 import CloseIcon from '@mui/icons-material/Close'
-import {
-  CloseButtonWrapper,
-  DrawerCtaButton,
-  MobileMenuItemsWrapper,
-  StyledDrawer,
-} from './MobileDrawer.styles'
+import { CloseButtonWrapper, MobileMenuItemsWrapper, StyledDrawer } from './MobileDrawer.styles'
 import NextLink from 'next/link'
+import { MenuButton, MenuButtonProps } from '../MenuButton/MenuButton'
 
 interface MobileDrawerProps {
   drawerOpen: boolean
   handleDrawerToggle: () => void
   menuItems: Pick<Menu, 'menuItems'>['menuItems']
-  handleScrollOrNavigate: (link: string) => (e: React.MouseEvent) => void
+  handleClick: Pick<MenuButtonProps, 'handleClick'>['handleClick']
 }
 
 export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   drawerOpen,
   handleDrawerToggle,
-  handleScrollOrNavigate,
+  handleClick,
   menuItems,
 }) => (
   <StyledDrawer
@@ -36,28 +32,45 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
         </IconButton>
       </CloseButtonWrapper>
       <List>
-        {menuItems.map(({ fields: { link, label, isCta, shouldOpenInANewTab } }, idx) => (
-          <ListItem key={idx} disablePadding>
-            {isCta ? (
-              <NextLink
-                href={link}
-                passHref
-                target={shouldOpenInANewTab ? '_blank' : undefined}
-                rel={shouldOpenInANewTab ? 'noopener noreferrer' : undefined}
-                data-testid="mobile-drawer-cta-link"
-              >
-                <DrawerCtaButton variant="contained">{label}</DrawerCtaButton>
-              </NextLink>
-            ) : (
-              <ListItemButton
-                onClick={handleScrollOrNavigate(link)}
-                data-testid={`mobile-drawer-scroll-link-${link}`}
-              >
-                <ListItemText primary={label} />
-              </ListItemButton>
-            )}
-          </ListItem>
-        ))}
+        {menuItems.map(
+          (
+            { fields: { link, label, isCta, isLink, shouldOpenInANewTab, shouldOpenInModal } },
+            idx
+          ) => (
+            <ListItem key={idx} disablePadding>
+              {isLink || shouldOpenInANewTab ? (
+                <NextLink
+                  href={link}
+                  passHref
+                  target={shouldOpenInANewTab ? '_blank' : undefined}
+                  rel={shouldOpenInANewTab ? 'noopener noreferrer' : undefined}
+                  data-testid="mobile-drawer-link"
+                >
+                  <MenuButton
+                    isCta={isCta}
+                    label={label}
+                    link={link}
+                    shouldOpenInANewTab={shouldOpenInANewTab}
+                    shouldOpenInModal={shouldOpenInModal}
+                    isLink={isLink}
+                    isMobile={true}
+                  />
+                </NextLink>
+              ) : (
+                <MenuButton
+                  isCta={isCta}
+                  label={label}
+                  link={link}
+                  shouldOpenInANewTab={shouldOpenInANewTab}
+                  shouldOpenInModal={shouldOpenInModal}
+                  isLink={isLink}
+                  handleClick={handleClick}
+                  isMobile={true}
+                />
+              )}
+            </ListItem>
+          )
+        )}
       </List>
     </MobileMenuItemsWrapper>
   </StyledDrawer>

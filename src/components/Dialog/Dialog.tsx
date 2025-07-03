@@ -12,9 +12,10 @@ interface DialogProps extends MuiDialogProps {
   onClose: () => void
   title: string
   children: React.ReactNode
+  name: string
 }
 
-export const Dialog: React.FC<DialogProps> = ({ open, onClose, title, children, ...rest }) => {
+export const Dialog: React.FC<DialogProps> = ({ open, onClose, title, children, name, ...rest }) => {
   const { t } = useTranslation()
   return (
     <MuiDialog
@@ -22,13 +23,13 @@ export const Dialog: React.FC<DialogProps> = ({ open, onClose, title, children, 
       onClose={onClose}
       keepMounted
       transitionDuration={1000}
-      data-testid="dialog"
+      data-testid={`${name}-dialog`}
       {...rest}
     >
-      <DialogTitle data-testid="dialog-title">{title}</DialogTitle>
-      <DialogContent data-testid="dialog-content">{children}</DialogContent>
+      <DialogTitle data-testid={`${name}-dialog-title`}>{title}</DialogTitle>
+      <DialogContent data-testid={`${name}-dialog-content`}>{children}</DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary" data-testid="dialog-close-button">
+        <Button onClick={onClose} color="primary" data-testid={`${name}-dialog-close-button`}>
           {t('button.close')}
         </Button>
       </DialogActions>

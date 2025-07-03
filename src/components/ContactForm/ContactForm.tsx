@@ -1,13 +1,6 @@
 import { EMAIL_REGEX } from '@/constants/regex'
 import { sendEmail } from '@/lib/emailjs'
-import {
-  Button,
-  Alert,
-  Typography,
-  FormHelperText,
-  FormControlLabel,
-  Link,
-} from '@mui/material'
+import { Button, Alert, Typography, FormHelperText, FormControlLabel, Link } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -155,7 +148,12 @@ export const ContactForm = ({ email, privacyPolicy }: ContactFormProps) => {
         )}
       </ContactFormWrapper>
 
-      <Dialog open={privacyOpen} onClose={handlePrivacyClose} title={t('title.privacyPolicy')}>
+      <Dialog
+        open={privacyOpen}
+        onClose={handlePrivacyClose}
+        title={t('title.privacyPolicy')}
+        name="privacy"
+      >
         {documentToReactComponents(privacyPolicy)}
       </Dialog>
     </>

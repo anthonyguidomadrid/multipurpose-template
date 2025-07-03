@@ -14,3 +14,10 @@ export const MenuBar = styled(Toolbar)(() => ({
   alignItems: 'center',
   backgroundColor: 'transparent',
 }))
+
+export const ModalContent = styled('iframe')(({theme}) => ({
+  width: '100%',
+  height: '80vh',
+  border: 0,
+  backgroundColor: theme.palette.common.white,
+}))

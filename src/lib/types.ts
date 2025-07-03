@@ -139,6 +139,7 @@ export type MenuItem = {
     link: string
     shouldOpenInANewTab: boolean
     shouldOpenInModal: boolean
+    isLink: boolean
   }
 }
 

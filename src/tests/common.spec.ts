@@ -3,6 +3,9 @@ import { test, expect, Page } from '@playwright/test'
 test.describe('Menu', () => {
   const getMenuLogo = (page: Page) => page.getByTestId('menu-logo')
   const getBurgerMenuIcon = (page: Page) => page.getByTestId('mobile-menu-icon')
+  const setMobileViewport = async (page: Page) => {
+    await page.setViewportSize({ width: 375, height: 800 })
+  }
   test('should display logo and menu items on desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto('/')
@@ -20,8 +23,30 @@ test.describe('Menu', () => {
     await expect(ctaButton).toHaveClass(/MuiButton-contained/)
   })
 
+  test('should open modal for menu items that require it', async ({ page }) => {
+    await page.goto('/')
+
+    // Click on the menu item CTA to open the modal
+    const ctaButton = page.getByTestId('menu-item-cta')
+    await expect(ctaButton).toBeVisible()
+    await ctaButton.click()
+
+    // Modal should be visible
+    const modal = page.getByTestId('menu-dialog')
+    await expect(modal).toBeVisible()
+    const modalTitle = modal.getByTestId('menu-dialog-title')
+    await expect(modalTitle).toBeVisible()
+    const modalContent = modal.getByTestId('menu-dialog-content')
+    await expect(modalContent).toBeVisible()
+
+    // Close the modal
+    const closeButton = modal.getByTestId('menu-dialog-close-button')
+    await closeButton.click()
+    await expect(modal).not.toBeVisible()
+  })
+
   test('should show mobile menu icon on mobile', async ({ page }) => {
-    await page.setViewportSize({ width: 375, height: 800 })
+    await setMobileViewport(page)
     await page.goto('/')
 
     const mobileMenuIcon = page.getByLabel('menu')
@@ -29,7 +54,7 @@ test.describe('Menu', () => {
   })
 
   test('should open and close mobile drawer', async ({ page }) => {
-    await page.setViewportSize({ width: 375, height: 800 })
+    await setMobileViewport(page)
     await page.goto('/')
 
     await getBurgerMenuIcon(page).click()
@@ -45,18 +70,18 @@ test.describe('Menu', () => {
   })
 
   test('should navigate or scroll when clicking menu items in mobile drawer', async ({ page }) => {
-    await page.setViewportSize({ width: 375, height: 800 })
+    await setMobileViewport(page)
     await page.goto('/')
 
     await getBurgerMenuIcon(page).click()
 
     // Find all menu items in the drawer
-    const drawerMenuItems = page.locator('[data-testid^="mobile-drawer-scroll-link"]')
+    const drawerMenuItems = page.locator('[data-testid^="menu-item-button-mobile"]')
     const count = await drawerMenuItems.count()
     expect(count).toBeGreaterThan(0)
 
     // Mobile drawer CTA button should be visible
-    const ctaDrawerButton = page.getByTestId('mobile-drawer-cta-link')
+    const ctaDrawerButton = page.getByTestId('menu-item-cta-mobile')
     await expect(ctaDrawerButton).toBeVisible()
   })
 })
@@ -155,15 +180,15 @@ test.describe('Footer', () => {
     await page.goto('/')
     const privacyPolicyLink = page.getByTestId('footer-contact-privacy-link')
     await expect(privacyPolicyLink).toBeVisible()
-    const privacyDialog = page.getByTestId('dialog')
+    const privacyDialog = page.getByTestId('privacy-dialog')
     await expect(privacyDialog).not.toBeVisible()
     await privacyPolicyLink.click()
     await expect(privacyDialog).toBeVisible()
-    const privacyTitle = privacyDialog.getByTestId('dialog-title')
+    const privacyTitle = privacyDialog.getByTestId('privacy-dialog-title')
     await expect(privacyTitle).toBeVisible()
-    const privacyContent = privacyDialog.getByTestId('dialog-content')
+    const privacyContent = privacyDialog.getByTestId('privacy-dialog-content')
     await expect(privacyContent).toBeVisible()
-    const closeButton = privacyDialog.getByTestId('dialog-close-button')
+    const closeButton = privacyDialog.getByTestId('privacy-dialog-close-button')
     await expect(closeButton).toBeVisible()
     await closeButton.click()
     await expect(privacyDialog).not.toBeVisible()

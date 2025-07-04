@@ -1,7 +1,7 @@
 import { Menu as MenuType } from '@/lib/types'
 import { useState } from 'react'
 import { MenuLogo } from '../MenuLogo/MenuLogo'
-import { MenuItems } from '../MenuItems/MenuItems'
+import { MenuItemsList } from '../MenuItemsList/MenuItemsList'
 import { MobileMenuIcon } from '../MobileMenuIcon/MobileMenuIcon'
 import { MobileDrawer } from '../MobileDrawer/MobileDrawer'
 import { StyledMenu, MenuBar, ModalContent } from './Menu.styles'
@@ -61,7 +61,7 @@ export const Menu: React.FC<MenuType> = ({ logo, menuItems }) => {
       <StyledMenu position="fixed" color="default" elevation={1} isAtTop={isAtTop}>
         <MenuBar>
           <MenuLogo logo={logo} />
-          <MenuItems menuItems={menuItems} handleClick={handleClick} />
+          <MenuItemsList menuItems={menuItems} handleClick={handleClick} />
           <MobileMenuIcon handleDrawerToggle={handleDrawerToggle} />
         </MenuBar>
         <MobileDrawer

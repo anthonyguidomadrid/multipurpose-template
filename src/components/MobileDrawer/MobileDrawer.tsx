@@ -2,8 +2,8 @@ import { IconButton, List, ListItem } from '@mui/material'
 import { Menu } from '@/lib/types'
 import CloseIcon from '@mui/icons-material/Close'
 import { CloseButtonWrapper, MobileMenuItemsWrapper, StyledDrawer } from './MobileDrawer.styles'
-import NextLink from 'next/link'
-import { MenuButton, MenuButtonProps } from '../MenuButton/MenuButton'
+import { MenuButtonProps } from '../MenuButton/MenuButton'
+import { MenuItem } from '../MenuItem/MenuItem'
 
 interface MobileDrawerProps {
   drawerOpen: boolean
@@ -32,45 +32,11 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
         </IconButton>
       </CloseButtonWrapper>
       <List>
-        {menuItems.map(
-          (
-            { fields: { link, label, isCta, isLink, shouldOpenInANewTab, shouldOpenInModal } },
-            idx
-          ) => (
-            <ListItem key={idx} disablePadding>
-              {isLink || shouldOpenInANewTab ? (
-                <NextLink
-                  href={link}
-                  passHref
-                  target={shouldOpenInANewTab ? '_blank' : undefined}
-                  rel={shouldOpenInANewTab ? 'noopener noreferrer' : undefined}
-                  data-testid="mobile-drawer-link"
-                >
-                  <MenuButton
-                    isCta={isCta}
-                    label={label}
-                    link={link}
-                    shouldOpenInANewTab={shouldOpenInANewTab}
-                    shouldOpenInModal={shouldOpenInModal}
-                    isLink={isLink}
-                    isMobile={true}
-                  />
-                </NextLink>
-              ) : (
-                <MenuButton
-                  isCta={isCta}
-                  label={label}
-                  link={link}
-                  shouldOpenInANewTab={shouldOpenInANewTab}
-                  shouldOpenInModal={shouldOpenInModal}
-                  isLink={isLink}
-                  handleClick={handleClick}
-                  isMobile={true}
-                />
-              )}
-            </ListItem>
-          )
-        )}
+        {menuItems.map(({ fields }, idx) => (
+          <ListItem key={idx} disablePadding>
+            <MenuItem {...fields} handleClick={handleClick} isMobile />
+          </ListItem>
+        ))}
       </List>
     </MobileMenuItemsWrapper>
   </StyledDrawer>

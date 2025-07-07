@@ -53,7 +53,7 @@ test.describe('Service Details Page', () => {
 
   test('should display the image gallery and open lightbox', async ({ page }) => {
     await clickOnFirstCard(page)
-    
+
     // Gallery images
     const galleryImages = page.locator('[data-testid^="slide-gallery-image-"]')
     await expect(galleryImages.first()).toBeVisible()
@@ -78,5 +78,23 @@ test.describe('Service Details Page', () => {
     // Service cards
     const serviceCards = page.locator('[data-testid^="service-card"]')
     expect(await serviceCards.count()).toBeGreaterThan(0)
+  })
+
+  test('should render SEO meta tags', async ({ page }) => {
+    await clickOnFirstCard(page)
+
+    // Check meta title and description
+    const metaTitle = page.locator('meta[name="title"]')
+    expect(metaTitle).toBeDefined()
+    const description = page.locator('meta[name="description"]')
+    expect(description).toBeDefined()
+
+    // Check og:image
+    const ogImage = page.locator('meta[property="og:image"]')
+    expect(ogImage).toBeDefined()
+
+    // Check twitter:image
+    const twitterImage = page.locator('meta[name="twitter:image"]')
+    expect(twitterImage).toBeDefined()
   })
 })

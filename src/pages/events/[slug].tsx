@@ -3,6 +3,7 @@ import { DetailsContent } from '@/components/DetailsContent/DetailsContent'
 import { DetailsHeader } from '@/components/DetailsHeader/DetailsHeader'
 import { EventDetails } from '@/components/EventDetails/EventDetails'
 import { EventsSection } from '@/components/EventsSection/EventsSection'
+import { Seo } from '@/components/Seo/Seo'
 import { LINK } from '@/constants/link'
 import { getCtaByType, getOtherDetails, getDetailsBySlug } from '@/lib/contentful'
 import { Cta, EventFields, Event } from '@/lib/types'
@@ -29,6 +30,7 @@ const ServicePage: NextPage<EventsPageProps> = ({
     contactEmail,
     contactPhone,
     placeName,
+    seo,
   },
   otherEvents,
   cta,
@@ -37,6 +39,7 @@ const ServicePage: NextPage<EventsPageProps> = ({
   const sectionName = 'event-details'
   return (
     <>
+      <Seo {...seo.fields} />
       <DetailsHeader
         title={title}
         image={thumbnail}

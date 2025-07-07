@@ -9,24 +9,26 @@ import { getSpotifyEpisodes } from '@/lib/spotify'
 import { PodcastsSection } from '@/components/PodcastsSection/PodcastsSection'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { EventsSection } from '@/components/EventsSection/EventsSection'
+import { Seo } from '@/components/Seo/Seo'
 
 interface HomePage {
   home: ContentfulHomePage
 }
 
 const Home: NextPage<HomePage> = ({
-  home: { header, about, services, testimonials, podcasts, events },
+  home: { header, about, services, testimonials, podcasts, events, seo },
 }) => {
-  const hasPodcasts = podcasts?.episodes.length > 0
-  const hasEvents = events?.events.length > 0
+  const hasPodcasts = podcasts?.fields.episodes.length > 0
+  const hasEvents = events?.fields.events.length > 0
   return (
     <>
-      <HomeHeader {...header} />
-      <About {...about} />
-      <ServicesSection {...services} />
-      <TestimonialsSection {...testimonials} />
-      {hasEvents && <EventsSection {...events} />}
-      {hasPodcasts && <PodcastsSection {...podcasts} />}
+      <Seo {...seo.fields} />
+      <HomeHeader {...header.fields} />
+      <About {...about.fields} />
+      <ServicesSection {...services.fields} />
+      <TestimonialsSection {...testimonials.fields} />
+      {hasEvents && <EventsSection {...events.fields} />}
+      {hasPodcasts && <PodcastsSection {...podcasts.fields} />}
     </>
   )
 }
@@ -47,8 +49,10 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
       home: {
         ...home,
         podcasts: {
-          ...home.podcasts,
-          episodes: episodes.items,
+          fields: {
+            ...home.podcasts?.fields,
+            episodes: episodes.items,
+          },
         },
       },
     },

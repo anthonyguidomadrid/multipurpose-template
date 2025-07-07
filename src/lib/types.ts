@@ -49,6 +49,7 @@ export type ServiceFields = {
   carrouselImages: Image[]
   thumbnail: Image
   slug: string
+  seo: { fields: Seo }
 }
 
 export type Service = {
@@ -99,6 +100,7 @@ export type EventFields = {
   thumbnail: Image
   slug: string
   placeName: string
+  seo: { fields: Seo }
 }
 
 export type Event = {
@@ -111,14 +113,21 @@ export type Events = {
   events: Event[]
 }
 
+export type Seo = {
+  metaTitle: string
+  metaDescription: string
+  ogImage: Image
+}
+
 export type HomePage = {
   websiteName: string
-  header: Header
-  about: About
-  services: Services
-  testimonials: Testimonials
-  podcasts: Podcasts
-  events: Events
+  header: { fields: Header }
+  about: { fields: About }
+  services: { fields: Services }
+  testimonials: { fields: Testimonials }
+  podcasts: { fields: Podcasts }
+  events: { fields: Events }
+  seo: { fields: Seo }
 }
 
 export type Contact = {

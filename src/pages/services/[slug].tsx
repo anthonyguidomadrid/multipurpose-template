@@ -1,6 +1,7 @@
 import { SectionWrapper } from '@/components/common/styles'
 import { DetailsContent } from '@/components/DetailsContent/DetailsContent'
 import { DetailsHeader } from '@/components/DetailsHeader/DetailsHeader'
+import { Seo } from '@/components/Seo/Seo'
 import { ServicesSection } from '@/components/ServicesSection/ServicesSection'
 import { SlideGallery } from '@/components/SlideGallery/SlideGallery'
 import { LINK } from '@/constants/link'
@@ -17,7 +18,7 @@ interface ServicePageProps {
 }
 
 const ServicePage: NextPage<ServicePageProps> = ({
-  service: { mainTitle, subtitle, thumbnail, secondaryTitle, description, carrouselImages },
+  service: { mainTitle, subtitle, thumbnail, secondaryTitle, description, carrouselImages, seo },
   otherServices,
   cta,
 }) => {
@@ -25,6 +26,7 @@ const ServicePage: NextPage<ServicePageProps> = ({
   const sectionName = 'service-details'
   return (
     <>
+      <Seo {...seo.fields} />
       <DetailsHeader
         title={mainTitle}
         image={thumbnail}

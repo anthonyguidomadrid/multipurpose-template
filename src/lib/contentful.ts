@@ -41,37 +41,13 @@ export const getMenu = async () => {
 }
 
 export const getHomePage = async () => {
-  const header = await client.getEntries({
-    content_type: 'header',
-  })
-  const about = await client.getEntries({
-    content_type: 'about',
-  })
-  const services = await client.getEntries({
-    content_type: 'services',
-    include: 1,
+  const homePage = await client.getEntries({
+    content_type: 'home',
+    include: 2,
+    limit: 1,
   })
 
-  const testimonials = await client.getEntries({
-    content_type: 'testimonials',
-  })
-
-  const podcasts = await client.getEntries({
-    content_type: 'podcasts',
-  })
-
-  const events = await client.getEntries({
-    content_type: 'events',
-  })
-
-  return {
-    about: about?.items?.[0]?.fields,
-    header: header?.items?.[0]?.fields,
-    services: services?.items?.[0]?.fields,
-    testimonials: testimonials?.items?.[0]?.fields,
-    podcasts: podcasts?.items?.[0]?.fields || null,
-    events: events?.items?.[0]?.fields || null,
-  } as unknown as HomePage
+  return homePage.items[0].fields as unknown as HomePage
 }
 
 export const getDetailsBySlug = async (slug: string, contentType: string) => {

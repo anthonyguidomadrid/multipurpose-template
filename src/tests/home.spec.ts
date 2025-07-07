@@ -213,4 +213,22 @@ test.describe('Home Header', () => {
       await expect(seeMoreButton).toHaveText('Ver más')
     }
   })
+
+  test('should render SEO meta tags', async ({ page }) => {
+    await page.goto('/')
+
+    // Check meta title and description
+    const metaTitle = page.locator('meta[name="title"]')
+    expect(metaTitle).toBeDefined()
+    const description = page.locator('meta[name="description"]')
+    expect(description).toBeDefined()
+
+    // Check og:image
+    const ogImage = page.locator('meta[property="og:image"]')
+    expect(ogImage).toBeDefined()
+
+    // Check twitter:image
+    const twitterImage = page.locator('meta[name="twitter:image"]')
+    expect(twitterImage).toBeDefined()
+  })
 })

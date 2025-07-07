@@ -12,6 +12,7 @@ import {
 import { motion } from 'framer-motion'
 import { STAGGER_CONTAINER, FADE_IN_UP } from '@/constants/animation'
 import { Link } from 'react-scroll'
+import { getImageUrl } from '@/helpers/link'
 
 export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ctaButtonText }) => {
   return (
@@ -49,7 +50,7 @@ export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ct
         {sliderImages.map(({ fields: imageFields }, index) => (
           <SwiperSlide key={index}>
             <SliderImage
-              src={`https:${imageFields.file.url}`}
+              src={getImageUrl(imageFields.file.url)}
               alt={imageFields.description || `Slide ${index + 1}`}
               width={imageFields.file.details.image.width}
               height={imageFields.file.details.image.height}

@@ -10,10 +10,11 @@ import { appWithTranslation } from 'next-i18next'
 import { PageWrapper } from '@/components/PageWrapper/PageWrapper'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import { getImageUrl } from '@/helpers/link'
 
 const App: AppType = ({ Component, pageProps }: AppProps) => {
   const { settings, contact, menu } = pageProps
-  const { locale, bodyFont, websiteName } = settings
+  const { locale, bodyFont, websiteName, faviconPng, faviconSvg, faviconIco } = settings
   const router = useRouter()
 
   useEffect(() => {
@@ -25,11 +26,20 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
   const fontFamily = bodyFont.replaceAll(' ', '+')
   const googleFontUrl = `https://fonts.googleapis.com/css2?family=${fontFamily}:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap`
 
+  const faviconPngUrl = getImageUrl(faviconPng.fields.file.url)
+  const faviconSvgUrl = getImageUrl(faviconSvg.fields.file.url)
+  const faviconIcoUrl = getImageUrl(faviconIco.fields.file.url)
+
   return (
     <>
       <Head>
         <html lang={locale || router.locale} />
         <link href={googleFontUrl} rel="stylesheet" />
+        <link rel="icon" href={faviconIcoUrl} sizes="16x16 32x32 48x48" type="image/x-icon" />
+        <link rel="icon" type="image/png" sizes="32x32" href={faviconPngUrl} />
+        <link rel="icon" type="image/png" sizes="16x16" href={faviconPngUrl} />
+        <link rel="apple-touch-icon" sizes="180x180" href={faviconPngUrl} />
+        <link rel="icon" type="image/svg+xml" href={faviconSvgUrl} />
       </Head>
       <CssBaseline />
       <ThemeProvider theme={getTheme(settings)}>

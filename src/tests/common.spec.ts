@@ -213,3 +213,29 @@ test.describe('Footer', () => {
     await expect(copyrightText).toBeVisible()
   })
 })
+
+test.describe('Favicon and Head tags', () => {
+  test('should have all favicon links defined in the head', async ({ page }) => {
+    await page.goto('/')
+
+    // ICO favicon
+    const icoFavicon = page.locator('link[rel="icon"][type="image/x-icon"]')
+    await expect(icoFavicon).toHaveAttribute('href', /favicon\.ico/)
+    await expect(icoFavicon).toHaveAttribute('sizes', /16x16 32x32 48x48/)
+
+    // PNG favicons
+    const pngFavicon32 = page.locator('link[rel="icon"][type="image/png"][sizes="32x32"]')
+    await expect(pngFavicon32).toHaveAttribute('href', /favicon\.png/)
+
+    const pngFavicon16 = page.locator('link[rel="icon"][type="image/png"][sizes="16x16"]')
+    await expect(pngFavicon16).toHaveAttribute('href', /favicon\.png/)
+
+    // Apple touch icon
+    const appleTouchIcon = page.locator('link[rel="apple-touch-icon"][sizes="180x180"]')
+    await expect(appleTouchIcon).toHaveAttribute('href', /favicon\.png/)
+
+    // SVG favicon
+    const svgFavicon = page.locator('link[rel="icon"][type="image/svg+xml"]')
+    await expect(svgFavicon).toHaveAttribute('href', /favicon\.svg/)
+  })
+})

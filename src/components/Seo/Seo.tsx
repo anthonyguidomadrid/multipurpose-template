@@ -1,8 +1,9 @@
+import { getImageUrl } from '@/helpers/link'
 import { Seo as SeoType } from '@/lib/types'
 import Head from 'next/head'
 
 export const Seo: React.FC<SeoType> = ({ metaTitle, metaDescription, ogImage }) => {
-  const ogImageUrl = `https:${ogImage.fields.file.url}`
+  const ogImageUrl = getImageUrl(ogImage.fields.file.url)
 
   return (
     <Head>

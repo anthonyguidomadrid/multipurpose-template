@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { Menu } from '@/lib/types'
 import { MenuLogoImage, MenuLogoWrapper } from './MenuLogo.styles'
 import { animateScroll as scroll } from 'react-scroll'
+import { getImageUrl } from '@/helpers/link'
 
 export const MenuLogo: React.FC<Pick<Menu, 'logo'>> = ({
   logo: {
@@ -33,7 +34,7 @@ export const MenuLogo: React.FC<Pick<Menu, 'logo'>> = ({
       data-testid="menu-logo"
     >
       <MenuLogoImage
-        src={`https:${logoUrl}`}
+        src={getImageUrl(logoUrl)}
         alt={logoTitle}
         width={logoWidth}
         height={logoHeight}

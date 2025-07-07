@@ -5,6 +5,7 @@ import { AboutImage } from './About.styles'
 import { FADE_IN_UP } from '@/constants/animation'
 import { ContentSection } from '../ContentSection/ContentSection'
 import { SectionWrapper } from '../common/styles'
+import { getImageUrl } from '@/helpers/link'
 
 export const About: React.FC<AboutType> = ({ title, subtitle, description, photo }) => (
   <SectionWrapper
@@ -25,7 +26,7 @@ export const About: React.FC<AboutType> = ({ title, subtitle, description, photo
       variants={FADE_IN_UP}
     >
       <AboutImage
-        src={`https:${photo.fields.file.url}`}
+        src={getImageUrl(photo.fields.file.url)}
         alt={photo.fields.description}
         width={photo.fields.file.details.image.width}
         height={photo.fields.file.details.image.height}

@@ -9,6 +9,7 @@ import {
   TestimonialQuote,
 } from './Testimonial.styles'
 import { getDate } from '@/helpers/date'
+import { getImageUrl } from '@/helpers/link'
 
 export const Testimonial: React.FC<TestimonialType> = ({
   fields: { title, description, author, date, image },
@@ -19,7 +20,7 @@ export const Testimonial: React.FC<TestimonialType> = ({
     <TestimonialContainer container spacing={2} data-testid="testimonial-slide">
       <TestimonialImageWrapper size={2}>
         <TestimonialImage
-          src={`https:${image.fields.file.url}`}
+          src={getImageUrl(image.fields.file.url)}
           alt={image.fields.description}
           width={image.fields.file.details.image.width}
           height={image.fields.file.details.image.height}

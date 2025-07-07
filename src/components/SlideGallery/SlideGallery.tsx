@@ -7,6 +7,7 @@ import { GalleryLightbox } from '../Lightbox/Lightbox'
 import { GalleryImage } from './SlideGallery.styles'
 import { motion } from 'framer-motion'
 import { FADE_IN_VARIANTS } from '@/constants/animation'
+import { getImageUrl } from '@/helpers/link'
 
 interface SlideGalleryProps {
   images: Image[]
@@ -44,7 +45,7 @@ export const SlideGallery: React.FC<SlideGalleryProps> = ({ images }) => {
               variants={FADE_IN_VARIANTS}
             >
               <GalleryImage
-                src={`https:${fields.file.url}`}
+                src={getImageUrl(fields.file.url)}
                 alt={fields.title}
                 width={fields.file.details.image.width}
                 height={fields.file.details.image.height}

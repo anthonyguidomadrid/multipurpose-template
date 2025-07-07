@@ -20,7 +20,7 @@ import {
   FooterWrapper,
   ImageGrid,
 } from './Footer.styles'
-import { getEmailLink, getPhoneLink } from '@/helpers/link'
+import { getEmailLink, getImageUrl, getPhoneLink } from '@/helpers/link'
 
 interface FooterProps extends Contact {
   websiteName: string
@@ -115,7 +115,7 @@ export const Footer: React.FC<FooterProps> = ({
               {galleryImages.slice(0, 6).map(({ fields }, idx) => (
                 <Grid2 size={4} key={fields.file.fileName}>
                   <ImageGrid
-                    src={`https:${fields.file.url}`}
+                    src={getImageUrl(fields.file.url)}
                     alt={fields.title}
                     width={fields.file.details.image.width}
                     height={fields.file.details.image.height}

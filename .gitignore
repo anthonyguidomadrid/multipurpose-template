@@ -43,3 +43,10 @@ next-env.d.ts
 
 # playwright
 test-results
+
+# Robot.txt
+/public/robots.txt
+
+# Sitemaps
+/public/sitemap.xml
+/public/sitemap-*.xml

@@ -5,9 +5,9 @@ import { Seo } from '@/components/Seo/Seo'
 import { ServicesSection } from '@/components/ServicesSection/ServicesSection'
 import { SlideGallery } from '@/components/SlideGallery/SlideGallery'
 import { LINK } from '@/constants/link'
-import { getCtaByType, getOtherDetails, getDetailsBySlug } from '@/lib/contentful'
+import { getCtaByType, getOtherDetails, getDetailsBySlug, getAllSlugs } from '@/lib/contentful'
 import { Cta, Service, ServiceFields } from '@/lib/types'
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
@@ -52,7 +52,18 @@ const ServicePage: NextPage<ServicePageProps> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params, locale }) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const services = await getAllSlugs('service')
+
+  return {
+    paths: services.map((service) => ({
+      params: { slug: service.slug },
+    })),
+    fallback: false,
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const { slug } = params || {}
   if (typeof slug !== 'string') {
     return { notFound: true }

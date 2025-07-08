@@ -79,7 +79,12 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
           </Grid2>
           <Grid2 size={12} display="flex" justifyContent="center">
             {hasMore && (
-              <Button variant="contained" onClick={handleSeeMore} disabled={loading} data-testid="see-more-episodes-button">
+              <Button
+                variant="contained"
+                onClick={handleSeeMore}
+                disabled={loading}
+                data-testid="see-more-episodes-button"
+              >
                 {t('button.seeMoreEpisodes')}
               </Button>
             )}
@@ -93,6 +98,10 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const show = await getShowInformation()
   const episodes = await getSpotifyEpisodes({ limit: EPISODES_PER_PAGE, offset: 0 })
+
+  if (!show || !episodes) {
+    return { notFound: true }
+  }
   return {
     props: {
       ...(await serverSideTranslations(locale || 'en-US', ['common'])),

@@ -5,9 +5,9 @@ import { EventDetails } from '@/components/EventDetails/EventDetails'
 import { EventsSection } from '@/components/EventsSection/EventsSection'
 import { Seo } from '@/components/Seo/Seo'
 import { LINK } from '@/constants/link'
-import { getCtaByType, getOtherDetails, getDetailsBySlug } from '@/lib/contentful'
+import { getCtaByType, getOtherDetails, getDetailsBySlug, getAllSlugs } from '@/lib/contentful'
 import { Cta, EventFields, Event } from '@/lib/types'
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
@@ -17,7 +17,7 @@ interface EventsPageProps {
   cta: Cta
 }
 
-const ServicePage: NextPage<EventsPageProps> = ({
+const EventPage: NextPage<EventsPageProps> = ({
   event: {
     title,
     thumbnail,
@@ -72,7 +72,18 @@ const ServicePage: NextPage<EventsPageProps> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params, locale }) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const events = await getAllSlugs('event')
+
+  return {
+    paths: events.map((event) => ({
+      params: { slug: event.slug },
+    })),
+    fallback: false,
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const { slug } = params || {}
   if (typeof slug !== 'string') {
     return { notFound: true }
@@ -96,4 +107,4 @@ export const getServerSideProps: GetServerSideProps = async ({ params, locale })
   }
 }
 
-export default ServicePage
+export default EventPage

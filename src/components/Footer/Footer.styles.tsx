@@ -1,5 +1,9 @@
-import { Box, Grid2, Paper, PaperTypeMap, styled, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Grid2 from '@mui/material/Grid2'
 import { OverridableComponent } from '@mui/material/OverridableComponent'
+import Paper, { PaperTypeMap } from '@mui/material/Paper'
+import styled from '@mui/material/styles/styled'
+import Typography from '@mui/material/Typography'
 import Image from 'next/image'
 import Link from 'next/link'
 

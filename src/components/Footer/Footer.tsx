@@ -1,5 +1,4 @@
 import { Contact } from '@/lib/types'
-import { Grid2, Typography } from '@mui/material'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
@@ -21,6 +20,8 @@ import {
   ImageGrid,
 } from './Footer.styles'
 import { getEmailLink, getImageUrl, getPhoneLink } from '@/helpers/link'
+import Grid2 from '@mui/material/Grid2'
+import Typography from '@mui/material/Typography'
 
 interface FooterProps extends Contact {
   websiteName: string

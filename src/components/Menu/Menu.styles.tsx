@@ -1,4 +1,6 @@
-import { AppBar, styled, Toolbar } from '@mui/material'
+import AppBar from "@mui/material/AppBar"
+import styled from "@mui/material/styles/styled"
+import Toolbar from "@mui/material/Toolbar"
 
 export const StyledMenu = styled(AppBar)<{ isAtTop: boolean }>(({ isAtTop, theme }) => ({
   background: isAtTop ? 'none' : theme.palette.common.white,

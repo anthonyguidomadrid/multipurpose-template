@@ -1,8 +1,9 @@
-import { Button, Typography } from '@mui/material'
+import Typography from '@mui/material/Typography'
 import { BackgroundImage } from '../common/styles'
 import { NotFoundWrapper, StyledOverlay } from './NotFound.styles'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
+import Button from '@mui/material/Button'
 
 interface NotFoundProps {
   backgroundImageUrl: string

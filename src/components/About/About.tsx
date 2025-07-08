@@ -1,11 +1,11 @@
 import { About as AboutType } from '@/lib/types'
-import { Grid2 } from '@mui/material'
-import { motion } from 'framer-motion'
+import Grid2 from '@mui/material/Grid2'
 import { AboutImage } from './About.styles'
 import { FADE_IN_UP } from '@/constants/animation'
 import { ContentSection } from '../ContentSection/ContentSection'
 import { SectionWrapper } from '../common/styles'
 import { getImageUrl } from '@/helpers/link'
+import { motion } from 'framer-motion'
 
 export const About: React.FC<AboutType> = ({ title, subtitle, description, photo }) => (
   <SectionWrapper

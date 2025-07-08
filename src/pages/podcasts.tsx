@@ -5,12 +5,14 @@ import { Image } from '@/lib/types'
 import { useTranslation } from 'next-i18next'
 import { LINK } from '@/constants/link'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Button, Grid2, Typography } from '@mui/material'
 import { SectionWrapper } from '@/components/common/styles'
 import { PodcastEpisode } from '@/components/PodcastEpisode/PodcastEpisode'
 import { usePaginatedEpisodes } from '@/hooks/usePaginatedEpisodes'
 import { motion } from 'framer-motion'
 import { FADE_IN_UP } from '@/constants/animation'
+import Typography from '@mui/material/Typography'
+import Grid2 from '@mui/material/Grid2'
+import Button from '@mui/material/Button'
 
 interface PodcastsPageProps {
   name: string

@@ -1,7 +1,7 @@
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { Typography } from '@mui/material'
 import { Document } from '@contentful/rich-text-types'
 import { DescriptionWrapper } from './ContentSection.style'
+import Typography from '@mui/material/Typography'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 export interface ContentSectionProps {
   title: string

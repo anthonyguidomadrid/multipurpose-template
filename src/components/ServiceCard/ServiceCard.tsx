@@ -1,8 +1,10 @@
-import { Typography, CardActionArea, CardMedia } from '@mui/material'
 import { useState } from 'react'
 import { Service as ServiceType } from '@/lib/types'
 import { ServiceCardContent, StyledServiceCard } from './ServiceCard.styles'
 import Link from 'next/link'
+import CardActionArea from '@mui/material/CardActionArea'
+import CardMedia from '@mui/material/CardMedia'
+import Typography from '@mui/material/Typography'
 
 export const ServiceCard: React.FC<ServiceType> = ({
   fields: { mainTitle, subtitle, thumbnail, slug },

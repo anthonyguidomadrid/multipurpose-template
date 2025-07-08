@@ -1,9 +1,9 @@
-import { Typography } from '@mui/material'
 import { Image } from '@/lib/types'
 import { BreadcrumbLabel, DetailsHeaderWrapper, StyledBreadcrumbs } from './DetailsHeader.styles'
 import { motion } from 'framer-motion'
 import { FADE_IN_UP } from '@/constants/animation'
 import { BackgroundImage, Overlay } from '../common/styles'
+import Typography from '@mui/material/Typography'
 
 interface DetailsHeaderProps {
   title: string

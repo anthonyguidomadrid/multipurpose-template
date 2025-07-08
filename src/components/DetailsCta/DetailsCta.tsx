@@ -1,9 +1,10 @@
-import { Stack, Typography } from '@mui/material'
 import { Cta } from '@/lib/types'
 import PhoneIcon from '@mui/icons-material/Phone'
 import EmailIcon from '@mui/icons-material/Email'
 import { getEmailLink, getPhoneLink } from '@/helpers/link'
 import { CtaWrapper, StackLink, StackWrapper } from './DetailsCta.styles'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 
 interface DetailsCtaProps extends Cta {
   sectionName: string

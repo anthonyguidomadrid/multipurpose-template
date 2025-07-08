@@ -1,5 +1,4 @@
 import { Testimonial as TestimonialType } from '@/lib/types'
-import { Grid2, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import {
   Author,
@@ -10,6 +9,8 @@ import {
 } from './Testimonial.styles'
 import { getDate } from '@/helpers/date'
 import { getImageUrl } from '@/helpers/link'
+import Grid2 from '@mui/material/Grid2'
+import Typography from '@mui/material/Typography'
 
 export const Testimonial: React.FC<TestimonialType> = ({
   fields: { title, description, author, date, image },

@@ -1,6 +1,5 @@
 import { getDate } from '@/helpers/date'
 import { Event } from '@/lib/types'
-import { CardMedia, CardContent, Typography, Button } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import {
@@ -9,6 +8,10 @@ import {
   EventRibbon,
   StyledEventCard,
 } from './EventCard.styles'
+import CardMedia from '@mui/material/CardMedia'
+import CardContent from '@mui/material/CardContent'
+import Typography from '@mui/material/Typography'
+import { Button } from '@mui/material'
 
 export const EventCard: React.FC<Event> = ({
   fields: {

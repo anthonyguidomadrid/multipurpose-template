@@ -1,4 +1,6 @@
-import { Box, Grid2, styled } from '@mui/material'
+import Box from "@mui/material/Box"
+import Grid2 from "@mui/material/Grid2"
+import styled from "@mui/material/styles/styled"
 
 export const SectionWrapper = styled(Grid2)(({ theme }) => ({
   maxWidth: theme.breakpoints.values.lg,

@@ -1,10 +1,10 @@
-import { Grid2 } from '@mui/material'
 import { ContentSection, ContentSectionProps } from '../ContentSection/ContentSection'
 import { Cta } from '@/lib/types'
 import { DetailsCta } from '../DetailsCta/DetailsCta'
 import { ContentWrapper } from './DetailsContent.styles'
 import { motion } from 'framer-motion'
 import { FADE_IN_UP } from '@/constants/animation'
+import Grid2 from '@mui/material/Grid2'
 
 interface DetailsContentProps extends ContentSectionProps {
   cta: Cta

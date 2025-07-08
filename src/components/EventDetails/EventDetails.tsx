@@ -1,5 +1,4 @@
 import { EventFields } from '@/lib/types'
-import { Grid2, Link, Typography } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import EventIcon from '@mui/icons-material/Event'
 import { LabelWithIcon } from '../LabelWithIcon/LabelWithIcon'
@@ -13,6 +12,9 @@ import { Map } from '../Map/Map'
 import { DetailsWrapper } from './EventDetails.styles'
 import { motion } from 'framer-motion'
 import { FADE_IN_UP } from '@/constants/animation'
+import Grid2 from '@mui/material/Grid2'
+import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
 
 type EventDetailsProps = Pick<
   EventFields,

@@ -1,4 +1,5 @@
-import { Grid2, styled } from '@mui/material'
+import Grid2 from "@mui/material/Grid2";
+import styled from "@mui/material/styles/styled";
 
 export const ContentWrapper = styled(Grid2)(({ theme }) => ({
   marginBottom: theme.spacing(4),

@@ -1,4 +1,6 @@
-import { Card, CardContent, styled } from '@mui/material'
+import Card from "@mui/material/Card"
+import CardContent from "@mui/material/CardContent"
+import styled from "@mui/material/styles/styled"
 
 export const StyledServiceCard = styled(Card)(() => ({
   position: 'relative',

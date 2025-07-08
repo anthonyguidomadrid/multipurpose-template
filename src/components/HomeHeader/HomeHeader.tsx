@@ -1,5 +1,4 @@
 import { Header } from '@/lib/types'
-import { Button, Typography } from '@mui/material'
 import { SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade } from 'swiper/modules'
 import {
@@ -13,6 +12,8 @@ import { motion } from 'framer-motion'
 import { STAGGER_CONTAINER, FADE_IN_UP } from '@/constants/animation'
 import { Link } from 'react-scroll'
 import { getImageUrl } from '@/helpers/link'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 
 export const HomeHeader: React.FC<Header> = ({ title, subtitle, sliderImages, ctaButtonText }) => {
   return (

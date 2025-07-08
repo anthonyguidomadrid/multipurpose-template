@@ -1,5 +1,5 @@
 import { Services } from '@/lib/types'
-import { Grid2 } from '@mui/material'
+import Grid2 from '@mui/material/Grid2'
 import { ContentSection } from '../ContentSection/ContentSection'
 import { ServiceCard } from '../ServiceCard/ServiceCard'
 import { SectionWithBackground, SectionWrapper } from '../common/styles'

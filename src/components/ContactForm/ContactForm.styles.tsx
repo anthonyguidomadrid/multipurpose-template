@@ -1,4 +1,7 @@
-import { Box, Checkbox, styled, TextField } from '@mui/material'
+import Box from "@mui/material/Box"
+import Checkbox from "@mui/material/Checkbox"
+import styled from "@mui/material/styles/styled"
+import TextField from "@mui/material/TextField"
 
 export const ContactFormWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',

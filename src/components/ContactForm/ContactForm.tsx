@@ -1,6 +1,5 @@
 import { EMAIL_REGEX } from '@/constants/regex'
 import { sendEmail } from '@/lib/emailjs'
-import { Button, Alert, Typography, FormHelperText, FormControlLabel, Link } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -8,6 +7,12 @@ import { ContactFormWrapper, PrivacyCheckbox, StyledTextField } from './ContactF
 import { Document } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { Dialog } from '../Dialog/Dialog'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
+import FormHelperText from '@mui/material/FormHelperText'
+import Button from '@mui/material/Button'
+import Alert from '@mui/material/Alert'
 
 interface ContactFormProps {
   email: string

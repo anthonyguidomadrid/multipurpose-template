@@ -1,6 +1,6 @@
-import { IconButton } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import { MobileMenuIconWrapper } from './MobileMenuIcon.styles'
+import IconButton from '@mui/material/IconButton'
 
 interface MobileMenuIconProps {
   handleDrawerToggle: () => void

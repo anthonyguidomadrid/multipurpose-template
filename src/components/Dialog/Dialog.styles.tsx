@@ -1,8 +1,6 @@
-import {
-  DialogTitle as MuiDialogTitle,
-  DialogContent as MuiDialogContent,
-  styled,
-} from '@mui/material'
+import MuiDialogTitle from '@mui/material/DialogTitle'
+import MuiDialogContent from '@mui/material/DialogContent'
+import styled from '@mui/material/styles/styled'
 
 export const DialogTitle = styled(MuiDialogTitle)(({ theme }) => ({
   color: theme.palette.common.white,

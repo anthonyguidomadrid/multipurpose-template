@@ -1,11 +1,8 @@
-import {
-  Dialog as MuiDialog,
-  DialogActions,
-  Button,
-  DialogProps as MuiDialogProps,
-} from '@mui/material'
+import MuiDialog, { DialogProps as MuiDialogProps } from '@mui/material/Dialog'
 import { useTranslation } from 'next-i18next'
 import { DialogContent, DialogTitle } from './Dialog.styles'
+import DialogActions from '@mui/material/DialogActions'
+import Button from '@mui/material/Button'
 
 interface DialogProps extends MuiDialogProps {
   open: boolean
@@ -15,7 +12,14 @@ interface DialogProps extends MuiDialogProps {
   name: string
 }
 
-export const Dialog: React.FC<DialogProps> = ({ open, onClose, title, children, name, ...rest }) => {
+export const Dialog: React.FC<DialogProps> = ({
+  open,
+  onClose,
+  title,
+  children,
+  name,
+  ...rest
+}) => {
   const { t } = useTranslation()
   return (
     <MuiDialog

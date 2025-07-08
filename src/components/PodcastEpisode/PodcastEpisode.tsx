@@ -1,6 +1,5 @@
 import { getDate } from '@/helpers/date'
 import { SpotifyEpisode } from '@/lib/spotify'
-import { Button, Collapse, Grid2, Typography } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -16,6 +15,10 @@ import {
   EpisodeImage,
   EpisodeWrapper,
 } from './PodcastEpisode.styles'
+import Grid2 from '@mui/material/Grid2'
+import Typography from '@mui/material/Typography'
+import Collapse from '@mui/material/Collapse'
+import Button from '@mui/material/Button'
 
 export const PodcastEpisode: React.FC<SpotifyEpisode> = ({
   name,

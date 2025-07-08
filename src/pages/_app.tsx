@@ -1,5 +1,4 @@
 import { AppProps, AppType } from 'next/app'
-import { CssBaseline, ThemeProvider } from '@mui/material'
 import getTheme from '@/theme/theme'
 import Head from 'next/head'
 import '../styles/global.css'
@@ -11,6 +10,8 @@ import { PageWrapper } from '@/components/PageWrapper/PageWrapper'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import { getImageUrl } from '@/helpers/link'
+import ThemeProvider from '@mui/material/styles/ThemeProvider'
+import CssBaseline from '@mui/material/CssBaseline'
 
 const App: AppType = ({ Component, pageProps }: AppProps) => {
   const { settings, contact, menu } = pageProps

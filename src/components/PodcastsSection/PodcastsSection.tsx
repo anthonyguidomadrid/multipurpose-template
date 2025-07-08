@@ -2,12 +2,12 @@ import { Podcasts } from '@/lib/types'
 import { ContentSection } from '../ContentSection/ContentSection'
 import { SectionWrapper } from '../common/styles'
 import { PodcastEpisode } from '../PodcastEpisode/PodcastEpisode'
-import { Button } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import { motion } from 'framer-motion'
 import { AllPodcastsButtonWrapper } from './PodcastsSection.styles'
 import { FADE_IN_VARIANTS } from '@/constants/animation'
 import { useRouter } from 'next/router'
+import Button from '@mui/material/Button'
 
 export const PodcastsSection: React.FC<Podcasts> = ({ title, subtitle, episodes }) => {
   const { t } = useTranslation()

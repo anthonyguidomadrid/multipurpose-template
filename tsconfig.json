@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "src/components/ContactForm",
     "next-i18next.config.js"
-  ],
+, "src/helpers/getSlugs.js"  ],
   "exclude": ["node_modules"]
 }

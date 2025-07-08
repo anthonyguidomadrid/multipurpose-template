@@ -1,4 +1,6 @@
-import { Box, Breadcrumbs, styled } from '@mui/material'
+import Box from '@mui/material/Box'
+import Breadcrumbs from '@mui/material/Breadcrumbs'
+import styled from '@mui/material/styles/styled'
 import Link from 'next/link'
 
 export const DetailsHeaderWrapper = styled(Box)(({ theme }) => ({

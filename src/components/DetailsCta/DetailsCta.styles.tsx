@@ -1,4 +1,6 @@
-import { Box, Link, styled } from '@mui/material'
+import Box from "@mui/material/Box"
+import Link from "@mui/material/Link"
+import styled from "@mui/material/styles/styled"
 
 export const CtaWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(4),

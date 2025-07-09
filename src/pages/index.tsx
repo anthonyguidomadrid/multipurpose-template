@@ -4,16 +4,26 @@ import { GetServerSideProps, NextPage } from 'next'
 import { HomePage as ContentfulHomePage } from '@/lib/types'
 import { About } from '@/components/About/About'
 import { ServicesSection } from '@/components/ServicesSection/ServicesSection'
-import { TestimonialsSection } from '@/components/TestimonialsSection/TestimonialsSection'
 import { getSpotifyEpisodes } from '@/lib/spotify'
-import { PodcastsSection } from '@/components/PodcastsSection/PodcastsSection'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { EventsSection } from '@/components/EventsSection/EventsSection'
 import { Seo } from '@/components/Seo/Seo'
+import dynamic from 'next/dynamic'
 
 interface HomePage {
   home: ContentfulHomePage
 }
+
+const TestimonialsSection = dynamic(() =>
+  import('@/components/TestimonialsSection/TestimonialsSection').then(
+    (mod) => mod.TestimonialsSection
+  )
+)
+const PodcastsSection = dynamic(() =>
+  import('@/components/PodcastsSection/PodcastsSection').then((mod) => mod.PodcastsSection)
+)
+const EventsSection = dynamic(() =>
+  import('@/components/EventsSection/EventsSection').then((mod) => mod.EventsSection)
+)
 
 const Home: NextPage<HomePage> = ({
   home: { header, about, services, testimonials, podcasts, events, seo },

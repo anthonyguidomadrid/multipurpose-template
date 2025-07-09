@@ -88,13 +88,14 @@ export const getCtaByType = async (type: string) => {
   return response.items[0].fields
 }
 
-export const getAllSlugs = async (
-  content_type: 'event' | 'service'
-): Promise<{ slug: string }[]> => {
+export const getReviews = async () => {
   const response = await client.getEntries({
-    content_type,
-    select: ['fields.slug'],
+    content_type: 'testimonial',
   })
 
-  return response.items?.map((item) => ({ slug: String(item.fields.slug ?? '') })) ?? []
+  if (response.items.length === 0) {
+    return []
+  }
+
+  return response.items
 }

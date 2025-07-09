@@ -5,14 +5,9 @@ import { Image } from '@/lib/types'
 import { useTranslation } from 'next-i18next'
 import { LINK } from '@/constants/link'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { SectionWrapper } from '@/components/common/styles'
-import { PodcastEpisode } from '@/components/PodcastEpisode/PodcastEpisode'
 import { usePaginatedEpisodes } from '@/hooks/usePaginatedEpisodes'
-import { motion } from 'framer-motion'
-import { FADE_IN_UP } from '@/constants/animation'
-import Typography from '@mui/material/Typography'
-import Grid2 from '@mui/material/Grid2'
-import Button from '@mui/material/Button'
+import { WebPageJsonLd } from 'next-seo'
+import dynamic from 'next/dynamic'
 
 interface PodcastsPageProps {
   name: string
@@ -22,6 +17,10 @@ interface PodcastsPageProps {
 }
 
 const EPISODES_PER_PAGE = 10
+
+const PodcastList = dynamic(() =>
+  import('@/components/PodcastList/PodcastList').then((mod) => mod.PodcastList)
+)
 
 const PodcastsPage: NextPage<PodcastsPageProps> = ({
   name,
@@ -45,6 +44,10 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
 
   return (
     <>
+      <WebPageJsonLd
+        description={description}
+        id={`${process.env.NEXT_PUBLIC_SITE_URL}/podcasts`}
+      />
       <DetailsHeader
         title={name}
         image={image}
@@ -52,47 +55,13 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
         sectionName="podcasts"
         backgroundPosition="top"
       />
-      <SectionWrapper>
-        <Grid2 container spacing={5} direction="column">
-          <Grid2 size={12}>
-            <Typography data-testid="podcasts-description">{description}</Typography>
-          </Grid2>
-          <Grid2 size={12}>
-            {episodes?.length > 0 ? (
-              episodes.map(
-                (episode) =>
-                  episode && (
-                    <motion.div
-                      key={episode.id}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true, amount: 0.3 }}
-                      variants={FADE_IN_UP}
-                    >
-                      <PodcastEpisode key={episode.id} {...episode} />
-                    </motion.div>
-                  )
-              )
-            ) : (
-              <Typography variant="body1" color="text.secondary">
-                {t('podcasts.noEpisodes')}
-              </Typography>
-            )}
-          </Grid2>
-          <Grid2 size={12} display="flex" justifyContent="center">
-            {hasMore && (
-              <Button
-                variant="contained"
-                onClick={handleSeeMore}
-                disabled={loading}
-                data-testid="see-more-episodes-button"
-              >
-                {t('button.seeMoreEpisodes')}
-              </Button>
-            )}
-          </Grid2>
-        </Grid2>
-      </SectionWrapper>
+      <PodcastList
+        description={description}
+        episodes={episodes}
+        hasMore={hasMore}
+        handleSeeMore={handleSeeMore}
+        loading={loading}
+      />
     </>
   )
 }

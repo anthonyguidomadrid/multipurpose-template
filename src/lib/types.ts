@@ -130,6 +130,14 @@ export type HomePage = {
   seo: { fields: Seo }
 }
 
+export type Address = {
+  city: string
+  country: string
+  postalCode: string
+  region: string
+  streetAddress: string
+}
+
 export type Contact = {
   email: string
   phone: string
@@ -139,6 +147,7 @@ export type Contact = {
   twitterUrl?: string
   galleryImages: Image[]
   privacyPolicy: Document
+  address: { fields: Address }
 }
 
 export type MenuItem = {

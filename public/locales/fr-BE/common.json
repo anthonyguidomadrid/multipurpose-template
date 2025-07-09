@@ -19,7 +19,8 @@
     "otherEvents": "Autres évènements",
     "eventDetails": "Détails de l'événement",
     "notFound": "Page non trouvée",
-    "privacyPolicy": "Politique de confidentialité"
+    "privacyPolicy": "Politique de confidentialité",
+    "address": "Adresse"
   },
   "subtitle": {
     "otherServices": "Ces autres services pourraient vous intéresser",

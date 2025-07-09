@@ -114,6 +114,11 @@ test.describe('Footer', () => {
     await expect(emailLink).toBeVisible()
     await expect(emailLink).toHaveAttribute('href', /mailto:/)
 
+    const addressLabel = page.getByTestId('footer-address-label')
+    await expect(addressLabel).toBeVisible()
+    const addressDetails = page.getByTestId('footer-address-details')
+    await expect(addressDetails).toBeVisible()
+
     // Social media buttons
     const socialButtons = page.locator('[data-testid^="footer-social-"]')
     expect(await socialButtons.count()).toBeGreaterThan(0)

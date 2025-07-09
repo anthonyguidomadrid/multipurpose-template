@@ -5,6 +5,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import PhoneIcon from '@mui/icons-material/Phone'
 import EmailIcon from '@mui/icons-material/Email'
+import LocationPinIcon from '@mui/icons-material/LocationPin'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { SocialMediaButton } from '../SocialMediaButton/SocialMediaButton'
@@ -22,6 +23,7 @@ import {
 import { getEmailLink, getImageUrl, getPhoneLink } from '@/helpers/link'
 import Grid2 from '@mui/material/Grid2'
 import Typography from '@mui/material/Typography'
+import { Box } from '@mui/material'
 
 interface FooterProps extends Contact {
   websiteName: string
@@ -37,6 +39,7 @@ export const Footer: React.FC<FooterProps> = ({
   galleryImages,
   websiteName,
   privacyPolicy,
+  address: { fields: addressFields },
 }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
@@ -86,6 +89,21 @@ export const Footer: React.FC<FooterProps> = ({
                       {email}
                     </FooterLink>
                   </Typography>
+                </ContactWrapper>
+              </Grid2>
+              <Grid2 size={12}>
+                <Typography variant="subtitle2" data-testid="footer-address-label">
+                  {t('title.address')}
+                </Typography>
+                <ContactWrapper>
+                  <LocationPinIcon fontSize="small" />
+                  <Box data-testid="footer-address-details">
+                    <Typography variant="body2">{addressFields.streetAddress}</Typography>
+                    <Typography variant="body2">
+                      {addressFields.postalCode} {addressFields.city}, {addressFields.region}
+                    </Typography>
+                    <Typography variant="body2">{addressFields.country}</Typography>
+                  </Box>
                 </ContactWrapper>
               </Grid2>
               <Grid2 size={12}>

@@ -15,6 +15,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { OrganizationJsonLd } from 'next-seo'
 import { Testimonial } from '@/lib/types'
 import { Oswald, Mrs_Saint_Delafield, Open_Sans } from 'next/font/google'
+import { GoogleAnalytics } from 'nextjs-google-analytics'
 
 const oswald = Oswald({
   subsets: ['latin'],
@@ -97,6 +98,7 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
         <link rel="apple-touch-icon" sizes="180x180" href={faviconPngUrl} />
         <link rel="icon" type="image/svg+xml" href={faviconSvgUrl} />
       </Head>
+      <GoogleAnalytics trackPageViews />
       <CssBaseline />
       <ThemeProvider theme={getTheme(settings)}>
         <PageWrapper contact={contact} websiteName={websiteName} menu={menu}>

@@ -8,6 +8,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { usePaginatedEpisodes } from '@/hooks/usePaginatedEpisodes'
 import { WebPageJsonLd } from 'next-seo'
 import dynamic from 'next/dynamic'
+import { Seo } from '@/components/Seo/Seo'
 
 interface PodcastsPageProps {
   name: string
@@ -44,6 +45,7 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
 
   return (
     <>
+      <Seo metaTitle={name} metaDescription={description} ogImage={image} />
       <WebPageJsonLd
         description={description}
         id={`${process.env.NEXT_PUBLIC_SITE_URL}/podcasts`}

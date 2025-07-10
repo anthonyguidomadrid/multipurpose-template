@@ -64,7 +64,7 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
         id={siteUrl}
         name={websiteName}
         url={siteUrl}
-        logo={faviconPngUrl}
+        logo={getImageUrl(menu.logo.fields.file.url)}
         sameAs={socialMediaUrls}
         contactPoint={[
           {

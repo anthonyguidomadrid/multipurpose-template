@@ -9,13 +9,13 @@ import { appWithTranslation } from 'next-i18next'
 import { PageWrapper } from '@/components/PageWrapper/PageWrapper'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import { getImageUrl } from '@/helpers/link'
 import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import CssBaseline from '@mui/material/CssBaseline'
 import { OrganizationJsonLd } from 'next-seo'
 import { Testimonial } from '@/lib/types'
 import { Oswald, Mrs_Saint_Delafield, Open_Sans } from 'next/font/google'
 import { GoogleAnalytics } from 'nextjs-google-analytics'
+import { getImageDetails } from '@/helpers/image'
 
 const oswald = Oswald({
   subsets: ['latin'],
@@ -46,9 +46,9 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
     }
   }, [locale, router])
 
-  const faviconPngUrl = getImageUrl(faviconPng.fields.file.url)
-  const faviconSvgUrl = getImageUrl(faviconSvg.fields.file.url)
-  const faviconIcoUrl = getImageUrl(faviconIco.fields.file.url)
+  const faviconPngUrl = getImageDetails(faviconPng).imageUrl
+  const faviconSvgUrl = getImageDetails(faviconSvg).imageUrl
+  const faviconIcoUrl = getImageDetails(faviconIco).imageUrl
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || ''
   const socialMediaUrls = [
     contact.facebookUrl,
@@ -64,7 +64,7 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
         id={siteUrl}
         name={websiteName}
         url={siteUrl}
-        logo={getImageUrl(menu.logo.fields.file.url)}
+        logo={getImageDetails(menu.logo).imageUrl}
         sameAs={socialMediaUrls}
         contactPoint={[
           {

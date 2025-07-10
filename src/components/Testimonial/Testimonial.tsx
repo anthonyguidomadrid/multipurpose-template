@@ -8,23 +8,25 @@ import {
   TestimonialQuote,
 } from './Testimonial.styles'
 import { getDate } from '@/helpers/date'
-import { getImageUrl } from '@/helpers/link'
 import Grid2 from '@mui/material/Grid2'
 import Typography from '@mui/material/Typography'
+import { getImageDetails } from '@/helpers/image'
 
 export const Testimonial: React.FC<TestimonialType> = ({
   fields: { title, description, author, date, image },
 }) => {
   const { locale } = useRouter()
   const formattedDate = getDate(date, 'MMMM yyyy', locale)
+  const { imageUrl, imageDescription, imageWidth, imageHeight } = getImageDetails(image)
+
   return (
     <TestimonialContainer container spacing={2} data-testid="testimonial-slide">
       <TestimonialImageWrapper size={2}>
         <TestimonialImage
-          src={getImageUrl(image.fields.file.url)}
-          alt={image.fields.description}
-          width={image.fields.file.details.image.width}
-          height={image.fields.file.details.image.height}
+          src={imageUrl}
+          alt={imageDescription}
+          width={imageWidth}
+          height={imageHeight}
           data-testid="testimonial-image"
         />
       </TestimonialImageWrapper>

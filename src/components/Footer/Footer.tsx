@@ -20,10 +20,11 @@ import {
   FooterWrapper,
   ImageGrid,
 } from './Footer.styles'
-import { getEmailLink, getImageUrl, getPhoneLink } from '@/helpers/link'
+import { getEmailLink, getPhoneLink } from '@/helpers/link'
 import Grid2 from '@mui/material/Grid2'
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/material'
+import { getImageDetails } from '@/helpers/image'
 
 interface FooterProps extends Contact {
   websiteName: string
@@ -131,21 +132,25 @@ export const Footer: React.FC<FooterProps> = ({
               {t('title.gallery')}
             </FooterTitle>
             <Grid2 container spacing={2}>
-              {galleryImages.slice(0, 6).map(({ fields }, idx) => (
-                <Grid2 size={4} key={fields.file.fileName}>
-                  <ImageGrid
-                    src={getImageUrl(fields.file.url)}
-                    alt={fields.title}
-                    width={fields.file.details.image.width}
-                    height={fields.file.details.image.height}
-                    onClick={() => {
-                      setPhotoIndex(idx)
-                      setLightboxOpen(true)
-                    }}
-                    data-testid={`footer-gallery-image-${idx}`}
-                  />
-                </Grid2>
-              ))}
+              {galleryImages.slice(0, 6).map((image, idx) => {
+                const { imageUrl, imageDescription, imageWidth, imageHeight } =
+                  getImageDetails(image)
+                return (
+                  <Grid2 size={4} key={image.fields.file.fileName}>
+                    <ImageGrid
+                      src={imageUrl}
+                      alt={imageDescription}
+                      width={imageWidth}
+                      height={imageHeight}
+                      onClick={() => {
+                        setPhotoIndex(idx)
+                        setLightboxOpen(true)
+                      }}
+                      data-testid={`footer-gallery-image-${idx}`}
+                    />
+                  </Grid2>
+                )
+              })}
             </Grid2>
             {lightboxOpen && (
               <GalleryLightbox

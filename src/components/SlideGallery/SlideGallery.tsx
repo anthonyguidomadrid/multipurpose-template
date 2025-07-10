@@ -7,7 +7,7 @@ import { GalleryLightbox } from '../Lightbox/Lightbox'
 import { GalleryImage } from './SlideGallery.styles'
 import { motion } from 'framer-motion'
 import { FADE_IN_VARIANTS } from '@/constants/animation'
-import { getImageUrl } from '@/helpers/link'
+import { getImageDetails } from '@/helpers/image'
 
 interface SlideGalleryProps {
   images: Image[]
@@ -35,29 +35,32 @@ export const SlideGallery: React.FC<SlideGalleryProps> = ({ images }) => {
           },
         }}
       >
-        {images.map(({ fields }, index) => (
-          <SwiperSlide key={index}>
-            <motion.div
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
-              custom={index}
-              variants={FADE_IN_VARIANTS}
-            >
-              <GalleryImage
-                src={getImageUrl(fields.file.url)}
-                alt={fields.title}
-                width={fields.file.details.image.width}
-                height={fields.file.details.image.height}
-                onClick={() => {
-                  setPhotoIndex(index)
-                  setLightboxOpen(true)
-                }}
-                data-testid={`slide-gallery-image-${index}`}
-              />
-            </motion.div>
-          </SwiperSlide>
-        ))}
+        {images.map((image, index) => {
+          const { imageUrl, imageDescription, imageWidth, imageHeight } = getImageDetails(image)
+          return (
+            <SwiperSlide key={index}>
+              <motion.div
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.3 }}
+                custom={index}
+                variants={FADE_IN_VARIANTS}
+              >
+                <GalleryImage
+                  src={imageUrl}
+                  alt={imageDescription}
+                  width={imageWidth}
+                  height={imageHeight}
+                  onClick={() => {
+                    setPhotoIndex(index)
+                    setLightboxOpen(true)
+                  }}
+                  data-testid={`slide-gallery-image-${index}`}
+                />
+              </motion.div>
+            </SwiperSlide>
+          )
+        })}
       </Swiper>
       {lightboxOpen && (
         <GalleryLightbox

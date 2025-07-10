@@ -2,23 +2,13 @@ import { useRouter } from 'next/router'
 import { Menu } from '@/lib/types'
 import { MenuLogoImage, MenuLogoWrapper } from './MenuLogo.styles'
 import { animateScroll as scroll } from 'react-scroll'
-import { getImageUrl } from '@/helpers/link'
+import { getImageDetails } from '@/helpers/image'
 
-export const MenuLogo: React.FC<Pick<Menu, 'logo'>> = ({
-  logo: {
-    fields: {
-      title: logoTitle,
-      file: {
-        url: logoUrl,
-        details: {
-          image: { width: logoWidth, height: logoHeight },
-        },
-      },
-    },
-  },
-}) => {
+export const MenuLogo: React.FC<Pick<Menu, 'logo'>> = ({ logo }) => {
   const router = useRouter()
   const isHomePage = router.pathname === '/'
+  const { imageUrl, imageDescription, imageWidth, imageHeight } = getImageDetails(logo)
+
   return (
     <MenuLogoWrapper
       onClick={async (e) => {
@@ -34,10 +24,10 @@ export const MenuLogo: React.FC<Pick<Menu, 'logo'>> = ({
       data-testid="menu-logo"
     >
       <MenuLogoImage
-        src={getImageUrl(logoUrl)}
-        alt={logoTitle}
-        width={logoWidth}
-        height={logoHeight}
+        src={imageUrl}
+        alt={imageDescription}
+        width={imageWidth}
+        height={imageHeight}
       />
     </MenuLogoWrapper>
   )

@@ -35,6 +35,7 @@ const EventPage: NextPage<EventsPageProps> = ({
     description,
     startDate,
     finishingDate,
+    isVirtual,
     location,
     contactEmail,
     contactPhone,
@@ -92,6 +93,7 @@ const EventPage: NextPage<EventsPageProps> = ({
           contactEmail={contactEmail}
           contactPhone={contactPhone}
           placeName={placeName}
+          isVirtual={isVirtual}
         />
       </SectionWrapper>
       <EventsSection

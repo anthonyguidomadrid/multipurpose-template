@@ -1,4 +1,4 @@
-import { createClient } from 'contentful'
+import { createClient, EntriesQueries, EntrySkeletonType } from 'contentful'
 import { HomePage, ThemeSettings } from './types'
 
 const client = createClient({
@@ -16,7 +16,10 @@ export const getSettings = async () => {
     throw new Error('No settings found in Contentful')
   }
 
-  return { ...response.items[0].fields, locale: response.items[0].sys.locale } as ThemeSettings
+  return {
+    ...response.items[0].fields,
+    locale: response.items[0].sys.locale?.slice(0, 2),
+  } as ThemeSettings
 }
 
 export const getContact = async () => {
@@ -63,15 +66,20 @@ export const getDetailsBySlug = async (slug: string, contentType: string) => {
   return response.items[0].fields
 }
 
-export const getOtherDetails = async (serviceSlug: string, contentType: string) => {
-  const response = await client.getEntries({
+export const getOtherDetails = async (slug: string, contentType: string) => {
+  const query: EntriesQueries<EntrySkeletonType, undefined> & { order?: string } = {
     content_type: contentType,
-  })
+  }
+  if (contentType === 'event') {
+    query.order = 'fields.startDate'
+  }
+
+  const response = await client.getEntries(query)
 
   if (response.items.length === 0) {
     return []
   }
-  const otherDetails = response.items.filter((item) => item.fields.slug !== serviceSlug)
+  const otherDetails = response.items.filter((item) => item.fields.slug !== slug)
   return otherDetails
 }
 

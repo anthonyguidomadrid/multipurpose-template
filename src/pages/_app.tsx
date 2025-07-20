@@ -13,7 +13,14 @@ import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import CssBaseline from '@mui/material/CssBaseline'
 import { OrganizationJsonLd } from 'next-seo'
 import { Testimonial } from '@/lib/types'
-import { Oswald, Mrs_Saint_Delafield, Open_Sans } from 'next/font/google'
+import {
+  Oswald,
+  Mrs_Saint_Delafield,
+  Open_Sans,
+  Poiret_One,
+  Splash,
+  Just_Me_Again_Down_Here,
+} from 'next/font/google'
 import { GoogleAnalytics } from 'nextjs-google-analytics'
 import { getImageDetails } from '@/helpers/image'
 
@@ -32,6 +39,24 @@ const mrsSaintDelafield = Mrs_Saint_Delafield({
 const openSans = Open_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '600', '700'],
+  display: 'swap',
+})
+
+const poiretOne = Poiret_One({
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+})
+
+const splash = Splash({
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+})
+
+const justMeAgainDownHere = Just_Me_Again_Down_Here({
+  subsets: ['latin'],
+  weight: ['400'],
   display: 'swap',
 })
 
@@ -73,13 +98,15 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
             email: contact.email,
           },
         ]}
-        address={{
-          streetAddress: contact.address.fields.streetAddress,
-          addressLocality: contact.address.fields.city,
-          addressRegion: contact.address.fields.region,
-          postalCode: contact.address.fields.postalCode,
-          addressCountry: contact.address.fields.country,
-        }}
+        address={
+          contact.address && {
+            streetAddress: contact.address.fields.streetAddress,
+            addressLocality: contact.address.fields.city,
+            addressRegion: contact.address.fields.region,
+            postalCode: contact.address.fields.postalCode,
+            addressCountry: contact.address.fields.country,
+          }
+        }
         reviews={reviews.map(({ fields: { title, description, author, date } }: Testimonial) => ({
           author,
           datePublished: date,
@@ -103,7 +130,7 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={getTheme(settings)}>
         <PageWrapper contact={contact} websiteName={websiteName} menu={menu}>
           <Component
-            className={`${openSans.className} ${oswald.className} ${mrsSaintDelafield.className}`}
+            className={`${openSans.className} ${oswald.className} ${mrsSaintDelafield.className} ${poiretOne.className} ${splash.className} ${justMeAgainDownHere.className}`}
             {...pageProps}
           />
         </PageWrapper>

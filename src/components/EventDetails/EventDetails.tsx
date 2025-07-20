@@ -18,25 +18,33 @@ import Link from '@mui/material/Link'
 
 type EventDetailsProps = Pick<
   EventFields,
-  'startDate' | 'finishingDate' | 'location' | 'contactEmail' | 'contactPhone' | 'placeName'
+  | 'startDate'
+  | 'finishingDate'
+  | 'location'
+  | 'contactEmail'
+  | 'contactPhone'
+  | 'placeName'
+  | 'isVirtual'
 >
 
 export const EventDetails: React.FC<EventDetailsProps> = ({
   startDate,
   finishingDate,
   location,
+  isVirtual,
   contactEmail,
   contactPhone,
   placeName,
 }) => {
   const { t } = useTranslation()
   const { locale } = useRouter()
+  const shouldShowMap = !isVirtual && location
 
   const getEventDate = (date: string) => getDate(new Date(date), 'dd MMMM yyyy HH:mm', locale)
   return (
     <Grid2 container spacing={2}>
       <DetailsWrapper
-        size={{ xs: 12, sm: 6 }}
+        size={{ xs: 12, sm: shouldShowMap ? 6 : 12 }}
         component={motion.div}
         initial="hidden"
         whileInView="show"
@@ -84,16 +92,18 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
           name="event-contact-email"
         />
       </DetailsWrapper>
-      <Grid2
-        size={{ xs: 12, sm: 6 }}
-        component={motion.div}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={FADE_IN_UP}
-      >
-        <Map lat={location.lat} lon={location.lon} />
-      </Grid2>
+      {shouldShowMap && (
+        <Grid2
+          size={{ xs: 12, sm: 6 }}
+          component={motion.div}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={FADE_IN_UP}
+        >
+          <Map lat={location.lat} lon={location.lon} />
+        </Grid2>
+      )}
     </Grid2>
   )
 }

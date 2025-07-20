@@ -3,6 +3,10 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import TwitterIcon from '@mui/icons-material/Twitter'
+import PodcastsIcon from '@mui/icons-material/Podcasts'
+import YouTubeIcon from '@mui/icons-material/YouTube'
+import WhatsAppIcon from '@mui/icons-material/WhatsApp'
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism'
 import PhoneIcon from '@mui/icons-material/Phone'
 import EmailIcon from '@mui/icons-material/Email'
 import LocationPinIcon from '@mui/icons-material/LocationPin'
@@ -37,10 +41,14 @@ export const Footer: React.FC<FooterProps> = ({
   instagramUrl,
   linkedInUrl,
   twitterUrl,
+  spotifyUrl,
+  youtubeUrl,
+  whatsappUrl,
+  vakiUrl,
   galleryImages,
   websiteName,
   privacyPolicy,
-  address: { fields: addressFields },
+  address,
 }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
@@ -53,8 +61,21 @@ export const Footer: React.FC<FooterProps> = ({
       { url: instagramUrl, icon: <InstagramIcon /> },
       { url: linkedInUrl, icon: <LinkedInIcon /> },
       { url: twitterUrl, icon: <TwitterIcon /> },
+      { url: spotifyUrl, icon: <PodcastsIcon /> },
+      { url: youtubeUrl, icon: <YouTubeIcon /> },
+      { url: whatsappUrl, icon: <WhatsAppIcon /> },
+      { url: vakiUrl, icon: <VolunteerActivismIcon /> },
     ]
-  }, [facebookUrl, instagramUrl, linkedInUrl, twitterUrl])
+  }, [
+    facebookUrl,
+    instagramUrl,
+    linkedInUrl,
+    spotifyUrl,
+    twitterUrl,
+    vakiUrl,
+    whatsappUrl,
+    youtubeUrl,
+  ])
 
   return (
     <>
@@ -92,21 +113,23 @@ export const Footer: React.FC<FooterProps> = ({
                   </Typography>
                 </ContactWrapper>
               </Grid2>
-              <Grid2 size={12}>
-                <Typography variant="subtitle2" data-testid="footer-address-label">
-                  {t('title.address')}
-                </Typography>
-                <ContactWrapper>
-                  <LocationPinIcon fontSize="small" />
-                  <Box data-testid="footer-address-details">
-                    <Typography variant="body2">{addressFields.streetAddress}</Typography>
-                    <Typography variant="body2">
-                      {addressFields.postalCode} {addressFields.city}, {addressFields.region}
-                    </Typography>
-                    <Typography variant="body2">{addressFields.country}</Typography>
-                  </Box>
-                </ContactWrapper>
-              </Grid2>
+              {address && (
+                <Grid2 size={12}>
+                  <Typography variant="subtitle2" data-testid="footer-address-label">
+                    {t('title.address')}
+                  </Typography>
+                  <ContactWrapper>
+                    <LocationPinIcon fontSize="small" />
+                    <Box data-testid="footer-address-details">
+                      <Typography variant="body2">{address.fields.streetAddress}</Typography>
+                      <Typography variant="body2">
+                        {address.fields.postalCode} {address.fields.city}, {address.fields.region}
+                      </Typography>
+                      <Typography variant="body2">{address.fields.country}</Typography>
+                    </Box>
+                  </ContactWrapper>
+                </Grid2>
+              )}
               <Grid2 size={12}>
                 {socialMediaArray.map(
                   (social, index) =>

@@ -91,7 +91,8 @@ export type EventFields = {
   startDate: string
   finishingDate: string
   description: Document
-  location: {
+  isVirtual: boolean
+  location?: {
     lon: number
     lat: number
   }
@@ -145,6 +146,10 @@ export type Contact = {
   instagramUrl?: string
   linkedInUrl?: string
   twitterUrl?: string
+  spotifyUrl?: string
+  youtubeUrl?: string
+  whatsappUrl?: string
+  vakiUrl?: string
   galleryImages: Image[]
   privacyPolicy: Document
   address: { fields: Address }

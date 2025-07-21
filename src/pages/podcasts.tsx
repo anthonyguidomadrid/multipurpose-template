@@ -1,6 +1,6 @@
 import { DetailsHeader } from '@/components/DetailsHeader/DetailsHeader'
 import { getShowInformation, getSpotifyEpisodes, SpotifyEpisode } from '@/lib/spotify'
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { Image } from '@/lib/types'
 import { useTranslation } from 'next-i18next'
 import { LINK } from '@/constants/link'
@@ -68,7 +68,7 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const show = await getShowInformation()
   const episodes = await getSpotifyEpisodes({ limit: EPISODES_PER_PAGE, offset: 0 })
 

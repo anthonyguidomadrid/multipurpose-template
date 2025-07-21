@@ -35,7 +35,7 @@ export const EventCard: React.FC<Event> = ({
   return (
     <EventCardWrapper data-testid="event-card">
       <EventRibbon data-testid="event-ribbon">
-        {getDate(new Date(startDate), 'dd MMMM yyyy', locale)}
+        {getDate(startDate, 'dd MMMM yyyy', locale)}
       </EventRibbon>
       <StyledEventCard>
         <CardMedia

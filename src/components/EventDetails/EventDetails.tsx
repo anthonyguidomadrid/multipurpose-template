@@ -40,7 +40,7 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
   const { locale } = useRouter()
   const shouldShowMap = !isVirtual && location
 
-  const getEventDate = (date: string) => getDate(new Date(date), 'dd MMMM yyyy HH:mm', locale)
+  const getEventDate = (date: string) => getDate(date, 'dd MMMM yyyy HH:mm', locale)
   return (
     <Grid2 container spacing={2}>
       <DetailsWrapper

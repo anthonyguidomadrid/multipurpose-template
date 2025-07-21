@@ -1,6 +1,6 @@
 import { HomeHeader } from '@/components/HomeHeader/HomeHeader'
 import { getHomePage } from '@/lib/contentful'
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { HomePage as ContentfulHomePage } from '@/lib/types'
 import { About } from '@/components/About/About'
 import { ServicesSection } from '@/components/ServicesSection/ServicesSection'
@@ -43,7 +43,7 @@ const Home: NextPage<HomePage> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const home = await getHomePage()
   const episodes = await getSpotifyEpisodes({ limit: 3 })
 

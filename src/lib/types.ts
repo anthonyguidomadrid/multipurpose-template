@@ -67,7 +67,7 @@ export type Testimonial = {
     title: string
     description: string
     author: string
-    date: Date
+    date: string
     image: Image
   }
 }

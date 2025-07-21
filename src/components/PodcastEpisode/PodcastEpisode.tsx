@@ -32,7 +32,7 @@ export const PodcastEpisode: React.FC<SpotifyEpisode> = ({
   const [isExpanded, setIsExpanded] = useState(false)
   const { t } = useTranslation()
 
-  const formattedDate = getDate(new Date(release_date), 'dd MMMM yyyy', locale)
+  const formattedDate = getDate(release_date, 'dd MMMM yyyy', locale)
   const { url, height, width } = images[1] // Use the second image size (640x640) for adapted quality
 
   const toggleDescription = () => setIsExpanded((prev) => !prev)

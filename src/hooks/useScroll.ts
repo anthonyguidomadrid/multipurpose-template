@@ -8,7 +8,6 @@ export const useScroll = () => {
       setIsAtTop(window.scrollY === 0)
     }
     window.addEventListener('scroll', handleScroll)
-    // Call once to set initial value
     handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])

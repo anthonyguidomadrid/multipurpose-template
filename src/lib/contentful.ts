@@ -60,7 +60,7 @@ export const getDetailsBySlug = async (slug: string, contentType: string) => {
   })
 
   if (response.items.length === 0) {
-    return null
+    throw new Error(`No details found for slug: ${slug} and content type: ${contentType}`)
   }
 
   return response.items[0].fields
@@ -90,7 +90,7 @@ export const getCtaByType = async (type: string) => {
   })
 
   if (response.items.length === 0) {
-    return null
+    throw new Error(`No CTA found for type: ${type}`)
   }
 
   return response.items[0].fields

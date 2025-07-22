@@ -77,7 +77,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   }
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'en-US', ['common'])),
+      ...(await serverSideTranslations(locale || 'en', ['common'])),
       ...show,
       episodes,
     },

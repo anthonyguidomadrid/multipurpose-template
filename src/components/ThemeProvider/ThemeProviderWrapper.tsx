@@ -1,5 +1,4 @@
 'use client'
-
 import { getSettings } from '@/lib/contentful'
 import getTheme from '@/theme/theme'
 import createTheme from '@mui/material/styles/createTheme'

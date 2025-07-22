@@ -1,6 +1,6 @@
 import Lightbox from 'react-image-lightbox'
-import 'react-image-lightbox/style.css'
 import { Image } from '@/lib/types'
+import 'react-image-lightbox/style.css'
 
 interface GalleryLightBoxProps {
   setLightboxOpen: (open: boolean) => void

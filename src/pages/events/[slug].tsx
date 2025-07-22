@@ -121,7 +121,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params, locale })
 
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'en-US', ['common'])),
+      ...(await serverSideTranslations(locale || 'en', ['common'])),
       event,
       otherEvents,
       cta,

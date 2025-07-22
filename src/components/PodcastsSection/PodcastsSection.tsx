@@ -1,10 +1,9 @@
 import { Podcasts } from '@/lib/types'
-import { ContentSection } from '../ContentSection/ContentSection'
 import { SectionWrapper } from '../common/styles'
 import { PodcastEpisode } from '../PodcastEpisode/PodcastEpisode'
 import { useTranslation } from 'next-i18next'
 import { motion } from 'framer-motion'
-import { AllPodcastsButtonWrapper } from './PodcastsSection.styles'
+import { AllPodcastsButtonWrapper, PodcastSection } from './PodcastsSection.styles'
 import { FADE_IN_VARIANTS } from '@/constants/animation'
 import { useRouter } from 'next/router'
 import Button from '@mui/material/Button'
@@ -17,7 +16,7 @@ export const PodcastsSection: React.FC<Podcasts> = ({ title, subtitle, episodes 
 
   return (
     <SectionWrapper id="podcasts">
-      <ContentSection subtitle={subtitle} title={title} sectionName="podcasts" />
+      <PodcastSection subtitle={subtitle} title={title} sectionName="podcasts" />
       {episodes.map(
         (episode, index) =>
           episode && (

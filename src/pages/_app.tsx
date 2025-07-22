@@ -1,7 +1,6 @@
 import { AppProps, AppType } from 'next/app'
 import getTheme from '@/theme/theme'
 import Head from 'next/head'
-import '../styles/global.css'
 import { getContact, getMenu, getReviews, getSettings } from '@/lib/contentful'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'

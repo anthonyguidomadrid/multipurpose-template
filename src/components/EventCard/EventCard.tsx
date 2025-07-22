@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import {
   EventButtonWrapper,
   EventCardWrapper,
+  EventContent,
   EventRibbon,
   StyledEventCard,
 } from './EventCard.styles'
@@ -45,7 +46,7 @@ export const EventCard: React.FC<Event> = ({
           image={thumbnailUrl}
           data-testid="event-image"
         />
-        <CardContent>
+        <EventContent>
           <Typography gutterBottom variant="h5" data-testid="event-title">
             {title}
           </Typography>
@@ -57,7 +58,7 @@ export const EventCard: React.FC<Event> = ({
               {t('button.seeMore')}
             </Button>
           </EventButtonWrapper>
-        </CardContent>
+        </EventContent>
       </StyledEventCard>
     </EventCardWrapper>
   )

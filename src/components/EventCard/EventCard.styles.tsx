@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
 import styled from '@mui/material/styles/styled'
 
 export const EventCardWrapper = styled(Box)(({ theme }) => ({
@@ -28,3 +29,11 @@ export const StyledEventCard = styled(Card)(({ theme }) => ({
 }))
 
 export const EventButtonWrapper = styled(CardActions)(() => ({ justifyContent: 'center' }))
+
+export const EventContent = styled(CardContent)(() => ({
+  minHeight: '200px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+}))

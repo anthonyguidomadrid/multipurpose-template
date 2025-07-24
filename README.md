@@ -121,13 +121,13 @@ Live demo: [https://by-treffry.vercel.app/](https://by-treffry.vercel.app/)
 ## Screenshots
 
 ### Home Page
-![Home Page](/images/home-page.jpg)
+![Home Page](./public/images/service-details-page.jpg)
 
 ### Service Details Page
-![Service Details Page](/images/service-details-page.jpg)
+![Service Details Page](./public/images/service-details-page.jpg)
 
 ### Event Details Page
-![Event Details Page](/images/event-details-page.jpg)
+![Event Details Page](./public/images/event-details-page.jpg)
 
 
 ## Author

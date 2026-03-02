@@ -223,9 +223,12 @@ test.describe('Favicon and Head tags', () => {
   test('should have all favicon links defined in the head', async ({ page }) => {
     await page.goto('/')
 
-    const icoHref = /(?:\/favicon\.ico$|\/favicon\.ico\?|\/favicon\.ico#|\/favicon\.ico\/|\/favicon\.ico\b|\/[^\s"']+\.ico\b|\/\/assets\.ctfassets\.net\/[^\s"']+\.ico\b)/
-    const pngHref = /(?:\/favicon\.png$|\/favicon\.png\?|\/favicon\.png#|\/favicon\.png\b|\/\/images\.ctfassets\.net\/[^\s"']+\.png\b)/
-    const svgHref = /(?:\/favicon\.svg$|\/favicon\.svg\?|\/favicon\.svg#|\/favicon\.svg\b|\/\/images\.ctfassets\.net\/[^\s"']+\.svg\b)/
+    const icoHref =
+      /(?:\/favicon\.ico$|\/favicon\.ico\?|\/favicon\.ico#|\/favicon\.ico\/|\/favicon\.ico\b|\/[^\s"']+\.ico\b|\/\/assets\.ctfassets\.net\/[^\s"']+\.ico\b)/
+    const pngHref =
+      /(?:\/favicon\.png$|\/favicon\.png\?|\/favicon\.png#|\/favicon\.png\b|\/\/images\.ctfassets\.net\/[^\s"']+\.png\b)/
+    const svgHref =
+      /(?:\/favicon\.svg$|\/favicon\.svg\?|\/favicon\.svg#|\/favicon\.svg\b|\/\/images\.ctfassets\.net\/[^\s"']+\.svg\b)/
 
     // ICO favicon
     const icoFavicon = page.locator('link[rel="icon"][type="image/x-icon"]')

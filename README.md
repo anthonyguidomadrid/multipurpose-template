@@ -3,6 +3,7 @@
 A production-ready, multipurpose template built with [Next.js](https://nextjs.org), [Contentful](https://www.contentful.com/), [MUI](https://mui.com/), [next-i18next](https://github.com/isaachinman/next-i18next), [next-seo](https://github.com/garmeeh/next-seo), and more.
 
 ## Features
+
 - Contentful CMS integration
 - Google Fonts via `next/font`
 - SEO and structured data with `next-seo`
@@ -16,6 +17,11 @@ A production-ready, multipurpose template built with [Next.js](https://nextjs.or
 - TypeScript, Prettier, ESLint
 
 ## Getting Started
+
+### Prerequisites
+
+- Node.js **24.x**
+  - If you use `nvm`: `nvm install 24 && nvm use 24` (this repo includes an `.nvmrc`)
 
 ### 1. Install dependencies
 
@@ -34,6 +40,7 @@ cp .env.example .env
 ```
 
 #### Required variables:
+
 - **Contentful**: `NEXT_PUBLIC_CONTENTFUL_SPACE_ID`, `NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN`, `NEXT_PUBLIC_ENVIRONMENT`
 - **Spotify**: `NEXT_PUBLIC_SPOTIFY_CLIENT_ID`, `NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET`, `NEXT_PUBLIC_SPOTIFY_SHOW_ID`
 - **EmailJS**: `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, `NEXT_PUBLIC_EMAILJS_USER_ID`
@@ -51,6 +58,7 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) to see the app.
 
 ## Contentful Setup
+
 - Create a Contentful space and set up content models for pages, events, services, testimonials, etc.
 - Add your API keys to `.env`.
 - To export/import content, use the Contentful CLI:
@@ -58,6 +66,7 @@ Open [http://localhost:3000](http://localhost:3000) to see the app.
   - Import: `contentful space import --space-id <SPACE_ID> --management-token <TOKEN> --content-file export.json`
 
 ## Scripts
+
 - `dev` – Start development server
 - `build` – Build for production
 - `start` – Start production server
@@ -68,7 +77,9 @@ Open [http://localhost:3000](http://localhost:3000) to see the app.
 - `verify` – Lint, type-check, and test
 
 ## Fonts
+
 Google Fonts are loaded and optimized using `next/font`:
+
 - Oswald
 - Mrs Saint Delafield
 - Open Sans
@@ -77,17 +88,20 @@ Google Fonts are loaded and optimized using `next/font`:
 - Just Me Again Down Here
 
 ## SEO & Sitemap
+
 - SEO handled with `next-seo` and custom `<Seo />` component.
 - Structured data (JSON-LD) for Organization, Events, Services, etc.
 - Sitemap and robots.txt generated with `next-sitemap` (see `next-sitemap.config.js`).
 
 ## Testing
+
 - End-to-end tests with [Playwright](https://playwright.dev/):
   ```bash
   yarn test
   ```
 
 ## Deployment
+
 Deploy on [Vercel](https://vercel.com/) or any platform supporting Next.js.
 
 ## Project Structure
@@ -113,7 +127,6 @@ multipurpose-template/
 └── README.md             # Project documentation
 ```
 
-
 ## Demo
 
 Live demo: [https://by-treffry.vercel.app/](https://by-treffry.vercel.app/)
@@ -121,14 +134,16 @@ Live demo: [https://by-treffry.vercel.app/](https://by-treffry.vercel.app/)
 ## Screenshots
 
 ### Home Page
+
 ![Home Page](./public/images/service-details-page.jpg)
 
 ### Service Details Page
+
 ![Service Details Page](./public/images/service-details-page.jpg)
 
 ### Event Details Page
-![Event Details Page](./public/images/event-details-page.jpg)
 
+![Event Details Page](./public/images/event-details-page.jpg)
 
 ## Author
 

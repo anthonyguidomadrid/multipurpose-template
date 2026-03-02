@@ -1,10 +1,11 @@
-import { AppProps, AppType } from 'next/app'
+import NextApp, { AppContext, AppProps, AppType } from 'next/app'
 import getTheme from '@/theme/theme'
 import Head from 'next/head'
 import { getContact, getMenu, getReviews, getSettings } from '@/lib/contentful'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { appWithTranslation } from 'next-i18next'
+import nextI18NextConfig from '../../next-i18next.config'
 import { PageWrapper } from '@/components/PageWrapper/PageWrapper'
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -156,7 +157,7 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
   }
   const reviews: Testimonial[] = (pageProps?.reviews as Testimonial[] | undefined) ?? []
 
-  const { locale, websiteName, faviconPng, faviconSvg, faviconIco } = settings
+  const { locale, websiteName, faviconPng, faviconIco, faviconSvg } = settings
   const router = useRouter()
 
   useEffect(() => {
@@ -164,12 +165,9 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
       router.push(router.asPath, router.asPath, { locale })
     }
   }, [locale, router])
-
-  // Keep favicons stable and local (also matches Playwright expectations).
-  // Contentful-driven favicons can still be wired back in later if desired.
-  const faviconPngUrl = '/favicon.png'
-  const faviconSvgUrl = '/favicon.svg'
-  const faviconIcoUrl = '/favicon.ico'
+  const faviconPngUrl = faviconPng.fields.file.url
+  const faviconSvgUrl = faviconSvg.fields.file.url
+  const faviconIcoUrl = faviconIco.fields.file.url
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || ''
   const socialMediaUrls = [
     contact.facebookUrl,
@@ -229,7 +227,9 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-App.getInitialProps = async () => {
+App.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await NextApp.getInitialProps(appContext)
+
   let settings = getFallbackSettings()
   let contact = getFallbackContact()
   let menu = getFallbackMenu()
@@ -281,7 +281,16 @@ App.getInitialProps = async () => {
     console.error('Contentful getReviews failed in _app.getInitialProps', error)
   }
 
-  return { pageProps: { settings, contact, menu, reviews } }
+  return {
+    ...appProps,
+    pageProps: {
+      ...appProps.pageProps,
+      settings,
+      contact,
+      menu,
+      reviews,
+    },
+  }
 }
 
-export default appWithTranslation(App)
+export default appWithTranslation(App, nextI18NextConfig)

@@ -9,6 +9,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ProductJsonLd } from 'next-seo'
 import dynamic from 'next/dynamic'
+import nextI18NextConfig from '../../../next-i18next.config'
 
 interface ServicePageProps {
   service: ServiceFields
@@ -112,7 +113,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params, locale })
 
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'en', ['common'])),
+      ...(await serverSideTranslations(locale || 'en', ['common'], nextI18NextConfig)),
       service,
       otherServices,
       cta,

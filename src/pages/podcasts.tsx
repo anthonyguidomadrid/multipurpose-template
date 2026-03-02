@@ -9,6 +9,7 @@ import { usePaginatedEpisodes } from '@/hooks/usePaginatedEpisodes'
 import { JsonLdScript } from 'next-seo'
 import dynamic from 'next/dynamic'
 import { Seo } from '@/components/Seo/Seo'
+import nextI18NextConfig from '../../next-i18next.config'
 
 interface PodcastsPageProps {
   name: string
@@ -99,7 +100,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   }
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'en', ['common'])),
+      ...(await serverSideTranslations(locale || 'en', ['common'], nextI18NextConfig)),
       ...show,
       episodes,
     },

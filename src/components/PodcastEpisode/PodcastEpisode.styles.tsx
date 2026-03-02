@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
-import Grid2 from '@mui/material/Grid2'
-import styled from '@mui/material/styles/styled'
+import Grid from '@mui/material/Grid'
+import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
 
@@ -11,7 +11,7 @@ export const EpisodeWrapper = styled(Box)(({ theme }) => ({
   border: `1px solid ${theme.palette.divider}`,
 }))
 
-export const EpisodeHeader = styled(Grid2)(({ theme }) => ({
+export const EpisodeHeader = styled(Grid)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 }))
 
@@ -29,11 +29,11 @@ export const EpisodeDescription = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 }))
 
-export const AudioPlayerWrapper = styled(Grid2)(({ theme }) => ({
+export const AudioPlayerWrapper = styled(Grid)(({ theme }) => ({
   marginTop: theme.spacing(1),
 }))
 
-export const AudioPlayerButtonWrapper = styled(Grid2)(() => ({
+export const AudioPlayerButtonWrapper = styled(Grid)(() => ({
   display: 'flex',
   justifyContent: 'center',
 }))

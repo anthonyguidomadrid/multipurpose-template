@@ -1,5 +1,5 @@
 import { About as AboutType } from '@/lib/types'
-import Grid2 from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { AboutImage } from './About.styles'
 import { FADE_IN_UP } from '@/constants/animation'
 import { ContentSection } from '../ContentSection/ContentSection'
@@ -18,9 +18,9 @@ export const About: React.FC<AboutType> = ({ title, subtitle, description, photo
         sm: 8,
       }}
     >
-      <Grid2
+      <Grid
         size={{ xs: 12, md: 4 }}
-        order={{ xs: 2, md: 1 }}
+        sx={{ order: { xs: 2, md: 1 } }}
         component={motion.div}
         initial="hidden"
         whileInView="show"
@@ -34,10 +34,10 @@ export const About: React.FC<AboutType> = ({ title, subtitle, description, photo
           height={imageHeight}
           data-testid="about-image"
         />
-      </Grid2>
-      <Grid2
+      </Grid>
+      <Grid
         size={{ xs: 12, md: 8 }}
-        order={{ xs: 1, md: 2 }}
+        sx={{ order: { xs: 1, md: 2 } }}
         component={motion.div}
         initial="hidden"
         whileInView="show"
@@ -50,7 +50,7 @@ export const About: React.FC<AboutType> = ({ title, subtitle, description, photo
           description={description}
           sectionName="about"
         />
-      </Grid2>
+      </Grid>
     </SectionWrapper>
   )
 }

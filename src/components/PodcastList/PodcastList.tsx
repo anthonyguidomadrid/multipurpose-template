@@ -1,4 +1,4 @@
-import Grid2 from '@mui/material/Grid2/Grid2'
+import Grid from '@mui/material/Grid'
 import { SectionWrapper } from '../common/styles'
 import Typography from '@mui/material/Typography'
 import { PodcastEpisode } from '../PodcastEpisode/PodcastEpisode'
@@ -27,11 +27,11 @@ export const PodcastList: React.FC<PodcastListProps> = ({
 
   return (
     <SectionWrapper>
-      <Grid2 container spacing={5} direction="column">
-        <Grid2 size={12}>
+      <Grid container spacing={5} direction="column">
+        <Grid size={12}>
           <Typography data-testid="podcasts-description">{description}</Typography>
-        </Grid2>
-        <Grid2 size={12}>
+        </Grid>
+        <Grid size={12}>
           {episodes?.length > 0 ? (
             episodes.map(
               (episode) =>
@@ -52,8 +52,8 @@ export const PodcastList: React.FC<PodcastListProps> = ({
               {t('podcasts.noEpisodes')}
             </Typography>
           )}
-        </Grid2>
-        <Grid2 size={12} display="flex" justifyContent="center">
+        </Grid>
+        <Grid size={12} sx={{ display: 'flex', justifyContent: 'center' }}>
           {hasMore && (
             <Button
               variant="contained"
@@ -64,8 +64,8 @@ export const PodcastList: React.FC<PodcastListProps> = ({
               {t('button.seeMoreEpisodes')}
             </Button>
           )}
-        </Grid2>
-      </Grid2>
+        </Grid>
+      </Grid>
     </SectionWrapper>
   )
 }

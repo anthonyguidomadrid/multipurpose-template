@@ -12,7 +12,7 @@ import { Map } from '../Map/Map'
 import { DetailsWrapper } from './EventDetails.styles'
 import { motion } from 'framer-motion'
 import { FADE_IN_UP } from '@/constants/animation'
-import Grid2 from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
 
@@ -42,7 +42,7 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
 
   const getEventDate = (date: string) => getDate(date, 'dd MMMM yyyy HH:mm', locale)
   return (
-    <Grid2 container spacing={2}>
+    <Grid container spacing={2}>
       <DetailsWrapper
         size={{ xs: 12, sm: shouldShowMap ? 6 : 12 }}
         component={motion.div}
@@ -93,7 +93,7 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
         />
       </DetailsWrapper>
       {shouldShowMap && (
-        <Grid2
+        <Grid
           size={{ xs: 12, sm: 6 }}
           component={motion.div}
           initial="hidden"
@@ -102,8 +102,8 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
           variants={FADE_IN_UP}
         >
           <Map lat={location.lat} lon={location.lon} />
-        </Grid2>
+        </Grid>
       )}
-    </Grid2>
+    </Grid>
   )
 }

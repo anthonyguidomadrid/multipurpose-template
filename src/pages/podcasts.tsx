@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next'
 import { LINK } from '@/constants/link'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { usePaginatedEpisodes } from '@/hooks/usePaginatedEpisodes'
-import { WebPageJsonLd } from 'next-seo'
+import { JsonLdScript } from 'next-seo'
 import dynamic from 'next/dynamic'
 import { Seo } from '@/components/Seo/Seo'
 
@@ -46,9 +46,16 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
   return (
     <>
       <Seo metaTitle={name} metaDescription={description} ogImage={image} />
-      <WebPageJsonLd
-        description={description}
-        id={`${process.env.NEXT_PUBLIC_SITE_URL}/podcasts`}
+      <JsonLdScript
+        scriptKey="podcasts-webpage"
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          '@id': `${process.env.NEXT_PUBLIC_SITE_URL}/podcasts`,
+          url: `${process.env.NEXT_PUBLIC_SITE_URL}/podcasts`,
+          name,
+          description,
+        }}
       />
       <DetailsHeader
         title={name}

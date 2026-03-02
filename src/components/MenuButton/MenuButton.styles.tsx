@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button'
-import styled from '@mui/material/styles/styled'
+import { styled } from '@mui/material/styles'
 
 export const MenuItemButton = styled(Button)<{ isCta: boolean }>(({ theme, isCta }) => ({
   '&:hover': {

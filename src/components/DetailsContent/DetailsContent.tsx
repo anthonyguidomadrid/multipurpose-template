@@ -4,7 +4,7 @@ import { DetailsCta } from '../DetailsCta/DetailsCta'
 import { ContentWrapper } from './DetailsContent.styles'
 import { motion } from 'framer-motion'
 import { FADE_IN_UP } from '@/constants/animation'
-import Grid2 from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 
 interface DetailsContentProps extends ContentSectionProps {
   cta: Cta
@@ -25,7 +25,7 @@ export const DetailsContent: React.FC<DetailsContentProps> = ({
         sm: 8,
       }}
     >
-      <Grid2 size={{ xs: 12, md: 8 }}>
+      <Grid size={{ xs: 12, md: 8 }}>
         <motion.div
           variants={FADE_IN_UP}
           initial="hidden"
@@ -39,8 +39,8 @@ export const DetailsContent: React.FC<DetailsContentProps> = ({
             sectionName={sectionName}
           />
         </motion.div>
-      </Grid2>
-      <Grid2 size={{ xs: 12, md: 4 }}>
+      </Grid>
+      <Grid size={{ xs: 12, md: 4 }}>
         <motion.div
           variants={FADE_IN_UP}
           initial="hidden"
@@ -49,7 +49,7 @@ export const DetailsContent: React.FC<DetailsContentProps> = ({
         >
           <DetailsCta sectionName={sectionName} {...cta} />
         </motion.div>
-      </Grid2>
+      </Grid>
     </ContentWrapper>
   )
 }

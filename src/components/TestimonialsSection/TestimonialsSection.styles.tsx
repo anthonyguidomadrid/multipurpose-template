@@ -1,4 +1,4 @@
-import styled from '@mui/material/styles/styled'
+import { styled } from '@mui/material/styles'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 export const Slider = styled(Swiper)(({ theme }) => ({

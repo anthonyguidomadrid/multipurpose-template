@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box'
-import Grid2 from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { OverridableComponent } from '@mui/material/OverridableComponent'
 import Paper, { PaperTypeMap } from '@mui/material/Paper'
-import styled from '@mui/material/styles/styled'
+import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -53,7 +53,7 @@ export const FooterTitle = styled(Typography)(({ theme }) => ({
   },
 }))
 
-export const ContactInfoWrapper = styled(Grid2)(({ theme }) => ({
+export const ContactInfoWrapper = styled(Grid)(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   textAlign: 'center',

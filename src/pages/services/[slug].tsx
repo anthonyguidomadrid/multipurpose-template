@@ -46,8 +46,9 @@ const ServicePage: NextPage<ServicePageProps> = ({
     <>
       <Seo {...seo.fields} />
       <ProductJsonLd
-        productName={mainTitle}
-        images={carrouselImages.map((image) => image.fields.file.url)}
+        type="Product"
+        name={mainTitle}
+        image={carrouselImages.map((image) => image.fields.file.url)}
         description={subtitle}
       />
       <DetailsHeader

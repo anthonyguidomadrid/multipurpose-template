@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import styled from '@mui/material/styles/styled'
+import { styled } from '@mui/material/styles'
 import { Overlay } from '../common/styles'
 
 export const NotFoundWrapper = styled(Box)(({ theme }) => ({

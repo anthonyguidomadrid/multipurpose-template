@@ -1,5 +1,5 @@
 import CircularProgress from "@mui/material/CircularProgress"
-import styled from "@mui/material/styles/styled"
+import { styled } from "@mui/material/styles"
 
 export const Spinner = styled(CircularProgress)(() => ({
   margin: 'auto',

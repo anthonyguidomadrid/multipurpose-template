@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box"
-import Grid2 from "@mui/material/Grid2"
-import styled from "@mui/material/styles/styled"
+import Grid from "@mui/material/Grid"
+import { styled } from "@mui/material/styles"
 
-export const SectionWrapper = styled(Grid2)(({ theme }) => ({
+export const SectionWrapper = styled(Grid)(({ theme }) => ({
   maxWidth: theme.breakpoints.values.lg,
   margin: '0 auto',
   padding: theme.spacing(4),

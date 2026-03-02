@@ -8,7 +8,7 @@ import {
   TestimonialQuote,
 } from './Testimonial.styles'
 import { getDate } from '@/helpers/date'
-import Grid2 from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { getImageDetails } from '@/helpers/image'
 
@@ -30,7 +30,7 @@ export const Testimonial: React.FC<TestimonialType> = ({
           data-testid="testimonial-image"
         />
       </TestimonialImageWrapper>
-      <Grid2 size={10}>
+      <Grid size={10}>
         <Typography variant="h6" data-testid="testimonial-title">
           {title}
         </Typography>
@@ -40,7 +40,7 @@ export const Testimonial: React.FC<TestimonialType> = ({
         <Author data-testid="testimonial-author">
           {author}, {formattedDate}
         </Author>
-      </Grid2>
+      </Grid>
     </TestimonialContainer>
   )
 }

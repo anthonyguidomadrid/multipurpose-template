@@ -25,7 +25,7 @@ import {
   ImageGrid,
 } from './Footer.styles'
 import { getEmailLink, getPhoneLink } from '@/helpers/link'
-import Grid2 from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/material'
 import { getImageDetails } from '@/helpers/image'
@@ -80,14 +80,14 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <>
       <FooterWrapper component="footer" elevation={0}>
-        <Grid2 container spacing={4}>
+        <Grid container spacing={4}>
           {/* Column 1: Contact Info */}
-          <Grid2 size={{ xs: 12, md: 4 }}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <FooterTitle variant="h6" gutterBottom data-testid="footer-contact-title">
               {t('title.contactUs')}
             </FooterTitle>
             <ContactInfoWrapper container spacing={2}>
-              <Grid2 size={12}>
+              <Grid size={12}>
                 <Typography variant="subtitle2" data-testid="footer-phone-label">
                   {t('title.phone')}
                 </Typography>
@@ -99,8 +99,8 @@ export const Footer: React.FC<FooterProps> = ({
                     </FooterLink>
                   </Typography>
                 </ContactWrapper>
-              </Grid2>
-              <Grid2 size={12}>
+              </Grid>
+              <Grid size={12}>
                 <Typography variant="subtitle2" data-testid="footer-email-label">
                   {t('title.email')}
                 </Typography>
@@ -112,9 +112,9 @@ export const Footer: React.FC<FooterProps> = ({
                     </FooterLink>
                   </Typography>
                 </ContactWrapper>
-              </Grid2>
+              </Grid>
               {address && (
-                <Grid2 size={12}>
+                <Grid size={12}>
                   <Typography variant="subtitle2" data-testid="footer-address-label">
                     {t('title.address')}
                   </Typography>
@@ -128,38 +128,38 @@ export const Footer: React.FC<FooterProps> = ({
                       <Typography variant="body2">{address.fields.country}</Typography>
                     </Box>
                   </ContactWrapper>
-                </Grid2>
+                </Grid>
               )}
-              <Grid2 size={12}>
+              <Grid size={12}>
                 {socialMediaArray.map(
                   (social, index) =>
                     social.url && (
                       <SocialMediaButton key={index} url={social.url} icon={social.icon} />
                     )
                 )}
-              </Grid2>
+              </Grid>
             </ContactInfoWrapper>
-          </Grid2>
+          </Grid>
 
           {/* Column 2: Contact Form */}
-          <Grid2 size={{ xs: 12, md: 4 }}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <FooterTitle variant="h6" gutterBottom data-testid="footer-form-title">
               {t('title.sendMessage')}
             </FooterTitle>
             <ContactForm email={email} privacyPolicy={privacyPolicy} />
-          </Grid2>
+          </Grid>
 
           {/* Column 3: Gallery Grid */}
-          <Grid2 size={{ xs: 12, md: 4 }}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <FooterTitle variant="h6" gutterBottom data-testid="footer-gallery-title">
               {t('title.gallery')}
             </FooterTitle>
-            <Grid2 container spacing={2}>
+            <Grid container spacing={2}>
               {galleryImages.slice(0, 6).map((image, idx) => {
                 const { imageUrl, imageDescription, imageWidth, imageHeight } =
                   getImageDetails(image)
                 return (
-                  <Grid2 size={4} key={image.fields.file.fileName}>
+                  <Grid size={4} key={image.fields.file.fileName}>
                     <ImageGrid
                       src={imageUrl}
                       alt={imageDescription}
@@ -171,10 +171,10 @@ export const Footer: React.FC<FooterProps> = ({
                       }}
                       data-testid={`footer-gallery-image-${idx}`}
                     />
-                  </Grid2>
+                  </Grid>
                 )
               })}
-            </Grid2>
+            </Grid>
             {lightboxOpen && (
               <GalleryLightbox
                 setLightboxOpen={setLightboxOpen}
@@ -183,8 +183,8 @@ export const Footer: React.FC<FooterProps> = ({
                 setPhotoIndex={setPhotoIndex}
               />
             )}
-          </Grid2>
-        </Grid2>
+          </Grid>
+        </Grid>
       </FooterWrapper>
       {/* Footer copyright */}
       <CopywrightWrapper>

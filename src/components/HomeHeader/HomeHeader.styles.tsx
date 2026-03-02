@@ -2,7 +2,7 @@ import Image from 'next/image'
 import 'swiper/css/effect-fade'
 import { Swiper } from 'swiper/react'
 import { motion } from 'framer-motion'
-import styled from '@mui/material/styles/styled'
+import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 
 export const HomeHeaderContainer = styled(Box)(() => ({

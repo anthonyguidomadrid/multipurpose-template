@@ -1,8 +1,7 @@
 'use client'
 import { getSettings } from '@/lib/contentful'
 import getTheme from '@/theme/theme'
-import createTheme from '@mui/material/styles/createTheme'
-import ThemeProvider from '@mui/material/styles/ThemeProvider'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useEffect, useState } from 'react'
 
 type ThemeProviderWrapperProps = {

@@ -1,5 +1,5 @@
 import { Services } from '@/lib/types'
-import Grid2 from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { ContentSection } from '../ContentSection/ContentSection'
 import { ServiceCard } from '../ServiceCard/ServiceCard'
 import { SectionWithBackground, SectionWrapper } from '../common/styles'
@@ -16,7 +16,7 @@ export const ServicesSection: React.FC<Services> = ({ title, subtitle, services 
       <ContentSection subtitle={subtitle} title={title} sectionName="services" />
       <SectionWrapper container spacing={4}>
         {services.map((item, index) => (
-          <Grid2
+          <Grid
             key={index}
             size={gridSize}
             component={motion.div}
@@ -27,7 +27,7 @@ export const ServicesSection: React.FC<Services> = ({ title, subtitle, services 
             variants={FADE_IN_VARIANTS}
           >
             <ServiceCard {...item} />
-          </Grid2>
+          </Grid>
         ))}
       </SectionWrapper>
     </SectionWithBackground>

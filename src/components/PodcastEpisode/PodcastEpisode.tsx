@@ -15,7 +15,7 @@ import {
   EpisodeImage,
   EpisodeWrapper,
 } from './PodcastEpisode.styles'
-import Grid2 from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Collapse from '@mui/material/Collapse'
 import Button from '@mui/material/Button'
@@ -40,7 +40,7 @@ export const PodcastEpisode: React.FC<SpotifyEpisode> = ({
   return (
     <EpisodeWrapper data-testid="podcast-episode">
       <EpisodeHeader container spacing={2} alignItems="center">
-        <Grid2 size={{ xs: 4, sm: 2, md: 1 }}>
+        <Grid size={{ xs: 4, sm: 2, md: 1 }}>
           <EpisodeImage
             src={url}
             height={height}
@@ -49,15 +49,15 @@ export const PodcastEpisode: React.FC<SpotifyEpisode> = ({
             data-testid="podcast-image"
             loading="lazy"
           />
-        </Grid2>
-        <Grid2 size={{ xs: 8, sm: 10, md: 11 }}>
+        </Grid>
+        <Grid size={{ xs: 8, sm: 10, md: 11 }}>
           <Typography variant="h6" data-testid="podcast-name">
             {name}
           </Typography>
           <EpisodeDate variant="body2" color="text.secondary" data-testid="podcast-date">
             {formattedDate}
           </EpisodeDate>
-        </Grid2>
+        </Grid>
       </EpisodeHeader>
       <Collapse in={isExpanded} collapsedSize={50}>
         <EpisodeDescription data-testid="podcast-description">{description}</EpisodeDescription>
@@ -66,7 +66,7 @@ export const PodcastEpisode: React.FC<SpotifyEpisode> = ({
         {isExpanded ? t('button.seeLess') : t('button.seeMore')}
       </Button>
       <AudioPlayerWrapper container spacing={2} alignItems="center" data-testid="podcast-player">
-        <Grid2 size={{ xs: 12, md: 9 }}>
+        <Grid size={{ xs: 12, md: 9 }}>
           <AudioPlayer
             src={audio_preview_url}
             showJumpControls={false}
@@ -75,7 +75,7 @@ export const PodcastEpisode: React.FC<SpotifyEpisode> = ({
             autoPlayAfterSrcChange={false}
             style={{ background: 'transparent', boxShadow: 'none' }}
           />
-        </Grid2>
+        </Grid>
         <AudioPlayerButtonWrapper size={{ xs: 12, md: 3 }}>
           <Link href={spotify} target="_blank" rel="noopener noreferrer">
             <Button variant="outlined" data-testid="podcast-link-button">

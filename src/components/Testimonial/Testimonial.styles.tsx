@@ -1,9 +1,9 @@
-import Grid2 from '@mui/material/Grid2'
-import styled from '@mui/material/styles/styled'
+import Grid from '@mui/material/Grid'
+import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
 
-export const TestimonialContainer = styled(Grid2)(({ theme }) => ({
+export const TestimonialContainer = styled(Grid)(({ theme }) => ({
   paddingRight: theme.spacing(2),
   [theme.breakpoints.up('md')]: {
     paddingRight: theme.spacing(8),
@@ -28,7 +28,7 @@ export const Author = styled(Typography)(() => ({
   textTransform: 'capitalize',
 }))
 
-export const TestimonialImageWrapper = styled(Grid2)(({ theme }) => ({
+export const TestimonialImageWrapper = styled(Grid)(({ theme }) => ({
   display: 'none',
   [theme.breakpoints.up('md')]: {
     display: 'block',

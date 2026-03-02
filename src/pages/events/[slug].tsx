@@ -56,20 +56,12 @@ const EventPage: NextPage<EventsPageProps> = ({
         name={title}
         startDate={startDate}
         endDate={finishingDate}
-        location={{
-          name: { placeName },
-          address: {
-            streetAddress: location,
-          },
-        }}
+        location={isVirtual ? 'Online' : placeName}
         url={`${baseUrl}/events/${slug}`}
-        images={[thumbnail.fields.file.url]}
+        image={[thumbnail.fields.file.url]}
         description={subtitle}
-        organizer={{
-          type: 'Organization',
-          url: baseUrl,
-        }}
-        eventStatus="EventScheduled"
+        organizer={baseUrl}
+        eventStatus="https://schema.org/EventScheduled"
       />
       <DetailsHeader
         title={title}

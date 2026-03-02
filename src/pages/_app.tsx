@@ -8,9 +8,9 @@ import { appWithTranslation } from 'next-i18next'
 import { PageWrapper } from '@/components/PageWrapper/PageWrapper'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import ThemeProvider from '@mui/material/styles/ThemeProvider'
+import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import { OrganizationJsonLd } from 'next-seo'
+import { LocalBusinessJsonLd } from 'next-seo'
 import { Testimonial } from '@/lib/types'
 import {
   Oswald,
@@ -83,20 +83,14 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <OrganizationJsonLd
+      <LocalBusinessJsonLd
         type="LocalBusiness"
-        id={siteUrl}
         name={websiteName}
         url={siteUrl}
-        logo={getImageDetails(menu.logo).imageUrl}
+        image={getImageDetails(menu.logo).imageUrl}
+        telephone={contact.phone}
+        email={contact.email}
         sameAs={socialMediaUrls}
-        contactPoint={[
-          {
-            telephone: contact.phone,
-            contactType: 'customer service',
-            email: contact.email,
-          },
-        ]}
         address={
           contact.address && {
             streetAddress: contact.address.fields.streetAddress,
@@ -106,7 +100,7 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
             addressCountry: contact.address.fields.country,
           }
         }
-        reviews={reviews.map(({ fields: { title, description, author, date } }: Testimonial) => ({
+        review={reviews.map(({ fields: { title, description, author, date } }: Testimonial) => ({
           author,
           datePublished: date,
           name: title,

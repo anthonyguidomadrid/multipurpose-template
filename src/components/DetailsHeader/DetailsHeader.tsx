@@ -30,19 +30,10 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
 }) => (
   <>
     <BreadcrumbJsonLd
-      itemListElements={[
+      items={[
+        { name: 'Home', item: baseUrl },
+        { name: breadcrumb.label, item: `${baseUrl}${breadcrumb.link}` },
         {
-          position: 1,
-          name: 'Home',
-          item: baseUrl,
-        },
-        {
-          position: 2,
-          name: breadcrumb.label,
-          item: `${baseUrl}${breadcrumb.link}`,
-        },
-        {
-          position: 3,
           name: title,
           item: `${baseUrl}${breadcrumb.link.replace('#', '')}${slug ? `/${slug}` : ''}`,
         },

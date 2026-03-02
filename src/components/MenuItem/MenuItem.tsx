@@ -17,6 +17,25 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   handleClick,
   isMobile,
 }) => {
+  const opensInModal = Boolean(shouldOpenInModal || isCta)
+
+  // Items that open in a modal must always go through the click handler
+  // (otherwise the dialog never opens).
+  if (opensInModal) {
+    return (
+      <MenuButton
+        link={link}
+        label={label}
+        isCta={isCta}
+        isLink={isLink}
+        shouldOpenInANewTab={shouldOpenInANewTab}
+        shouldOpenInModal={opensInModal}
+        handleClick={handleClick}
+        isMobile={isMobile}
+      />
+    )
+  }
+
   return isLink ? (
     <NextLink
       href={link}
@@ -30,7 +49,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         isCta={isCta}
         isLink={isLink}
         shouldOpenInANewTab={shouldOpenInANewTab}
-        shouldOpenInModal={shouldOpenInModal}
+        shouldOpenInModal={opensInModal}
         isMobile={isMobile}
       />
     </NextLink>
@@ -41,7 +60,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       isCta={isCta}
       isLink={isLink}
       shouldOpenInANewTab={shouldOpenInANewTab}
-      shouldOpenInModal={shouldOpenInModal}
+      shouldOpenInModal={opensInModal}
       handleClick={handleClick}
       isMobile={isMobile}
     />

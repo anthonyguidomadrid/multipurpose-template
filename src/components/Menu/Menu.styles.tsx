@@ -1,6 +1,6 @@
-import AppBar from "@mui/material/AppBar"
-import { styled } from "@mui/material/styles"
-import Toolbar from "@mui/material/Toolbar"
+import AppBar from '@mui/material/AppBar'
+import { styled } from '@mui/material/styles'
+import Toolbar from '@mui/material/Toolbar'
 
 export const StyledMenu = styled(AppBar)<{ isAtTop: boolean }>(({ isAtTop, theme }) => ({
   background: isAtTop ? 'none' : theme.palette.common.white,
@@ -17,7 +17,7 @@ export const MenuBar = styled(Toolbar)(() => ({
   backgroundColor: 'transparent',
 }))
 
-export const ModalContent = styled('iframe')(({theme}) => ({
+export const ModalContent = styled('iframe')(({ theme }) => ({
   width: '100%',
   height: '80vh',
   border: 0,

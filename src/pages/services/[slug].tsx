@@ -84,9 +84,27 @@ export const getServerSideProps: GetServerSideProps = async ({ params, locale })
     return { notFound: true }
   }
   const contentType = 'service'
-  const service = await getDetailsBySlug(slug, contentType)
-  const otherServices = await getOtherDetails(slug, contentType)
-  const cta = await getCtaByType(contentType)
+  let service: ServiceFields | null = null
+  let otherServices: Service[] = []
+  let cta: Cta = { title: '', description: '', phone: '', email: '' }
+
+  try {
+    service = (await getDetailsBySlug(slug, contentType)) as ServiceFields
+  } catch (error) {
+    console.error('getDetailsBySlug failed in services/[slug].getServerSideProps', { slug }, error)
+  }
+
+  try {
+    otherServices = (await getOtherDetails(slug, contentType)) as unknown as Service[]
+  } catch (error) {
+    console.error('getOtherDetails failed in services/[slug].getServerSideProps', { slug }, error)
+  }
+
+  try {
+    cta = (await getCtaByType(contentType)) as Cta
+  } catch (error) {
+    console.error('getCtaByType failed in services/[slug].getServerSideProps', { slug }, error)
+  }
 
   if (!service) {
     return { notFound: true }

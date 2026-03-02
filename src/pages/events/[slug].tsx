@@ -103,9 +103,27 @@ export const getServerSideProps: GetServerSideProps = async ({ params, locale })
     return { notFound: true }
   }
   const contentType = 'event'
-  const event = await getDetailsBySlug(slug, contentType)
-  const otherEvents = await getOtherDetails(slug, contentType)
-  const cta = await getCtaByType(contentType)
+  let event: EventFields | null = null
+  let otherEvents: Event[] = []
+  let cta: Cta = { title: '', description: '', phone: '', email: '' }
+
+  try {
+    event = (await getDetailsBySlug(slug, contentType)) as EventFields
+  } catch (error) {
+    console.error('getDetailsBySlug failed in events/[slug].getServerSideProps', { slug }, error)
+  }
+
+  try {
+    otherEvents = (await getOtherDetails(slug, contentType)) as unknown as Event[]
+  } catch (error) {
+    console.error('getOtherDetails failed in events/[slug].getServerSideProps', { slug }, error)
+  }
+
+  try {
+    cta = (await getCtaByType(contentType)) as Cta
+  } catch (error) {
+    console.error('getCtaByType failed in events/[slug].getServerSideProps', { slug }, error)
+  }
 
   if (!event) {
     return { notFound: true }

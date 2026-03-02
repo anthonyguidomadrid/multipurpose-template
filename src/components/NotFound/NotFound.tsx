@@ -22,9 +22,9 @@ export const NotFound: React.FC<NotFoundProps> = ({ backgroundImageUrl }) => {
           {t('title.notFound')}
         </Typography>
         <Typography data-testid="not-found-subtitle">{t('subtitle.notFound')}</Typography>
-        <Link href="/" passHref>
-          <Button variant="contained" data-testid="not-found-button">{t('button.goHome')}</Button>
-        </Link>
+        <Button component={Link} href="/" variant="contained" data-testid="not-found-button">
+          {t('button.goHome')}
+        </Button>
       </StyledOverlay>
     </NotFoundWrapper>
   )

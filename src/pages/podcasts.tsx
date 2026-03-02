@@ -76,10 +76,25 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const show = await getShowInformation()
-  const episodes = await getSpotifyEpisodes({ limit: EPISODES_PER_PAGE, offset: 0 })
+  let show: Pick<PodcastsPageProps, 'name' | 'description' | 'images'> | null = null
+  let episodes: { items: SpotifyEpisode[] } = { items: [] }
 
-  if (!show || !episodes) {
+  try {
+    show = (await getShowInformation()) as Pick<
+      PodcastsPageProps,
+      'name' | 'description' | 'images'
+    >
+  } catch (error) {
+    console.error('getShowInformation failed in podcasts.getServerSideProps', error)
+  }
+
+  try {
+    episodes = await getSpotifyEpisodes({ limit: EPISODES_PER_PAGE, offset: 0 })
+  } catch (error) {
+    console.error('getSpotifyEpisodes failed in podcasts.getServerSideProps', error)
+  }
+
+  if (!show) {
     return { notFound: true }
   }
   return {

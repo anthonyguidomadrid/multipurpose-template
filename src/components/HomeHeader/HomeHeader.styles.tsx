@@ -50,4 +50,3 @@ export const SliderFilter = styled(Box)(({ theme }) => ({
   opacity: 0.3,
   zIndex: 2,
 }))
-

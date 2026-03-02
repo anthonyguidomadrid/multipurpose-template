@@ -4,7 +4,7 @@ import { GetServerSideProps, NextPage } from 'next'
 import { HomePage as ContentfulHomePage } from '@/lib/types'
 import { About } from '@/components/About/About'
 import { ServicesSection } from '@/components/ServicesSection/ServicesSection'
-import { getSpotifyEpisodes } from '@/lib/spotify'
+import { getSpotifyEpisodes, SpotifyEpisode } from '@/lib/spotify'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Seo } from '@/components/Seo/Seo'
 import dynamic from 'next/dynamic'
@@ -44,8 +44,20 @@ const Home: NextPage<HomePage> = ({
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const home = await getHomePage()
-  const episodes = await getSpotifyEpisodes({ limit: 3 })
+  let home: ContentfulHomePage | null = null
+  let episodes: { items: SpotifyEpisode[] } = { items: [] }
+
+  try {
+    home = await getHomePage()
+  } catch (error) {
+    console.error('getHomePage failed in index.getServerSideProps', error)
+  }
+
+  try {
+    episodes = await getSpotifyEpisodes({ limit: 3 })
+  } catch (error) {
+    console.error('getSpotifyEpisodes failed in index.getServerSideProps', error)
+  }
 
   if (!home) {
     return {
@@ -61,7 +73,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
         podcasts: {
           fields: {
             ...home.podcasts?.fields,
-            episodes: episodes.items,
+            episodes: episodes.items || [],
           },
         },
       },

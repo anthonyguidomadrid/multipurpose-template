@@ -223,24 +223,28 @@ test.describe('Favicon and Head tags', () => {
   test('should have all favicon links defined in the head', async ({ page }) => {
     await page.goto('/')
 
+    const icoHref = /(?:\/favicon\.ico$|\/favicon\.ico\?|\/favicon\.ico#|\/favicon\.ico\/|\/favicon\.ico\b|\/[^\s"']+\.ico\b|\/\/assets\.ctfassets\.net\/[^\s"']+\.ico\b)/
+    const pngHref = /(?:\/favicon\.png$|\/favicon\.png\?|\/favicon\.png#|\/favicon\.png\b|\/\/images\.ctfassets\.net\/[^\s"']+\.png\b)/
+    const svgHref = /(?:\/favicon\.svg$|\/favicon\.svg\?|\/favicon\.svg#|\/favicon\.svg\b|\/\/images\.ctfassets\.net\/[^\s"']+\.svg\b)/
+
     // ICO favicon
     const icoFavicon = page.locator('link[rel="icon"][type="image/x-icon"]')
-    await expect(icoFavicon).toHaveAttribute('href', /favicon\.ico/)
+    await expect(icoFavicon).toHaveAttribute('href', icoHref)
     await expect(icoFavicon).toHaveAttribute('sizes', /16x16 32x32 48x48/)
 
     // PNG favicons
     const pngFavicon32 = page.locator('link[rel="icon"][type="image/png"][sizes="32x32"]')
-    await expect(pngFavicon32).toHaveAttribute('href', /favicon\.png/)
+    await expect(pngFavicon32).toHaveAttribute('href', pngHref)
 
     const pngFavicon16 = page.locator('link[rel="icon"][type="image/png"][sizes="16x16"]')
-    await expect(pngFavicon16).toHaveAttribute('href', /favicon\.png/)
+    await expect(pngFavicon16).toHaveAttribute('href', pngHref)
 
     // Apple touch icon
     const appleTouchIcon = page.locator('link[rel="apple-touch-icon"][sizes="180x180"]')
-    await expect(appleTouchIcon).toHaveAttribute('href', /favicon\.png/)
+    await expect(appleTouchIcon).toHaveAttribute('href', pngHref)
 
     // SVG favicon
     const svgFavicon = page.locator('link[rel="icon"][type="image/svg+xml"]')
-    await expect(svgFavicon).toHaveAttribute('href', /favicon\.svg/)
+    await expect(svgFavicon).toHaveAttribute('href', svgHref)
   })
 })

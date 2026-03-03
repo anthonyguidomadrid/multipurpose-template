@@ -48,6 +48,7 @@
     "developer": "Anthony Guido Developer"
   },
   "breadcrumb": {
+    "home": "Accueil",
     "services": "Services",
     "events": "Évènements",
     "podcasts": "Podcasts"

@@ -5,6 +5,7 @@ import { FADE_IN_UP } from '@/constants/animation'
 import { BackgroundImage, Overlay } from '../common/styles'
 import Typography from '@mui/material/Typography'
 import { BreadcrumbJsonLd } from 'next-seo'
+import { useTranslation } from 'next-i18next'
 
 interface DetailsHeaderProps {
   title: string
@@ -27,45 +28,57 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
   sectionName,
   slug,
   backgroundPosition = 'center',
-}) => (
-  <>
-    <BreadcrumbJsonLd
-      items={[
-        { name: 'Home', item: baseUrl },
-        { name: breadcrumb.label, item: `${baseUrl}${breadcrumb.link}` },
-        {
-          name: title,
-          item: `${baseUrl}${breadcrumb.link.replace('#', '')}${slug ? `/${slug}` : ''}`,
-        },
-      ]}
-    />
-    <DetailsHeaderWrapper>
-      <BackgroundImage
-        backgroundImage={image.fields.file.url}
-        data-testid={`${sectionName}-background-image`}
-        backgroundPosition={backgroundPosition}
-      />
-      <Overlay>
-        <motion.nav
-          variants={FADE_IN_UP}
-          initial="hidden"
-          animate="show"
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-        >
-          <StyledBreadcrumbs>
-            <BreadcrumbLabel
-              href={breadcrumb.link}
-              passHref
-              data-testid={`${sectionName}-breadcrumb-label`}
-            >
-              {breadcrumb.label}
-            </BreadcrumbLabel>
-            <Typography variant="h3" component="h1" data-testid={`${sectionName}-header-title`}>
-              {title}
-            </Typography>
-          </StyledBreadcrumbs>
-        </motion.nav>
-      </Overlay>
-    </DetailsHeaderWrapper>
-  </>
-)
+}) => {
+  const { t } = useTranslation()
+  const homeLabel = t('breadcrumb.home')
+  const safeBaseUrl = baseUrl || ''
+
+  return (
+    <>
+      {safeBaseUrl && (
+        <BreadcrumbJsonLd
+          items={[
+            { name: homeLabel, item: safeBaseUrl },
+            { name: breadcrumb.label, item: `${safeBaseUrl}${breadcrumb.link}` },
+            {
+              name: title,
+              item: `${safeBaseUrl}${breadcrumb.link.replace('#', '')}${slug ? `/${slug}` : ''}`,
+            },
+          ]}
+        />
+      )}
+      <DetailsHeaderWrapper>
+        <BackgroundImage
+          backgroundImage={image.fields.file.url}
+          data-testid={`${sectionName}-background-image`}
+          backgroundPosition={backgroundPosition}
+        />
+        <Overlay>
+          <motion.nav
+            variants={FADE_IN_UP}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            aria-label="breadcrumbs"
+          >
+            <StyledBreadcrumbs>
+              <BreadcrumbLabel href="/" passHref data-testid={`${sectionName}-breadcrumb-home`}>
+                {homeLabel}
+              </BreadcrumbLabel>
+              <BreadcrumbLabel
+                href={breadcrumb.link}
+                passHref
+                data-testid={`${sectionName}-breadcrumb-label`}
+              >
+                {breadcrumb.label}
+              </BreadcrumbLabel>
+              <Typography variant="h3" component="h1" data-testid={`${sectionName}-header-title`}>
+                {title}
+              </Typography>
+            </StyledBreadcrumbs>
+          </motion.nav>
+        </Overlay>
+      </DetailsHeaderWrapper>
+    </>
+  )
+}

@@ -6,7 +6,7 @@ import { getCtaByType, getOtherDetails, getDetailsBySlug, getSlugsByType } from 
 import { Cta, Service, ServiceFields } from '@/lib/types'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
-import { ProductJsonLd } from 'next-seo'
+import { JsonLdScript } from 'next-seo'
 import dynamic from 'next/dynamic'
 import { getCommonPageProps } from '@/lib/commonPageProps'
 
@@ -42,15 +42,28 @@ const ServicePage: NextPage<ServicePageProps> = ({
 }) => {
   const { t } = useTranslation()
   const sectionName = 'service-details'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
+
   return (
     <>
       <Seo {...seo.fields} />
-      <ProductJsonLd
-        type="Product"
-        name={mainTitle}
-        image={carrouselImages.map((image) => image.fields.file.url)}
-        description={subtitle}
-      />
+      {baseUrl && (
+        <JsonLdScript
+          scriptKey="service-webpage"
+          data={{
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            '@id': `${baseUrl}/services/${slug}`,
+            url: `${baseUrl}/services/${slug}`,
+            name: mainTitle,
+            description: subtitle,
+            primaryImageOfPage: {
+              '@type': 'ImageObject',
+              url: thumbnail.fields.file.url,
+            },
+          }}
+        />
+      )}
       <DetailsHeader
         title={mainTitle}
         image={thumbnail}

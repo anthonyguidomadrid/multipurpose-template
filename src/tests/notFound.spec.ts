@@ -28,8 +28,9 @@ test.describe('Not Found (404) Page', () => {
   })
 
   test('should navigate to home when Go Home button is clicked', async ({ page }) => {
+    await expect(page).toHaveURL(/\/non-existent-page-404-test/)
     const button = getGoHomeButton(page)
     await button.click()
-    await expect(page).toHaveURL('/es/non-existent-page-404-test')
+    await expect(page).toHaveURL('/')
   })
 })

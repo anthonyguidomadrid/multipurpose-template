@@ -126,7 +126,7 @@ test.describe('Home Header', () => {
     const seeAllButton = page.getByTestId('see-all-podcasts')
     await expect(seeAllButton).toBeVisible()
     await seeAllButton.click()
-    expect(page).toHaveURL(/\/podcasts/)
+    await expect(page).toHaveURL(/\/podcasts/)
 
     // Check the podcast episodes
     const podcastEpisodes = page.locator('[data-testid^="podcast-episode"]')

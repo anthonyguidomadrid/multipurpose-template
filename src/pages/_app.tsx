@@ -114,7 +114,7 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
         }
         review={safeReviews.map(
           ({ fields: { title, description, author, date } }: Testimonial) => ({
-            author,
+            author: author ? { '@type': 'Person', name: author } : undefined,
             datePublished: date,
             name: title,
             reviewBody: description,

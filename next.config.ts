@@ -8,6 +8,14 @@ const withAnalyzer = withBundleAnalyzer({
 
 const nextConfig: NextConfig = {
   i18n: nextI18NextConfig.i18n,
+  modularizeImports: {
+    '@mui/material': {
+      transform: '@mui/material/{{member}}',
+    },
+    '@mui/icons-material': {
+      transform: '@mui/icons-material/{{member}}',
+    },
+  },
   images: {
     remotePatterns: [
       {

@@ -2,7 +2,7 @@ import { Document } from '@contentful/rich-text-types'
 import { DescriptionWrapper } from './ContentSection.style'
 import Typography from '@mui/material/Typography'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 
 export interface ContentSectionProps {
   title: string

@@ -11,7 +11,7 @@ import {
 } from './EventCard.styles'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
-import { Button } from '@mui/material'
+import Button from '@mui/material/Button'
 
 export const EventCard: React.FC<Event> = ({
   fields: {

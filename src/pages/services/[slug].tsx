@@ -2,14 +2,13 @@ import { SectionWrapper } from '@/components/common/styles'
 import { DetailsHeader } from '@/components/DetailsHeader/DetailsHeader'
 import { Seo } from '@/components/Seo/Seo'
 import { LINK } from '@/constants/link'
-import { getCtaByType, getOtherDetails, getDetailsBySlug } from '@/lib/contentful'
+import { getCtaByType, getOtherDetails, getDetailsBySlug, getSlugsByType } from '@/lib/contentful'
 import { Cta, Service, ServiceFields } from '@/lib/types'
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ProductJsonLd } from 'next-seo'
 import dynamic from 'next/dynamic'
-import nextI18NextConfig from '../../../next-i18next.config'
+import { getCommonPageProps } from '@/lib/commonPageProps'
 
 interface ServicePageProps {
   service: ServiceFields
@@ -78,7 +77,7 @@ const ServicePage: NextPage<ServicePageProps> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params, locale }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const { slug } = params || {}
 
   if (typeof slug !== 'string') {
@@ -113,11 +112,19 @@ export const getServerSideProps: GetServerSideProps = async ({ params, locale })
 
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'en', ['common'], nextI18NextConfig)),
+      ...(await getCommonPageProps(locale || 'en')),
       service,
       otherServices,
       cta,
     },
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const slugs = await getSlugsByType('service')
+  return {
+    paths: slugs.map((slug) => ({ params: { slug } })),
+    fallback: 'blocking',
   }
 }
 

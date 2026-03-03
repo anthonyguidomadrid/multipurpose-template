@@ -53,6 +53,21 @@ export const getHomePage = async () => {
   return homePage.items[0].fields as unknown as HomePage
 }
 
+export const getSlugsByType = async (contentType: string): Promise<string[]> => {
+  const response = await client.getEntries({
+    content_type: contentType,
+    select: ['fields.slug'],
+  })
+
+  if (response.items.length === 0) {
+    return []
+  }
+
+  return response.items
+    .map((item) => String((item.fields as { slug?: unknown })?.slug ?? ''))
+    .filter(Boolean)
+}
+
 export const getDetailsBySlug = async (slug: string, contentType: string) => {
   const response = await client.getEntries({
     content_type: contentType,

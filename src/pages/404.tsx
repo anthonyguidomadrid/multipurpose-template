@@ -1,8 +1,7 @@
 import { NotFound } from '@/components/NotFound/NotFound'
 import { ThemeSettings } from '@/lib/types'
 import { NextPage } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import nextI18NextConfig from '../../next-i18next.config'
+import { getCommonPageProps } from '@/lib/commonPageProps'
 
 interface Custom404Props {
   settings: ThemeSettings
@@ -21,7 +20,7 @@ const Custom404: NextPage<Custom404Props> = ({
 export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'], nextI18NextConfig)),
+      ...(await getCommonPageProps(locale || 'en')),
     },
   }
 }

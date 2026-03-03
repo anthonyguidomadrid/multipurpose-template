@@ -28,9 +28,10 @@ export interface SpotifyEpisode {
   uri: string
 }
 
-const CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID
-const CLIENT_SECRET = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET
-const SHOW_ID = process.env.NEXT_PUBLIC_SPOTIFY_SHOW_ID
+const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID || process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID
+const CLIENT_SECRET =
+  process.env.SPOTIFY_CLIENT_SECRET || process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET
+const SHOW_ID = process.env.SPOTIFY_SHOW_ID || process.env.NEXT_PUBLIC_SPOTIFY_SHOW_ID
 
 async function getSpotifyAccessToken(clientId: string, clientSecret: string): Promise<string> {
   const authResponse = await fetch(SPOTIFY_AUTH_URL, {

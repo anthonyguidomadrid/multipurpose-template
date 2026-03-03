@@ -1,7 +1,6 @@
-import NextApp, { AppContext, AppProps, AppType } from 'next/app'
+import { AppProps, AppType } from 'next/app'
 import getTheme from '@/theme/theme'
 import Head from 'next/head'
-import { getContact, getMenu, getReviews, getSettings } from '@/lib/contentful'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { appWithTranslation } from 'next-i18next'
@@ -12,7 +11,7 @@ import 'swiper/css/pagination'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import { LocalBusinessJsonLd } from 'next-seo'
-import { Contact, Image, Menu, Testimonial, ThemeSettings } from '@/lib/types'
+import { Contact, Menu, Testimonial } from '@/lib/types'
 import {
   Oswald,
   Mrs_Saint_Delafield,
@@ -23,68 +22,7 @@ import {
 } from 'next/font/google'
 import { GoogleAnalytics } from 'nextjs-google-analytics'
 import { getImageDetails } from '@/helpers/image'
-import { BLOCKS, Document } from '@contentful/rich-text-types'
-
-type AppSettings = ThemeSettings & {
-  faviconPng: Image
-  faviconSvg: Image
-  faviconIco: Image
-}
-
-const EMPTY_RICH_TEXT: Document = {
-  nodeType: BLOCKS.DOCUMENT,
-  data: {},
-  content: [],
-}
-
-const FALLBACK_IMAGE: Image = {
-  fields: {
-    title: '',
-    description: '',
-    file: {
-      url: '/images/home-page.jpg',
-      fileName: 'home-page.jpg',
-      contentType: 'image/jpeg',
-      details: {
-        size: 0,
-        image: {
-          width: 1200,
-          height: 800,
-        },
-      },
-    },
-  },
-}
-
-const getFallbackSettings = (): AppSettings => ({
-  websiteName: 'Website',
-  locale: 'en',
-  faviconPng: FALLBACK_IMAGE,
-  faviconSvg: FALLBACK_IMAGE,
-  faviconIco: FALLBACK_IMAGE,
-  pageNotFoundBackgroundImage: FALLBACK_IMAGE,
-})
-
-const getFallbackContact = (): Contact => ({
-  email: '',
-  phone: '',
-  galleryImages: [],
-  privacyPolicy: EMPTY_RICH_TEXT,
-  address: {
-    fields: {
-      streetAddress: '',
-      city: '',
-      region: '',
-      postalCode: '',
-      country: '',
-    },
-  },
-})
-
-const getFallbackMenu = (): Menu => ({
-  logo: FALLBACK_IMAGE,
-  menuItems: [],
-})
+import type { AppSettings } from '@/lib/commonPageProps'
 
 const oswald = Oswald({
   subsets: ['latin'],
@@ -123,39 +61,18 @@ const justMeAgainDownHere = Just_Me_Again_Down_Here({
 })
 
 const App: AppType = ({ Component, pageProps }: AppProps) => {
-  const rawSettings = pageProps?.settings as AppSettings | undefined
-  const rawContact = pageProps?.contact as Contact | undefined
-  const rawMenu = pageProps?.menu as Menu | undefined
+  const settings = pageProps?.settings as AppSettings | undefined
+  const contact = pageProps?.contact as Contact | undefined
+  const menu = pageProps?.menu as Menu | undefined
+  const reviews = pageProps?.reviews as Testimonial[] | undefined
 
-  const fallbackSettings = getFallbackSettings()
-  const fallbackContact = getFallbackContact()
-  const fallbackMenu = getFallbackMenu()
-
-  const settings: AppSettings = {
-    ...fallbackSettings,
-    ...rawSettings,
-    faviconPng: rawSettings?.faviconPng ?? fallbackSettings.faviconPng,
-    faviconSvg: rawSettings?.faviconSvg ?? fallbackSettings.faviconSvg,
-    faviconIco: rawSettings?.faviconIco ?? fallbackSettings.faviconIco,
-    pageNotFoundBackgroundImage:
-      rawSettings?.pageNotFoundBackgroundImage ?? fallbackSettings.pageNotFoundBackgroundImage,
+  if (!settings || !contact || !menu) {
+    throw new Error(
+      'Missing global page props (settings/contact/menu). Make sure your page getStaticProps spreads getCommonPageProps(locale).'
+    )
   }
 
-  const contact: Contact = {
-    ...fallbackContact,
-    ...rawContact,
-    galleryImages: rawContact?.galleryImages ?? fallbackContact.galleryImages,
-    privacyPolicy: rawContact?.privacyPolicy ?? fallbackContact.privacyPolicy,
-    address: rawContact?.address ?? fallbackContact.address,
-  }
-
-  const menu: Menu = {
-    ...fallbackMenu,
-    ...rawMenu,
-    logo: rawMenu?.logo ?? fallbackMenu.logo,
-    menuItems: rawMenu?.menuItems ?? fallbackMenu.menuItems,
-  }
-  const reviews: Testimonial[] = (pageProps?.reviews as Testimonial[] | undefined) ?? []
+  const safeReviews: Testimonial[] = reviews ?? []
 
   const { locale, websiteName, faviconPng, faviconIco, faviconSvg } = settings
   const router = useRouter()
@@ -195,15 +112,17 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
             addressCountry: contact.address.fields.country,
           }
         }
-        review={reviews.map(({ fields: { title, description, author, date } }: Testimonial) => ({
-          author,
-          datePublished: date,
-          name: title,
-          reviewBody: description,
-          reviewRating: {
-            ratingValue: '5',
-          },
-        }))}
+        review={safeReviews.map(
+          ({ fields: { title, description, author, date } }: Testimonial) => ({
+            author,
+            datePublished: date,
+            name: title,
+            reviewBody: description,
+            reviewRating: {
+              ratingValue: '5',
+            },
+          })
+        )}
       />
       <Head>
         <html lang={locale || router.locale} />
@@ -225,72 +144,6 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
       </ThemeProvider>
     </>
   )
-}
-
-App.getInitialProps = async (appContext: AppContext) => {
-  const appProps = await NextApp.getInitialProps(appContext)
-
-  let settings = getFallbackSettings()
-  let contact = getFallbackContact()
-  let menu = getFallbackMenu()
-  let reviews: Testimonial[] = []
-
-  try {
-    const fetched = (await getSettings()) as AppSettings
-    settings = {
-      ...settings,
-      ...fetched,
-      faviconPng: fetched?.faviconPng ?? settings.faviconPng,
-      faviconSvg: fetched?.faviconSvg ?? settings.faviconSvg,
-      faviconIco: fetched?.faviconIco ?? settings.faviconIco,
-      pageNotFoundBackgroundImage:
-        fetched?.pageNotFoundBackgroundImage ?? settings.pageNotFoundBackgroundImage,
-    }
-  } catch (error) {
-    console.error('Contentful getSettings failed in _app.getInitialProps', error)
-  }
-
-  try {
-    const fetched = (await getContact()) as Contact
-    contact = {
-      ...contact,
-      ...fetched,
-      galleryImages: fetched?.galleryImages ?? contact.galleryImages,
-      privacyPolicy: fetched?.privacyPolicy ?? contact.privacyPolicy,
-      address: fetched?.address ?? contact.address,
-    }
-  } catch (error) {
-    console.error('Contentful getContact failed in _app.getInitialProps', error)
-  }
-
-  try {
-    const fetched = (await getMenu()) as Menu
-    menu = {
-      ...menu,
-      ...fetched,
-      logo: fetched?.logo ?? menu.logo,
-      menuItems: fetched?.menuItems ?? menu.menuItems,
-    }
-  } catch (error) {
-    console.error('Contentful getMenu failed in _app.getInitialProps', error)
-  }
-
-  try {
-    reviews = (await getReviews()) as unknown as Testimonial[]
-  } catch (error) {
-    console.error('Contentful getReviews failed in _app.getInitialProps', error)
-  }
-
-  return {
-    ...appProps,
-    pageProps: {
-      ...appProps.pageProps,
-      settings,
-      contact,
-      menu,
-      reviews,
-    },
-  }
 }
 
 export default appWithTranslation(App, nextI18NextConfig)

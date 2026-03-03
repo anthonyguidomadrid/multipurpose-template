@@ -1,14 +1,13 @@
 import { HomeHeader } from '@/components/HomeHeader/HomeHeader'
 import { getHomePage } from '@/lib/contentful'
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { HomePage as ContentfulHomePage } from '@/lib/types'
 import { About } from '@/components/About/About'
 import { ServicesSection } from '@/components/ServicesSection/ServicesSection'
 import { getSpotifyEpisodes, SpotifyEpisode } from '@/lib/spotify'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Seo } from '@/components/Seo/Seo'
 import dynamic from 'next/dynamic'
-import nextI18NextConfig from '../../next-i18next.config'
+import { getCommonPageProps } from '@/lib/commonPageProps'
 
 interface HomePage {
   home: ContentfulHomePage
@@ -44,20 +43,20 @@ const Home: NextPage<HomePage> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   let home: ContentfulHomePage | null = null
   let episodes: { items: SpotifyEpisode[] } = { items: [] }
 
   try {
     home = await getHomePage()
   } catch (error) {
-    console.error('getHomePage failed in index.getServerSideProps', error)
+    console.error('getHomePage failed in index.getStaticProps', error)
   }
 
   try {
     episodes = await getSpotifyEpisodes({ limit: 3 })
   } catch (error) {
-    console.error('getSpotifyEpisodes failed in index.getServerSideProps', error)
+    console.error('getSpotifyEpisodes failed in index.getStaticProps', error)
   }
 
   if (!home) {
@@ -68,7 +67,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'en', ['common'], nextI18NextConfig)),
+      ...(await getCommonPageProps(locale || 'en')),
       home: {
         ...home,
         podcasts: {
@@ -79,6 +78,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
         },
       },
     },
+    revalidate: 60 * 30,
   }
 }
 

@@ -1,4 +1,4 @@
-import { getSpotifyEpisodes, SpotifyEpisode } from '@/lib/spotify'
+import type { SpotifyEpisode } from '@/lib/spotify'
 import { useState } from 'react'
 
 export const usePaginatedEpisodes = ({
@@ -15,18 +15,28 @@ export const usePaginatedEpisodes = ({
 
   const handleSeeMore = async () => {
     setLoading(true)
-    const data = await getSpotifyEpisodes({
-      limit: episodesPerPage,
-      offset,
-    })
-    if (data.items.length === 0) {
-      setHasMore(false)
+    try {
+      const response = await fetch(
+        `/api/spotify/episodes?limit=${episodesPerPage}&offset=${offset}`
+      )
+      if (!response.ok) {
+        throw new Error(`Failed to fetch episodes: ${response.status}`)
+      }
+
+      const data = (await response.json()) as { items: SpotifyEpisode[] }
+      if (data.items.length === 0) {
+        setHasMore(false)
+        setLoading(false)
+        return
+      }
+      setEpisodes((prev) => [...prev, ...data.items])
+      setOffset((prev) => prev + data.items.length)
       setLoading(false)
-      return
+    } catch (error) {
+      console.error('Failed to fetch more episodes', error)
+      setLoading(false)
+      setHasMore(false)
     }
-    setEpisodes((prev) => [...prev, ...data.items])
-    setOffset((prev) => prev + data.items.length)
-    setLoading(false)
   }
 
   return {

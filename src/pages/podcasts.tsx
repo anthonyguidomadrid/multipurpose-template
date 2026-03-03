@@ -1,15 +1,14 @@
 import { DetailsHeader } from '@/components/DetailsHeader/DetailsHeader'
 import { getShowInformation, getSpotifyEpisodes, SpotifyEpisode } from '@/lib/spotify'
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { Image } from '@/lib/types'
 import { useTranslation } from 'next-i18next'
 import { LINK } from '@/constants/link'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { usePaginatedEpisodes } from '@/hooks/usePaginatedEpisodes'
 import { JsonLdScript } from 'next-seo'
 import dynamic from 'next/dynamic'
 import { Seo } from '@/components/Seo/Seo'
-import nextI18NextConfig from '../../next-i18next.config'
+import { getCommonPageProps } from '@/lib/commonPageProps'
 
 interface PodcastsPageProps {
   name: string
@@ -76,7 +75,7 @@ const PodcastsPage: NextPage<PodcastsPageProps> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   let show: Pick<PodcastsPageProps, 'name' | 'description' | 'images'> | null = null
   let episodes: { items: SpotifyEpisode[] } = { items: [] }
 
@@ -100,10 +99,11 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   }
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'en', ['common'], nextI18NextConfig)),
+      ...(await getCommonPageProps(locale || 'en')),
       ...show,
       episodes,
     },
+    revalidate: 60 * 15,
   }
 }
 

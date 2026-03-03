@@ -104,6 +104,8 @@ Google Fonts are loaded and optimized using `next/font`:
 
 Deploy on [Vercel](https://vercel.com/) or any platform supporting Next.js.
 
+- Runtime: Node.js **24.x** (declared in `package.json` via `engines.node`)
+
 ## Project Structure
 
 ```

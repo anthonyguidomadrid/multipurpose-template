@@ -125,7 +125,6 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
         )}
       />
       <Head>
-        <html lang={locale || router.locale} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={faviconIcoUrl} sizes="16x16 32x32 48x48" type="image/x-icon" />
         <link rel="icon" type="image/png" sizes="32x32" href={faviconPngUrl} />

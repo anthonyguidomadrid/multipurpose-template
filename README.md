@@ -22,13 +22,14 @@ A production-ready, multipurpose template built with [Next.js](https://nextjs.or
 
 - Node.js **24.x**
   - If you use `nvm`: `nvm install 24 && nvm use 24` (this repo includes an `.nvmrc`)
+- Yarn classic (this repo uses Yarn scripts in `package.json`)
 
 ### 1. Install dependencies
 
 ```bash
-npm install
-# or
 yarn install
+# or
+npm install
 ```
 
 ### 2. Configure environment variables
@@ -47,15 +48,20 @@ cp .env.example .env
 - **Google Maps**: `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`
 - **SEO/Analytics**: `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_ALLOW_ROBOTS`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`
 
+Notes:
+
+- `NEXT_PUBLIC_SITE_URL` should be your canonical origin **without** `www` (e.g. `https://example.com`).
+- `NEXT_PUBLIC_ALLOW_ROBOTS=true` allows indexing; otherwise `robots.txt` disallows crawling.
+
 ### 3. Run the development server
 
 ```bash
-npm run dev
-# or
 yarn dev
+# or
+npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the app.
+Open [http://localhost:3000](http://localhost:3000) to see the app. If port 3000 is taken, Next will pick the next available port.
 
 ## Contentful Setup
 
@@ -67,13 +73,16 @@ Open [http://localhost:3000](http://localhost:3000) to see the app.
 
 ## Scripts
 
-- `dev` – Start development server
+- `dev` – Start development server (Turbopack)
 - `build` – Build for production
 - `start` – Start production server
 - `postbuild` – Generate sitemap and robots.txt
 - `lint` – Lint code
 - `type:check` – TypeScript check
+- `type:watch` – TypeScript check (watch mode)
+- `format` – Format with Prettier
 - `test` – Run Playwright tests
+- `pretest` – Install Playwright browsers (runs automatically before `test`)
 - `verify` – Lint, type-check, and test
 
 ## Fonts
@@ -89,9 +98,24 @@ Google Fonts are loaded and optimized using `next/font`:
 
 ## SEO & Sitemap
 
-- SEO handled with `next-seo` and custom `<Seo />` component.
-- Structured data (JSON-LD) for Organization, Events, Services, etc.
+- SEO handled with `next-seo` and the custom `Seo` component.
+- Canonicals are generated per page using `NEXT_PUBLIC_SITE_URL`.
+- Host/protocol are normalized in `next.config.ts` (non-www canonical + HTTPS when applicable).
+- The real `<html lang="...">` is set in `src/pages/_document.tsx`.
+- Structured data (JSON-LD) included for:
+  - Local business (site-wide)
+  - Breadcrumbs (detail pages)
+  - Events, Podcasts, and Services (page-level WebPage/Event schema)
 - Sitemap and robots.txt generated with `next-sitemap` (see `next-sitemap.config.js`).
+
+## Troubleshooting
+
+### `Unable to acquire lock at .next/dev/lock`
+
+This usually means another `next dev` process is still running.
+
+- Stop the existing dev server process.
+- If needed, delete the stale lock file: `rm -f .next/dev/lock`
 
 ## Testing
 
@@ -118,6 +142,7 @@ multipurpose-template/
 │   ├── hooks/            # Custom React hooks (useGridSize, useScroll, etc.)
 │   ├── lib/              # API clients and integrations (contentful, spotify, emailjs)
 │   ├── pages/            # Next.js pages and API routes
+│   │   ├── _document.tsx  # Custom Document (html lang)
 │   ├── tests/            # Playwright and unit tests
 │   └── theme/            # MUI theme customization
 ├── .env.example          # Example environment variables

@@ -8,13 +8,19 @@ import EmailIcon from '@mui/icons-material/Email'
 import { useRouter } from 'next/router'
 import { getDate } from '@/helpers/date'
 import { getEmailLink, getPhoneLink } from '@/helpers/link'
-import { Map } from '../Map/Map'
+import dynamic from 'next/dynamic'
+import { Spinner } from '../Map/Map.styles'
 import { DetailsWrapper } from './EventDetails.styles'
 import { motion } from 'framer-motion'
 import { FADE_IN_UP } from '@/constants/animation'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
+
+const Map = dynamic(() => import('../Map/Map').then((mod) => mod.Map), {
+  ssr: false,
+  loading: () => <Spinner />,
+})
 
 type EventDetailsProps = Pick<
   EventFields,

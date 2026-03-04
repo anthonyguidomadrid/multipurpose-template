@@ -3,11 +3,16 @@ import { Navigation } from 'swiper/modules'
 import { Image } from '@/lib/types'
 import 'swiper/css/navigation'
 import { useState } from 'react'
-import { GalleryLightbox } from '../Lightbox/Lightbox'
+import dynamic from 'next/dynamic'
 import { GalleryImage } from './SlideGallery.styles'
 import { motion } from 'framer-motion'
 import { FADE_IN_VARIANTS } from '@/constants/animation'
 import { getImageDetails } from '@/helpers/image'
+
+const GalleryLightbox = dynamic(
+  () => import('../Lightbox/Lightbox').then((mod) => mod.GalleryLightbox),
+  { ssr: false }
+)
 
 interface SlideGalleryProps {
   images: Image[]

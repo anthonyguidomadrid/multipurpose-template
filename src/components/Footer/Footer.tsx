@@ -12,9 +12,9 @@ import EmailIcon from '@mui/icons-material/Email'
 import LocationPinIcon from '@mui/icons-material/LocationPin'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'next-i18next'
+import dynamic from 'next/dynamic'
 import { SocialMediaButton } from '../SocialMediaButton/SocialMediaButton'
 import { ContactForm } from '../ContactForm/ContactForm'
-import { GalleryLightbox } from '../Lightbox/Lightbox'
 import {
   ContactInfoWrapper,
   ContactWrapper,
@@ -29,6 +29,11 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/material'
 import { getImageDetails } from '@/helpers/image'
+
+const GalleryLightbox = dynamic(
+  () => import('../Lightbox/Lightbox').then((mod) => mod.GalleryLightbox),
+  { ssr: false }
+)
 
 interface FooterProps extends Contact {
   websiteName: string

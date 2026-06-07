@@ -7,15 +7,11 @@ interface Custom404Props {
   settings: ThemeSettings
 }
 
-const Custom404: NextPage<Custom404Props> = ({
-  settings: {
-    pageNotFoundBackgroundImage: {
-      fields: {
-        file: { url: backgroundImageUrl },
-      },
-    },
-  },
-}) => <NotFound backgroundImageUrl={backgroundImageUrl} />
+const Custom404: NextPage<Custom404Props> = ({ settings }) => {
+  const backgroundImageUrl =
+    settings?.pageNotFoundBackgroundImage?.fields?.file?.url ?? ''
+  return <NotFound backgroundImageUrl={backgroundImageUrl} />
+}
 
 export async function getStaticProps({ locale }: { locale: string }) {
   return {

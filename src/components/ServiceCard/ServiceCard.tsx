@@ -21,8 +21,8 @@ export const ServiceCard: React.FC<ServiceType> = ({
         <CardActionArea>
           <CardMedia
             component="img"
-            src={thumbnail.fields.file.url}
-            alt={thumbnail.fields.description}
+            src={thumbnail.fields?.file?.url}
+            alt={thumbnail.fields?.description}
             sx={{
               height: 300,
               objectFit: 'cover',

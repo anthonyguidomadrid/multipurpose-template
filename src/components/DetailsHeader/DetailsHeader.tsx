@@ -49,7 +49,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
       )}
       <DetailsHeaderWrapper>
         <BackgroundImage
-          backgroundImage={image.fields.file.url}
+          backgroundImage={image.fields?.file?.url ?? ''}
           data-testid={`${sectionName}-background-image`}
           backgroundPosition={backgroundPosition}
         />

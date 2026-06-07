@@ -15,7 +15,7 @@ export const GalleryLightbox = ({
   photoIndex,
   setPhotoIndex,
 }: GalleryLightBoxProps) => {
-  const imagesUrl = galleryImages.map((img) => img.fields.file.url)
+  const imagesUrl = galleryImages.map((img) => img.fields?.file?.url ?? '')
 
   return (
     <Lightbox
@@ -27,7 +27,7 @@ export const GalleryLightbox = ({
         setPhotoIndex((photoIndex + imagesUrl.length - 1) % imagesUrl.length)
       }
       onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % imagesUrl.length)}
-      imageCaption={galleryImages[photoIndex].fields.description}
+      imageCaption={galleryImages[photoIndex].fields?.description ?? ''}
     />
   )
 }

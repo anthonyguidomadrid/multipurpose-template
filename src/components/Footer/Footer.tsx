@@ -164,7 +164,7 @@ export const Footer: React.FC<FooterProps> = ({
                 const { imageUrl, imageDescription, imageWidth, imageHeight } =
                   getImageDetails(image)
                 return (
-                  <Grid size={4} key={image.fields.file.fileName}>
+                  <Grid size={4} key={image.fields?.file?.fileName ?? idx}>
                     <ImageGrid
                       src={imageUrl}
                       alt={imageDescription}

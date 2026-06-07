@@ -82,9 +82,9 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
       router.push(router.asPath, router.asPath, { locale })
     }
   }, [locale, router])
-  const faviconPngUrl = faviconPng.fields.file.url
-  const faviconSvgUrl = faviconSvg.fields.file.url
-  const faviconIcoUrl = faviconIco.fields.file.url
+  const faviconPngUrl = faviconPng.fields?.file?.url ?? ''
+  const faviconSvgUrl = faviconSvg.fields?.file?.url ?? ''
+  const faviconIcoUrl = faviconIco.fields?.file?.url ?? ''
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || ''
   const socialMediaUrls = [
     contact.facebookUrl,

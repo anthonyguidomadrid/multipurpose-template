@@ -59,7 +59,7 @@ const ServicePage: NextPage<ServicePageProps> = ({
             description: subtitle,
             primaryImageOfPage: {
               '@type': 'ImageObject',
-              url: thumbnail.fields.file.url,
+              url: thumbnail.fields?.file?.url ?? '',
             },
           }}
         />
